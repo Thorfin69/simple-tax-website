@@ -1414,15 +1414,19 @@ function runAnalysis(){
 }
 
 function startTicker(){
-  const da=daily(); let shown=da;
+  const da=daily(); let shown=da*0.85;
   const el=document.getElementById('cowNum');
   if(!el) return;
+  el.textContent='$'+shown.toFixed(2);
+  const targetVal=da*1.25;
   const iv=setInterval(()=>{
-    shown+=da/120;
+    shown+=da/25;
+    if(shown>=targetVal) shown=targetVal;
     const t=document.getElementById('cowNum');
     if(!t){clearInterval(iv);return;}
     t.textContent='$'+shown.toFixed(2);
-  },100);
+    if(shown>=targetVal) clearInterval(iv);
+  },50);
 }
 
 </script>
