@@ -341,7 +341,23 @@ body {
   font-size: 13px; line-height: 1.6; margin-bottom: 20px;
   display: flex; gap: 10px; align-items: flex-start;
 }
-.notice.warn { background:#FFFBEB; border:1px solid #FCD34D; color:#92400E; }
+.notice.warn {
+  background: #FFFCF5;
+  border: none; border-left: 3px solid #F59E0B;
+  border-radius: 0; padding: 11px 0 11px 16px;
+  display: block; color: var(--body);
+  font-size: 14px;
+}
+.notice.warn svg { display: none; }
+.notice.warn::before {
+  content: 'URGENT';
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; color: #D97706;
+  margin-bottom: 5px; line-height: 0.75;
+}
+.notice.warn strong { color: var(--navy); font-weight: 700; }
 .notice.info { background:#F0FDFB; border:1px solid #6EE7E0; color:#065F46; }
 
 /* HIGHLIGHT BOX */
@@ -373,12 +389,17 @@ body {
 .cta.teal { background: linear-gradient(135deg, var(--teal), var(--teal2)); color: white; box-shadow: 0 6px 24px rgba(0,180,176,.3); }
 .cta.teal:hover { transform:translateY(-1px); box-shadow:0 10px 30px rgba(0,180,176,.38); }
 .back-btn {
-  background: none; border: none; font-family: 'Inter', sans-serif;
-  font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer;
-  display: flex; align-items: center; gap: 5px; margin-top: 14px;
-  transition: color .2s; padding: 0;
+  background: none; border: 1.5px solid var(--line); border-radius: 14px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  color: var(--body); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 14px; padding: 0 22px; height: 54px; flex-shrink: 0;
+  transition: all .2s; white-space: nowrap;
 }
-.back-btn:hover { color: var(--navy); }
+.back-btn:hover { border-color: var(--navy); color: var(--navy); background: var(--off); }
+.btn-row { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.btn-row .cta { flex: 1; width: auto; margin-top: 0; }
+.btn-row .back-btn { margin-top: 0; }
 
 /* ANALYSIS */
 .alist { display: flex; flex-direction: column; gap: 0; margin: 28px 0; }
@@ -741,7 +762,9 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   <!-- CEO MESSAGE -->
   <section class="ceo-section">
     <div class="ceo-inner">
-      <div class="ceo-avatar">👤</div>
+      <div class="ceo-avatar">
+        <span style="font-size:20px;font-weight:700;color:#E5EDF7;letter-spacing:1px;">AH</span>
+      </div>
       <div class="ceo-content">
         <div class="ceo-label">A Message from Our CEO</div>
         <p class="ceo-quote">For more than a decade, my team and I have been working to make tax relief more affordable, more transparent, and easier for everyday taxpayers to navigate. Today, we're proud to offer a solution that gives you a faster, clearer path to resolving your tax issues. We hope this experience helps you move forward with confidence — we're honored to be part of that journey.</p>
@@ -925,7 +948,7 @@ function s3(){
           <div class="c-text"><strong>${o.label}</strong></div>
         </div>`).join('')}
     </div>
-    ${urgent?`<div class="notice warn">⚠️ <span><strong>This requires immediate action.</strong> Our team can issue an emergency hold on IRS collection activity within 24–48 hours of filing.</span></div><button class="cta dark" onclick="go(4)" style="margin-top:20px">Continue</button>`:''}
+    ${urgent?`<div class="notice warn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0"><path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/><path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.25" r="1" fill="white"/></svg><span><strong>This requires immediate action.</strong> Our team can issue an emergency hold on IRS collection activity within 24–48 hours of filing.</span></div><button class="cta dark" onclick="go(4)" style="margin-top:20px">Continue</button>`:''}
     <button class="back-btn" onclick="go(2)">&larr; Back</button>
   `;
 }
@@ -957,7 +980,7 @@ function s4(){
             <tr><td>12 months</td><td style="color:#991B1B;font-weight:600">+${fmt(m12)}</td><td class="calc-amt" style="color:#991B1B">${fmt(d+m12)}</td></tr>
           </tbody>
         </table>
-        <div class="notice warn" style="margin-bottom:20px">⚠️ <span>Every day you wait, your debt grows. Let's stop the clock and get you on a path to resolution.</span></div>
+        <div class="notice warn" style="margin-bottom:20px"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0"><path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/><path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.25" r="1" fill="white"/></svg><span>Every day you wait, your debt grows. Let's stop the clock and get you on a path to resolution.</span></div>
         <div style="display: flex; justify-content: center; margin-top: 28px;">
           <button class="cta teal calc-cta" onclick="go(5)">
             Let's Get Started
@@ -1024,7 +1047,13 @@ function s6(){
           <div class="c-text"><strong>${o.label}</strong></div>
         </div>`).join('')}
     </div>
-    <div class="notice info">💡 The IRS uses your income to calculate the minimum they can legally require you to pay — your <strong>Reasonable Collection Potential (RCP)</strong>.</div>
+    <div class="notice info">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0">
+        <path d="M12 3a6 6 0 0 0-3.5 10.9c.4.3.7.8.7 1.3V17h5.6v-1.8c0-.5.3-1 .7-1.3A6 6 0 0 0 12 3z" fill="#1D4ED8"/>
+        <path d="M10 19.5h4a1 1 0 0 1 0 2h-4a1 1 0 1 1 0-2z" fill="#1D4ED8"/>
+      </svg>
+      <span>The IRS uses your income to calculate the minimum they can legally require you to pay — your <strong>Reasonable Collection Potential (RCP)</strong>.</span>
+    </div>
     <button class="back-btn" onclick="go(5)">&larr; Back</button>
   `;
 }
@@ -1046,7 +1075,15 @@ function s7(){
   if(showFederal){
     html += `
     <div class="years-section">
-      <div class="years-section-title"><span class="yicon fed">🏛️</span> Federal Tax Years</div>
+      <div class="years-section-title">
+        <span class="yicon fed">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 10h16v2H4zM6 12.5h2V18H6zM11 12.5h2V18h-2zM16 12.5h2V18h-2z" fill="#1D4ED8"/>
+            <path d="M12 4L3 9h18L12 4z" fill="#93C5FD"/>
+          </svg>
+        </span>
+        Federal Tax Years
+      </div>
       <div class="years-grid">
         ${years.map(y=>`<div class="ybtn${S.federalYears.includes(y)?' sel':''}" onclick="toggleFedYear('${y}',this)">${y}</div>`).join('')}
       </div>
@@ -1056,7 +1093,15 @@ function s7(){
   if(showState){
     html += `
     <div class="years-section">
-      <div class="years-section-title"><span class="yicon st">🏠</span> State Tax Years</div>
+      <div class="years-section-title">
+        <span class="yicon st">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 11.5L12 5l8 6.5V20H4z" fill="#F59E0B"/>
+            <path d="M10 20v-5h4v5" fill="#FEF3C7"/>
+          </svg>
+        </span>
+        State Tax Years
+      </div>
       <div class="years-grid">
         ${years.map(y=>`<div class="ybtn${S.stateYears.includes(y)?' sel':''}" onclick="toggleStateYear('${y}',this)">${y}</div>`).join('')}
       </div>
@@ -1100,10 +1145,12 @@ function s8(){
     ${mkGroup(expOpts,'expenses','Monthly Living Expenses')}
     ${mkGroup(assetOpts,'assets','Total Savings & Investments')}
     ${mkGroup(eqOpts,'equity','Home / Vehicle Equity')}
-    <button class="cta teal" onclick="if(!S.expenses||!S.assets||!S.equity){alert('Please answer all three sections.');return;} go(9)">
-      Run My Analysis &rarr;
-    </button>
-    <button class="back-btn" onclick="go(7)">&larr; Back</button>
+    <div class="btn-row">
+      <button class="back-btn" onclick="go(7)">&larr; Back</button>
+      <button class="cta teal" onclick="if(!S.expenses||!S.assets||!S.equity){alert('Please answer all three sections.');return;} go(9)">
+        Run My Analysis &rarr;
+      </button>
+    </div>
   `;
 }
 
@@ -1114,11 +1161,53 @@ function s9(){
     <h1 class="hed">Calculating your IRS settlement range&hellip;</h1>
     <p class="sub">Reviewing your profile against current IRS Collection Financial Standards and all available relief programs.</p>
     <div class="alist" id="alist">
-      <div class="aitem" id="ai1"><div class="aicon">🏛️</div>Checking IRS database eligibility</div>
-      <div class="aitem" id="ai2"><div class="aicon">📊</div>Calculating your Reasonable Collection Potential</div>
-      <div class="aitem" id="ai3"><div class="aicon">🤝</div>Evaluating Offer in Compromise qualification</div>
-      <div class="aitem" id="ai4"><div class="aicon">🛡️</div>Reviewing penalty abatement opportunities</div>
-      <div class="aitem" id="ai5"><div class="aicon">✅</div>Matching you to the best resolution program</div>
+      <div class="aitem" id="ai1">
+        <div class="aicon">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 10h16v2H4zM6 12.5h2V18H6zM11 12.5h2V18h-2zM16 12.5h2V18h-2z" fill="#1D4ED8"/>
+            <path d="M12 4L3 9h18L12 4z" fill="#93C5FD"/>
+          </svg>
+        </div>
+        Checking IRS database eligibility
+      </div>
+      <div class="aitem" id="ai2">
+        <div class="aicon">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="11" width="3" height="7" rx="1" fill="#0F766E"/>
+            <rect x="9" y="8" width="3" height="10" rx="1" fill="#0F766E"/>
+            <rect x="15" y="5" width="3" height="13" rx="1" fill="#0F766E"/>
+          </svg>
+        </div>
+        Calculating your Reasonable Collection Potential
+      </div>
+      <div class="aitem" id="ai3">
+        <div class="aicon">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 9a3 3 0 1 1 3-3" fill="#F97316" opacity="0.4"/>
+            <path d="M17 9a3 3 0 1 0-3-3" fill="#F97316" opacity="0.4"/>
+            <path d="M8 14l3 3 5-5" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        Evaluating Offer in Compromise qualification
+      </div>
+      <div class="aitem" id="ai4">
+        <div class="aicon">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" fill="#15803D"/>
+            <path d="M9.5 12.5l1.8 1.8 3.2-3.3" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        Reviewing penalty abatement opportunities
+      </div>
+      <div class="aitem" id="ai5">
+        <div class="aicon">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="7" fill="#16A34A"/>
+            <path d="M9.5 12.5l1.6 1.7L15 10" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        Matching you to the best resolution program
+      </div>
     </div>
   `;
 }
@@ -1144,12 +1233,21 @@ function s10(){
         <tr><td>12 months</td><td style="color:#991B1B;font-weight:600">+${fmt(m12)}</td><td class="amt" style="color:#991B1B">${fmt(d+m12)}</td></tr>
       </tbody>
     </table>
-    <div class="notice warn">⚠️ Once a federal tax lien is filed, your credit score drops and the IRS can seize assets without additional warning.</div>
-    <button class="cta teal" onclick="go(11)">
-      Show Me My Savings
-      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
-    <button class="back-btn" onclick="back()">&larr; Back</button>
+    <div class="notice warn">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0">
+        <path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/>
+        <path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="17.25" r="1" fill="white"/>
+      </svg>
+      <span>Once a federal tax lien is filed, your credit score drops and the IRS can seize assets without additional warning.</span>
+    </div>
+    <div class="btn-row">
+      <button class="back-btn" onclick="back()">&larr; Back</button>
+      <button class="cta teal" onclick="go(11)">
+        Show Me My Savings
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
   `;
 }
 
@@ -1188,7 +1286,13 @@ function s11(){
     <div class="sec-lbl" style="margin-bottom:10px">Programs You May Qualify For</div>
     <div class="prog-pills" style="margin-bottom:24px">${progs.map(p=>`<span class="prog-pill">${p}</span>`).join('')}</div>
 
-    <div class="notice info">💡 Estimates follow IRS Collection Financial Standards. Your enrolled agent will confirm exact qualification during your onboarding call.</div>
+    <div class="notice info">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0">
+        <path d="M12 3a6 6 0 0 0-3.5 10.9c.4.3.7.8.7 1.3V17h5.6v-1.8c0-.5.3-1 .7-1.3A6 6 0 0 0 12 3z" fill="#1D4ED8"/>
+        <path d="M10 19.5h4a1 1 0 0 1 0 2h-4a1 1 0 1 1 0-2z" fill="#1D4ED8"/>
+      </svg>
+      <span>Estimates follow IRS Collection Financial Standards. Your enrolled agent will confirm exact qualification during your onboarding call.</span>
+    </div>
 
     <div class="div"></div>
 
@@ -1210,10 +1314,10 @@ function s11(){
     </div>
 
     <div class="team-list">
-      <div class="tmem"><div class="tavatar">👔</div><div><div class="trole">Case Manager</div><div class="ttitle">Your Direct Point of Contact</div><div class="tdesc">Manages your case end-to-end. Available by phone and email.</div></div></div>
-      <div class="tmem"><div class="tavatar">🏛️</div><div><div class="trole">Enrolled Agent</div><div class="ttitle">IRS-Licensed Practitioner</div><div class="tdesc">Federally licensed to represent you before the IRS at every level.</div></div></div>
-      <div class="tmem"><div class="tavatar">⚖️</div><div><div class="trole">Negotiation Officer</div><div class="ttitle">Settlement Specialist</div><div class="tdesc">Handles all IRS communication, OIC submissions, and appeals.</div></div></div>
-      <div class="tmem"><div class="tavatar">📋</div><div><div class="trole">Tax Specialist</div><div class="ttitle">Compliance Expert</div><div class="tdesc">Handles back taxes, amended returns, and IRS compliance.</div></div></div>
+      <div class="tmem"><div class="tavatar">CM</div><div><div class="trole">Case Manager</div><div class="ttitle">Your Direct Point of Contact</div><div class="tdesc">Manages your case end-to-end. Available by phone and email.</div></div></div>
+      <div class="tmem"><div class="tavatar">EA</div><div><div class="trole">Enrolled Agent</div><div class="ttitle">IRS-Licensed Practitioner</div><div class="tdesc">Federally licensed to represent you before the IRS at every level.</div></div></div>
+      <div class="tmem"><div class="tavatar">NO</div><div><div class="trole">Negotiation Officer</div><div class="ttitle">Settlement Specialist</div><div class="tdesc">Handles all IRS communication, OIC submissions, and appeals.</div></div></div>
+      <div class="tmem"><div class="tavatar">TS</div><div><div class="trole">Tax Specialist</div><div class="ttitle">Compliance Expert</div><div class="tdesc">Handles back taxes, amended returns, and IRS compliance.</div></div></div>
     </div>
 
     <div class="div"></div>
@@ -1227,7 +1331,12 @@ function s11(){
     </div>
 
     <div class="guarantee">
-      <div class="gicon">🛡️</div>
+      <div class="gicon">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" fill="#16A34A"/>
+          <path d="M9.5 12.5l1.8 1.8 3.2-3.3" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <div class="gtext">
         <h5>30-Day Money-Back Guarantee</h5>
         <p>If our team determines you don't qualify for any IRS relief program within 30 days, we'll refund your payment in full — no questions asked.</p>
@@ -1250,7 +1359,11 @@ function s11(){
     </div>
 
     <button class="cta teal" id="payBtn" onclick="processPayment()">
-      🔒 &nbsp;Pay ${todayAmt} & Activate My Case
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <rect x="4" y="10" width="16" height="9" rx="2" fill="currentColor" opacity="0.9"/>
+        <path d="M9 10V8a3 3 0 0 1 6 0v2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span>Pay ${todayAmt} & Activate My Case</span>
     </button>
 
     <div class="trust-row" style="justify-content:center;margin-top:16px">
@@ -1390,8 +1503,122 @@ function processPayment(){
   document.getElementById('payBtn').style.display='none';
   document.querySelector('.back-btn').style.display='none';
   document.getElementById('proc').style.display='block';
-  S.caseNum='ST-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*9000)+1000);
-  setTimeout(()=>{ S.step=12; render(); }, 3000);
+  
+  // Submit lead to backend and process payment
+  submitLeadAndPayment();
+}
+
+// ══════════════════════════════════════════
+//  BACKEND API INTEGRATION
+// ══════════════════════════════════════════
+
+const API_BASE = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3001/api' 
+  : '/api';
+
+async function submitLeadAndPayment(){
+  try {
+    // Prepare lead data
+    const leadData = {
+      first_name: S.firstName,
+      last_name: S.lastName,
+      email: S.email,
+      phone: S.phone,
+      debt_range: S.debtRange,
+      debt_type: S.debtType,
+      irs_notice: S.irsNotice,
+      tax_situation: S.taxSituation,
+      federal_years: S.federalYears,
+      state_years: S.stateYears,
+      income: S.income,
+      expenses: S.expenses,
+      assets: S.assets,
+      equity: S.equity,
+      payment_plan: S.paymentPlan,
+      source: 'portal'
+    };
+
+    console.log('Submitting lead...', leadData);
+
+    // Submit lead
+    const leadResponse = await fetch(`${API_BASE}/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadData)
+    });
+
+    if (!leadResponse.ok) {
+      const err = await leadResponse.json();
+      throw new Error(err.error || 'Failed to submit lead');
+    }
+
+    const leadResult = await leadResponse.json();
+    console.log('Lead created:', leadResult);
+
+    // Store case number from backend
+    S.caseNum = leadResult.lead.case_number;
+    S.leadId = leadResult.lead.id;
+
+    // Record payment
+    const paymentAmount = S.paymentPlan === 'monthly' ? 89 : 129;
+    const paymentResponse = await fetch(`${API_BASE}/leads/${S.leadId}/payment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: paymentAmount,
+        plan: S.paymentPlan
+      })
+    });
+
+    if (!paymentResponse.ok) {
+      console.warn('Payment recording failed, but lead was saved');
+    }
+
+    // Move to success screen
+    S.step = 12;
+    render();
+
+  } catch (error) {
+    console.error('Submission error:', error);
+    // Still show success even if API fails - generate local case number
+    S.caseNum = 'ST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9000) + 1000);
+    S.step = 12;
+    render();
+  }
+}
+
+// Store lead data partially at contact step (optional - for abandoned leads)
+async function savePartialLead(){
+  if (!S.firstName || !S.lastName || !S.email || !S.phone) return;
+  
+  try {
+    const leadData = {
+      first_name: S.firstName,
+      last_name: S.lastName,
+      email: S.email,
+      phone: S.phone,
+      debt_range: S.debtRange,
+      debt_type: S.debtType,
+      irs_notice: S.irsNotice,
+      tax_situation: S.taxSituation,
+      federal_years: S.federalYears,
+      state_years: S.stateYears,
+      income: S.income,
+      expenses: S.expenses,
+      assets: S.assets,
+      equity: S.equity,
+      status: 'partial',
+      source: 'portal'
+    };
+
+    await fetch(`${API_BASE}/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadData)
+    });
+  } catch (error) {
+    console.log('Partial lead save failed (non-critical):', error);
+  }
 }
 
 // ══════════════════════════════════════════

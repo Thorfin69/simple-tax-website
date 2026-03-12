@@ -3,211 +3,681 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hero Section Variants</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>SympleTax — Hero Variants Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #fff; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#060D1A;--navy2:#0F1F45;--navy3:#1B2F60;
+  --teal:#00B4B0;--teal2:#009B98;--teal3:#00D4D0;
+  --white:#FFFFFF;--off:#F7F9FC;--line:#E8EDF5;
+  --muted:#8895AE;--body:#3D4A61;
+  --red:#DC2626;--gold:#D97706;--green:#16A34A;
+}
+html,body{font-family:'Inter',sans-serif;background:#fff;overflow-x:hidden}
 
-:root {
-  --navy:  #0F1F45;
-  --navy2: #1B2F60;
-  --teal:  #00B4B0;
-  --teal2: #009B98;
-  --off:   #F7F9FC;
-  --line:  #E8EDF5;
-  --muted: #8895AE;
-  --body:  #3D4A61;
-  --red:   #DC2626;
-}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.18);opacity:0}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(25px,-15px) scale(1.04)}66%{transform:translate(-15px,12px) scale(.97)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes progFill{to{width:84%}}
 
-.variant { display: none; }
-.variant.active { display: block; }
+/* ── Tab Nav ── */
+.tab-nav{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(0,0,0,.08);
+  padding:0 20px;height:54px;
+  display:flex;align-items:center;gap:4px;
+  overflow-x:auto;scrollbar-width:none;
+}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;color:var(--navy2);white-space:nowrap;margin-right:12px;flex-shrink:0}
+.tab-logo span{color:var(--teal)}
+.tab-div{width:1px;height:18px;background:var(--line);margin-right:8px;flex-shrink:0}
+.tab{padding:6px 14px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-family:'Outfit',sans-serif;font-size:12.5px;font-weight:600;color:var(--muted);transition:all .2s;white-space:nowrap;flex-shrink:0}
+.tab:hover{color:var(--navy2);background:var(--off)}
+.tab.active{background:var(--navy2);color:white}
 
-/* VARIANT 1 - Bold & Direct */
-.v1-hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 100px 24px 80px;
-  background: linear-gradient(135deg, #0F1F45 0%, #1B2F60 50%, #003d3a 100%);
-  position: relative; overflow: hidden;
-  color: white;
-}
-.v1-hero::before {
-  content: '';
-  position: absolute; top: -400px; right: -200px;
-  width: 800px; height: 800px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,180,176,.12), transparent 70%);
-  pointer-events: none;
-}
-.v1-hero::after {
-  content: '';
-  position: absolute; bottom: -300px; left: -200px;
-  width: 600px; height: 600px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,180,176,.08), transparent 70%);
-  pointer-events: none;
-}
-.v1-content { position: relative; z-index: 1; }
-.v1-eyebrow {
-  display: inline-block;
-  font-size: 12px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--teal);
-  margin-bottom: 32px;
-}
-.v1-h1 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(40px, 7vw, 72px);
-  font-weight: 800; line-height: 1.05;
-  margin-bottom: 24px; letter-spacing: -2px;
-}
-.v1-h1 strong { color: var(--teal); font-weight: 800; }
-.v1-sub {
-  font-size: 18px; font-weight: 400; color: rgba(255,255,255,.8);
-  line-height: 1.7; max-width: 580px;
-  margin-bottom: 44px;
-}
-.v1-cta {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: var(--teal); color: white;
-  border: none; border-radius: 16px;
-  padding: 20px 48px; font-family: 'Outfit', sans-serif;
-  font-size: 17px; font-weight: 700; cursor: pointer;
-  transition: all .3s; letter-spacing: 0.3px;
-  box-shadow: 0 12px 48px rgba(0,180,176,.4);
-}
-.v1-cta:hover { transform: translateY(-4px); box-shadow: 0 18px 60px rgba(0,180,176,.5); }
-.v1-trust {
-  margin-top: 52px;
-  display: flex; align-items: center; gap: 32px; flex-wrap: wrap; justify-content: center;
-}
-.v1-trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,.7); }
+.variant{display:none}.variant.active{display:block}
 
-/* VARIANT 2 - Minimalist & Light */
-.v2-hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 100px 24px 80px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 60%, #EEF8FC 100%);
-  position: relative; overflow: hidden;
-}
-.v2-hero::before {
-  content: '';
-  position: absolute; top: -100px; right: 10%;
-  width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,180,176,.08), transparent 70%);
-  pointer-events: none;
-}
-.v2-content { position: relative; z-index: 1; max-width: 720px; }
-.v2-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: white; border: 1.5px solid var(--line);
-  border-radius: 24px; padding: 8px 20px;
-  font-size: 13px; font-weight: 600; color: var(--navy);
-  margin-bottom: 36px;
-  box-shadow: 0 2px 16px rgba(0,0,0,.06);
-}
-.v2-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
-.v2-h1 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(42px, 6.5vw, 66px);
-  font-weight: 800; line-height: 1.1;
-  color: var(--navy); margin-bottom: 24px; letter-spacing: -1.5px;
-}
-.v2-h1 em { font-style: normal; color: var(--teal); }
-.v2-sub {
-  font-size: 17px; font-weight: 400; color: var(--body);
-  line-height: 1.75; margin-bottom: 48px;
-}
-.v2-cta {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: linear-gradient(135deg, var(--teal), var(--teal2));
-  color: white; border: none; border-radius: 16px;
-  padding: 20px 48px; font-family: 'Outfit', sans-serif;
-  font-size: 17px; font-weight: 700; cursor: pointer;
-  transition: all .3s; letter-spacing: 0.3px;
-  box-shadow: 0 12px 40px rgba(0,180,176,.35);
-}
-.v2-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,180,176,.42); }
-.v2-meta {
-  margin-top: 20px; font-size: 13px; color: var(--muted);
-  display: flex; align-items: center; gap: 8px;
-}
-.v2-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--line); }
+/* ════════════════════════════════════════
+   V1 — THE ALARM  (dark, urgent, live)
+════════════════════════════════════════ */
+.v1{min-height:100vh;padding-top:54px;background:#050C18;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:80px;padding-left:24px;padding-right:24px;position:relative;overflow:hidden;color:white}
+.v1-blob{position:absolute;border-radius:50%;pointer-events:none}
+.v1-b1{width:1000px;height:1000px;background:radial-gradient(circle,rgba(0,180,176,.09),transparent 65%);top:-350px;right:-250px;animation:drift 14s ease-in-out infinite}
+.v1-b2{width:800px;height:800px;background:radial-gradient(circle,rgba(220,38,38,.06),transparent 65%);bottom:-250px;left:-200px;animation:drift 18s ease-in-out infinite reverse}
+.v1-b3{width:400px;height:400px;background:radial-gradient(circle,rgba(0,180,176,.05),transparent 65%);top:50%;left:-100px;animation:drift 20s ease-in-out infinite 3s}
+.v1-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:72px 72px;pointer-events:none}
 
-.controls {
-  position: fixed; top: 20px; left: 20px; z-index: 999;
-  background: white; padding: 16px 24px; border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.12);
-  display: flex; gap: 12px;
+.v1-ticker{position:absolute;top:54px;left:0;right:0;height:36px;background:rgba(220,38,38,.1);border-bottom:1px solid rgba(220,38,38,.18);display:flex;align-items:center;overflow:hidden;z-index:5}
+.v1-ticker-track{display:flex;white-space:nowrap;animation:ticker 32s linear infinite}
+.v1-ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:rgba(248,113,113,.9);letter-spacing:.5px;text-transform:uppercase;padding:0 48px}
+.v1-tdot{width:5px;height:5px;border-radius:50%;background:#F87171;animation:blink 1.2s ease infinite;flex-shrink:0}
+
+.v1-content{position:relative;z-index:2;max-width:820px;margin-top:50px}
+.v1-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.28);border-radius:100px;padding:8px 22px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#FCA5A5;margin-bottom:40px;animation:fadeUp .5s ease both}
+.v1-bdot{width:7px;height:7px;border-radius:50%;background:#F87171;animation:blink .8s ease infinite}
+.v1-h1{font-family:'Outfit',sans-serif;font-size:clamp(40px,6vw,68px);font-weight:800;line-height:1;letter-spacing:-2.2px;margin-bottom:20px;animation:fadeUp .5s .08s ease both}
+.v1-h1 .ac{color:var(--teal3);display:block}
+.v1-sub{font-size:15px;font-weight:400;color:rgba(255,255,255,.6);line-height:1.65;max-width:580px;margin:0 auto 48px;animation:fadeUp .5s .15s ease both}
+
+.v1-counter{display:inline-flex;align-items:center;gap:32px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:28px;padding:28px 48px;margin-bottom:52px;animation:fadeUp .5s .22s ease both}
+.v1-cl{text-align:left}
+.v1-ctag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
+.v1-clabel{font-size:14px;font-weight:500;color:rgba(255,255,255,.65);line-height:1.5}
+.v1-sep{width:1px;height:54px;background:rgba(255,255,255,.08);flex-shrink:0}
+.v1-cr{text-align:right}
+.v1-num{font-family:'Outfit',sans-serif;font-size:44px;font-weight:700;color:#F87171;letter-spacing:-1.5px;line-height:1;font-variant-numeric:tabular-nums;min-width:180px}
+.v1-cnote{font-size:11px;color:rgba(255,255,255,.3);font-weight:500;margin-top:5px}
+
+.v1-wrap{position:relative;display:inline-block;animation:fadeUp .5s .3s ease both}
+.v1-ring{position:absolute;border-radius:20px;pointer-events:none}
+.v1-r1{inset:-7px;border:2.5px solid rgba(0,180,176,.7);animation:pulse-ring 2s ease-out infinite}
+.v1-r2{inset:-16px;border:1.5px solid rgba(0,180,176,.35);animation:pulse-ring 2s ease-out infinite .55s}
+.v1-r3{inset:-26px;border:1px solid rgba(0,180,176,.18);animation:pulse-ring 2s ease-out infinite 1.1s}
+.v1-cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--teal),#008A88);color:white;border:none;border-radius:16px;padding:20px 56px;font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.2px;box-shadow:0 16px 64px rgba(0,180,176,.55),0 4px 16px rgba(0,180,176,.3),inset 0 1px 0 rgba(255,255,255,.2);transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;z-index:1}
+.v1-cta:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 24px 80px rgba(0,180,176,.65)}
+
+.v1-trust{margin-top:52px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;animation:fadeUp .5s .38s ease both}
+.v1-ti{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.45);font-weight:500;padding:0 20px;border-right:1px solid rgba(255,255,255,.08)}
+.v1-ti:last-child{border-right:none}
+.v1-ti .ck{color:var(--teal3);font-weight:700}
+
+/* ════════════════════════════════════════
+   V2 — THE AUTHORITY  (split, animated)
+════════════════════════════════════════ */
+.v2{min-height:100vh;padding-top:54px;background:white;position:relative;overflow:hidden}
+.v2-cred{background:var(--navy2);padding:11px 40px;display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+.v2-ci{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:rgba(255,255,255,.7);white-space:nowrap}
+.v2-ci .ck{color:var(--teal3)}.v2-ci .st{color:#FBBF24}
+.v2-bcircle{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,176,.055),transparent 65%);top:-150px;right:-200px;pointer-events:none}
+.v2-bdots{position:absolute;width:440px;height:440px;bottom:20px;left:-60px;opacity:.5;background-image:radial-gradient(circle,#D1DCF0 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none}
+
+.v2-main{max-width:1180px;margin:0 auto;padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center;min-height:calc(100vh - 54px - 44px)}
+.v2-left{position:relative;z-index:1}
+.v2-badge{display:inline-flex;align-items:center;gap:8px;background:#F0FDFB;border:1.5px solid rgba(0,180,176,.28);border-radius:100px;padding:7px 18px;font-size:12px;font-weight:700;color:var(--teal2);letter-spacing:.3px;margin-bottom:28px;animation:fadeUp .6s ease both}
+.v2-bdot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.v2-h1{font-family:'Outfit',sans-serif;font-size:clamp(34px,3.8vw,48px);font-weight:800;line-height:1.15;letter-spacing:-1.5px;color:var(--navy2);margin-bottom:20px;animation:fadeUp .6s .1s ease both}
+.v2-h1 em{font-style:normal;color:var(--teal)}
+.v2-sub{font-size:15px;color:var(--body);line-height:1.7;margin-bottom:32px;max-width:440px;animation:fadeUp .6s .15s ease both}
+.v2-bullets{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;animation:fadeUp .6s .2s ease both}
+.v2-bullet{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--body);line-height:1.6}
+.v2-bcheck{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;box-shadow:0 2px 8px rgba(0,180,176,.28)}
+.v2-cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:white;border:none;border-radius:16px;padding:20px 48px;font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 12px 40px rgba(0,180,176,.32);transition:all .3s;animation:fadeUp .6s .25s ease both}
+.v2-cta:hover{transform:translateY(-3px);box-shadow:0 18px 52px rgba(0,180,176,.42)}
+.v2-meta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:14px;animation:fadeUp .6s .3s ease both}
+.v2-mdot{width:3px;height:3px;border-radius:50%;background:var(--line)}
+
+.v2-right{position:relative;animation:fadeUp .6s .2s ease both}
+.v2-card{background:white;border:1px solid var(--line);border-radius:28px;padding:36px;box-shadow:0 32px 96px rgba(15,31,69,.09),0 8px 28px rgba(15,31,69,.05);animation:float 7s ease-in-out infinite;position:relative;z-index:1}
+.v2-chdr{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.v2-cico{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--navy2),var(--navy3));display:flex;align-items:center;justify-content:center;font-size:22px}
+.v2-ctitle{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:var(--navy2)}
+.v2-csub{font-size:12px;color:var(--muted);margin-top:2px}
+.v2-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.v2-row{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-radius:14px;background:var(--off)}
+.v2-row.hl{background:var(--navy2)}
+.v2-rlabel{font-size:13px;font-weight:500;color:var(--muted)}
+.v2-row.hl .v2-rlabel{color:rgba(255,255,255,.6)}
+.v2-rval{font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:var(--navy2)}
+.v2-rval.red{color:var(--red)}
+.v2-row.hl .v2-rval{color:var(--teal3)}
+.v2-cnote{font-size:11px;color:var(--muted);text-align:center;line-height:1.6;padding-top:20px;border-top:1px solid var(--line)}
+.v2-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+.v2-stat{background:var(--off);border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center}
+.v2-snum{font-family:'Outfit',sans-serif;font-size:19px;font-weight:700;color:var(--navy2)}
+.v2-slbl{font-size:11px;font-weight:600;color:var(--muted);margin-top:3px}
+
+/* ════════════════════════════════════════
+   V3 — THE CALCULATOR  (split screen)
+════════════════════════════════════════ */
+.v3{min-height:100vh;padding-top:54px;display:grid;grid-template-columns:1fr 1fr}
+.v3l{background:var(--navy2);min-height:calc(100vh - 54px);padding:80px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.v3l-blob{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,176,.08),transparent 65%);bottom:-200px;right:-150px;pointer-events:none;animation:drift 16s ease-in-out infinite}
+.v3-eye{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal3);display:flex;align-items:center;gap:8px;margin-bottom:28px;animation:fadeUp .6s ease both}
+.v3-eye::before{content:'';width:28px;height:2px;background:var(--teal);border-radius:1px}
+.v3-h1{font-family:'Outfit',sans-serif;font-size:clamp(32px,3.5vw,46px);font-weight:800;line-height:1.15;letter-spacing:-1.2px;color:white;margin-bottom:24px;animation:fadeUp .6s .1s ease both}
+.v3-h1 em{font-style:normal;color:var(--teal3)}
+.v3-feats{display:flex;flex-direction:column;gap:16px;margin-bottom:44px;animation:fadeUp .6s .15s ease both}
+.v3-feat{display:flex;align-items:flex-start;gap:14px}
+.v3-fico{width:24px;height:24px;border-radius:8px;background:rgba(0,180,176,.2);border:1px solid rgba(0,180,176,.3);color:var(--teal3);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.v3-ftext{font-size:14px;color:rgba(255,255,255,.75);line-height:1.6}
+.v3-ftext strong{color:white;font-weight:600}
+.v3-cta{display:inline-flex;align-items:center;gap:12px;background:var(--teal);color:white;border:none;border-radius:14px;padding:20px 44px;font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 12px 40px rgba(0,180,176,.35);transition:all .3s;animation:fadeUp .6s .2s ease both}
+.v3-cta:hover{transform:translateY(-3px);background:var(--teal3);box-shadow:0 18px 52px rgba(0,180,176,.5)}
+
+.v3r{background:var(--off);min-height:calc(100vh - 54px);padding:80px 60px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;border-left:1px solid var(--line)}
+.v3r-deco{position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,176,.07),transparent 65%);pointer-events:none}
+.v3-chdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;animation:fadeUp .6s .1s ease both}
+.v3-ctitle{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.v3-live{display:flex;align-items:center;gap:6px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);border-radius:100px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red)}
+.v3-ldot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink .8s ease infinite}
+.v3-bignum{font-family:'Outfit',sans-serif;font-size:clamp(40px,4.5vw,56px);font-weight:700;color:var(--red);letter-spacing:-1.5px;line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums;animation:fadeUp .6s .15s ease both}
+.v3-numlabel{font-size:13px;color:var(--muted);margin-bottom:36px;animation:fadeUp .6s .2s ease both}
+.v3-table{display:flex;flex-direction:column;background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:28px;animation:fadeUp .6s .25s ease both}
+.v3-trow{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--line)}
+.v3-trow:last-child{border-bottom:none;background:#FFF5F5}
+.v3-tlabel{font-size:14px;font-weight:500;color:var(--body)}
+.v3-tval{font-family:'Outfit',sans-serif;font-size:18px;font-weight:600;color:var(--navy2);font-variant-numeric:tabular-nums}
+.v3-tval.red{color:var(--red)}.v3-tval.teal{color:var(--teal2)}
+.v3-warn{display:flex;gap:10px;align-items:flex-start;background:#FFFBEB;border:1px solid #FCD34D;border-radius:14px;padding:14px 18px;font-size:13px;color:#92400E;line-height:1.6;animation:fadeUp .6s .3s ease both}
+
+/* ════════════════════════════════════════
+   V4 — THE HUMAN  (warm, social proof)
+════════════════════════════════════════ */
+.v4{min-height:100vh;padding-top:54px;background:linear-gradient(160deg,#FFFFFF 0%,#F4FBFA 50%,#EEF8F8 100%);position:relative;overflow:hidden}
+.v4-act{background:white;border-bottom:1px solid var(--line);height:44px;display:flex;align-items:center;overflow:hidden;position:relative}
+.v4-act::before,.v4-act::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.v4-act::before{left:0;background:linear-gradient(90deg,white,transparent)}
+.v4-act::after{right:0;background:linear-gradient(-90deg,white,transparent)}
+.v4-track{display:flex;white-space:nowrap;animation:ticker 30s linear infinite}
+.v4-item{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--body);padding:0 52px}
+.v4-av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--navy2));color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.v4-aname{font-weight:600;color:var(--navy2)}.v4-aaction{color:var(--muted)}.v4-atime{font-size:12px;color:var(--muted)}
+.v4-green{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+.v4-main{max-width:860px;margin:0 auto;padding:80px 40px;text-align:center}
+.v4-stars{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:32px;animation:fadeUp .6s ease both}
+.v4-star{font-size:20px;color:#F59E0B}
+.v4-rating{font-size:14px;font-weight:700;color:var(--navy2);margin-left:4px}
+.v4-rcount{font-size:14px;color:var(--muted);font-weight:500}
+.v4-h1{font-family:'Outfit',sans-serif;font-size:clamp(36px,4.8vw,54px);font-weight:800;line-height:1.15;letter-spacing:-1.5px;color:var(--navy2);margin-bottom:20px;animation:fadeUp .6s .1s ease both}
+.v4-h1 em{font-style:normal;color:var(--teal)}
+.v4-sub{font-size:15px;color:var(--body);line-height:1.7;max-width:580px;margin:0 auto 40px;animation:fadeUp .6s .15s ease both}
+.v4-cta{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:white;border:none;border-radius:16px;padding:20px 52px;font-family:'Outfit',sans-serif;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 14px 48px rgba(0,180,176,.38);transition:all .3s;animation:fadeUp .6s .2s ease both}
+.v4-cta:hover{transform:translateY(-3px);box-shadow:0 22px 64px rgba(0,180,176,.5)}
+.v4-cmeta{font-size:13px;color:var(--muted);margin-top:12px;display:flex;align-items:center;gap:8px;justify-content:center;animation:fadeUp .6s .25s ease both}
+.v4-cmetadot{width:3px;height:3px;border-radius:50%;background:var(--line)}
+
+.v4-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px;animation:fadeUp .6s .3s ease both}
+.v4-review{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;text-align:left;transition:all .25s;box-shadow:0 2px 12px rgba(15,31,69,.04)}
+.v4-review:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,31,69,.08)}
+.v4-rstars{font-size:13px;letter-spacing:2px;color:#F59E0B;margin-bottom:12px}
+.v4-rtext{font-size:14px;color:var(--body);line-height:1.7;margin-bottom:18px;font-style:italic}
+.v4-rauthor{font-size:13px;font-weight:700;color:var(--navy2)}
+.v4-rloc{font-size:12px;color:var(--muted);font-weight:400;margin-top:2px}
+.v4-rsaving{display:inline-block;background:#DCFCE7;color:var(--green);font-size:12px;font-weight:700;padding:3px 10px;border-radius:6px;margin-top:10px}
+
+/* ════════════════════════════════════════
+   V5 — THE PREMIUM  (editorial, minimal)
+════════════════════════════════════════ */
+.v5{min-height:100vh;padding-top:54px;background:#FAFBFD;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.v5-geo{position:absolute;pointer-events:none}
+.v5-g1{top:-60px;right:8%;width:500px;height:500px;border-radius:40% 60% 55% 45% / 45% 55% 45% 55%;background:linear-gradient(135deg,rgba(0,180,176,.07),rgba(0,180,176,.02));animation:drift 20s ease-in-out infinite}
+.v5-g2{bottom:-80px;left:5%;width:380px;height:380px;border-radius:50% 40% 60% 40%;background:linear-gradient(135deg,rgba(15,31,69,.04),rgba(15,31,69,.01));animation:drift 24s ease-in-out infinite reverse}
+.v5-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(15,31,69,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(15,31,69,.022) 1px,transparent 1px);background-size:48px 48px}
+
+.v5-inner{max-width:760px;padding:60px 40px;text-align:center;position:relative;z-index:1}
+.v5-pill{display:inline-flex;align-items:center;gap:20px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(15,31,69,.1);border-radius:100px;padding:10px 24px;margin-bottom:52px;animation:fadeUp .6s ease both;box-shadow:0 2px 16px rgba(15,31,69,.06)}
+.v5-pi{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--body);white-space:nowrap}
+.v5-pi .ck{color:var(--teal);font-weight:700}
+.v5-psep{width:1px;height:16px;background:var(--line)}
+.v5-tag{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal2);margin-bottom:28px;display:block;animation:fadeUp .6s .08s ease both}
+.v5-h1{font-family:'Outfit',sans-serif;font-size:clamp(40px,5vw,58px);font-weight:800;line-height:1.1;letter-spacing:-2px;color:var(--navy2);margin-bottom:24px;animation:fadeUp .6s .15s ease both}
+.v5-h1 .grad{background:linear-gradient(135deg,var(--teal) 0%,var(--teal2) 50%,#008080 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.v5-sub{font-size:16px;font-weight:300;color:var(--body);line-height:1.7;max-width:560px;margin:0 auto 48px;animation:fadeUp .6s .2s ease both}
+.v5-cta{display:inline-flex;align-items:center;gap:14px;background:var(--navy2);color:white;border:none;border-radius:16px;padding:22px 56px;font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:.2px;box-shadow:0 16px 52px rgba(15,31,69,.25),inset 0 1px 0 rgba(255,255,255,.1);transition:all .3s;animation:fadeUp .6s .25s ease both}
+.v5-cta:hover{transform:translateY(-4px);background:var(--navy3);box-shadow:0 24px 64px rgba(15,31,69,.32)}
+.v5-meta{font-size:13px;color:var(--muted);margin-top:16px;display:flex;align-items:center;gap:8px;justify-content:center;animation:fadeUp .6s .3s ease both}
+.v5-mdot{width:3px;height:3px;border-radius:50%;background:var(--line)}
+
+.v5-stats{display:flex;align-items:center;justify-content:center;gap:0;margin-top:72px;padding-top:48px;border-top:1px solid var(--line);animation:fadeUp .6s .35s ease both}
+.v5-stat{text-align:center;padding:0 44px;border-right:1px solid var(--line)}
+.v5-stat:last-child{border-right:none}
+.v5-snum{font-family:'Outfit',sans-serif;font-size:32px;font-weight:700;color:var(--navy2);letter-spacing:-.8px;line-height:1}
+.v5-slbl{font-size:13px;color:var(--muted);font-weight:500;margin-top:6px}
+
+/* ════════════════════════════════════════
+   V6 — THE CONVERTER  (max conversion)
+════════════════════════════════════════ */
+.v6{min-height:100vh;padding-top:54px;background:linear-gradient(145deg,#0D0905 0%,#1C1208 45%,#100D1C 100%);position:relative;overflow:hidden;color:white}
+.v6-blob{position:absolute;border-radius:50%;pointer-events:none}
+.v6-b1{width:1000px;height:1000px;background:radial-gradient(circle,rgba(210,140,40,.09),transparent 65%);top:-400px;right:-300px;animation:drift 16s ease-in-out infinite}
+.v6-b2{width:700px;height:700px;background:radial-gradient(circle,rgba(0,180,176,.06),transparent 65%);bottom:-250px;left:-200px;animation:drift 22s ease-in-out infinite reverse 3s}
+.v6-b3{width:500px;height:500px;background:radial-gradient(circle,rgba(180,100,20,.07),transparent 65%);top:30%;left:10%;animation:drift 26s ease-in-out infinite 5s}
+
+.v6-prog{background:rgba(0,0,0,.32);border-bottom:1px solid rgba(0,0,0,.45);padding:12px 40px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.v6-ptext{font-size:13px;font-weight:600;color:rgba(255,255,255,.8)}
+.v6-ptext strong{color:#FBBF24}
+.v6-ptrack{width:200px;height:5px;background:rgba(0,0,0,.55);border-radius:3px;overflow:hidden}
+.v6-pfill{height:100%;background:linear-gradient(90deg,#F97316,#FBBF24);border-radius:3px;width:0;animation:progFill 2s .5s ease both}
+
+.v6-main{max-width:800px;margin:0 auto;padding:80px 40px;text-align:center;position:relative;z-index:1}
+.v6-qual{display:inline-flex;align-items:center;gap:12px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:100px;padding:9px 24px;font-size:13px;font-weight:600;color:#FBBF24;margin-bottom:40px;animation:fadeUp .5s ease both}
+.v6-qdot{width:7px;height:7px;border-radius:50%;background:#FBBF24;animation:blink 1.5s ease infinite}
+.v6-h1{font-family:'Outfit',sans-serif;font-size:clamp(40px,5.2vw,62px);font-weight:800;line-height:1.08;letter-spacing:-2px;margin-bottom:20px;animation:fadeUp .5s .1s ease both}
+.v6-h1 .sh{background:linear-gradient(90deg,#F59E0B 0%,#FCD34D 30%,#FBBF24 60%,#D97706 100%);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+.v6-sub{font-size:15px;color:rgba(255,255,255,.7);line-height:1.65;max-width:580px;margin:0 auto 20px;animation:fadeUp .5s .15s ease both}
+
+.v6-strip{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:48px;padding:24px 0;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);animation:fadeUp .5s .2s ease both}
+.v6-ss{display:flex;flex-direction:column;align-items:center;padding:0 40px;border-right:1px solid rgba(255,255,255,.1)}
+.v6-ss:last-child{border-right:none}
+.v6-ssnum{font-family:'Outfit',sans-serif;font-size:32px;font-weight:700;color:#F59E0B;letter-spacing:-1px;line-height:1}
+.v6-sslbl{font-size:12px;color:rgba(255,255,255,.5);font-weight:500;margin-top:5px}
+
+.v6-ctawrap{animation:fadeUp .5s .25s ease both}
+.v6-cta{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#D97706,#F59E0B,#D97706);color:white;border:none;border-radius:18px;padding:22px 64px;font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:.2px;box-shadow:0 20px 70px rgba(217,119,6,.5),0 6px 20px rgba(217,119,6,.3),inset 0 1px 0 rgba(255,255,255,.2);transition:all .3s cubic-bezier(.4,0,.2,1)}
+.v6-cta:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 28px 80px rgba(217,119,6,.65)}
+.v6-csub{margin-top:16px;font-size:13px;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:10px;justify-content:center;animation:fadeUp .5s .3s ease both}
+.v6-csdot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.2)}
+
+.v6-proof{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:20px;animation:fadeUp .5s .35s ease both}
+.v6-faces{height:48px;width:auto;display:block;border-radius:999px;box-shadow:0 0 0 2px rgba(0,0,0,.35);object-fit:cover}
+.v6-fcount{margin-left:12px;font-size:14px;font-weight:600;color:rgba(255,255,255,.7)}
+.v6-fcount strong{color:white}
+.v6-trust{display:flex;align-items:center;flex-wrap:wrap;justify-content:center}
+.v6-ti{font-size:13px;color:rgba(255,255,255,.45);font-weight:500;padding:0 20px;border-right:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:6px}
+.v6-ti:last-child{border-right:none}
+.v6-ti .ck{color:#F59E0B;font-weight:700}
+
+/* ── Responsive ── */
+@media(max-width:960px){
+  .v2-main{grid-template-columns:1fr;gap:48px;padding:60px 32px}
+  .v3{grid-template-columns:1fr}
+  .v3l,.v3r{padding:60px 32px;min-height:auto}
+  .v3l{min-height:calc(100vh - 54px)}
 }
-.btn-variant {
-  padding: 8px 16px; border: 1.5px solid var(--line);
-  border-radius: 8px; background: white; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
-  color: var(--muted); transition: all .2s;
+@media(max-width:700px){
+  .v1-counter{flex-direction:column;gap:16px;padding:22px 28px}
+  .v1-sep{width:80%;height:1px}.v1-cr{text-align:left}.v1-num{min-width:unset}
+  .v4-reviews{grid-template-columns:1fr}
+  .v5-stats{flex-direction:column;gap:24px}.v5-stat{border-right:none;padding:0}
+  .v6-strip{flex-wrap:wrap;gap:20px}.v6-ss{border-right:none;padding:0 20px}
+  .v6-cta{padding:20px 44px;font-size:17px}
+  .v1-ti{border-right:none;padding:5px 12px}
+  .tab-nav{padding:0 12px}
+  .tab{padding:6px 10px;font-size:11.5px}
 }
-.btn-variant.active {
-  border-color: var(--teal); color: var(--teal); background: #F0FDFB;
-}
-.btn-variant:hover { border-color: var(--teal); color: var(--teal); }
 </style>
 </head>
 <body>
 
-<div class="controls">
-  <button class="btn-variant active" onclick="showVariant(1)">Variant 1: Bold & Dark</button>
-  <button class="btn-variant" onclick="showVariant(2)">Variant 2: Minimalist</button>
-</div>
+<!-- TAB NAV -->
+<nav class="tab-nav">
+  <div class="tab-logo">Symple<span>Tax</span></div>
+  <div class="tab-div"></div>
+  <button class="tab active" onclick="showV(1)">1 — The Alarm</button>
+  <button class="tab" onclick="showV(2)">2 — The Authority</button>
+  <button class="tab" onclick="showV(3)">3 — The Calculator</button>
+  <button class="tab" onclick="showV(4)">4 — The Human</button>
+  <button class="tab" onclick="showV(5)">5 — The Premium</button>
+  <button class="tab" onclick="showV(6)">6 — The Converter</button>
+</nav>
 
-<!-- VARIANT 1 -->
+<!-- ══════════════ V1: THE ALARM ══════════════ -->
 <div id="v1" class="variant active">
-  <section class="v1-hero">
-    <div class="v1-content">
-      <div class="v1-eyebrow">🛡️ IRS Tax Relief — 100% Online</div>
-      <h1 class="v1-h1">Stop Your <strong>Tax Debt</strong><br>From Growing Today</h1>
-      <p class="v1-sub">Get an instant personalized plan to resolve your IRS debt in just 10 minutes. No credit card. No obligation. 100% confidential.</p>
-      <button class="v1-cta">
-        See What You Qualify For
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
-      <div class="v1-trust">
-        <div class="v1-trust-item">✓ 256-bit SSL Encrypted</div>
-        <div class="v1-trust-item">✓ IRS-Accredited Team</div>
-        <div class="v1-trust-item">✓ 4.9★ Rated</div>
+<section class="v1">
+  <div class="v1-blob v1-b1"></div><div class="v1-blob v1-b2"></div><div class="v1-blob v1-b3"></div>
+  <div class="v1-grid"></div>
+  <div class="v1-ticker">
+    <div class="v1-ticker-track">
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>IRS penalties compound daily — every hour you wait costs more</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>Wage garnishment begins with just 30 days notice from the IRS</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>Federal tax liens are reported to credit bureaus immediately</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>IRS interest compounds at 8% annually, added to your balance daily</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>Bank levies can clear your entire account with no further warning</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>IRS penalties compound daily — every hour you wait costs more</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>Wage garnishment begins with just 30 days notice from the IRS</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>Federal tax liens are reported to credit bureaus immediately</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>IRS interest compounds at 8% annually, added to your balance daily</span>
+      <span class="v1-ticker-item"><span class="v1-tdot"></span>Bank levies can clear your entire account with no further warning</span>
+    </div>
+  </div>
+  <div class="v1-content">
+    <div class="v1-badge"><div class="v1-bdot"></div>IRS Penalties Accruing Right Now</div>
+    <h1 class="v1-h1">Your Tax Debt Is<span class="ac">Growing Right Now.</span></h1>
+    <p class="v1-sub">Every second you wait, the IRS adds more. See what you owe, what you can settle for, and how to stop it — free, in 10 minutes.</p>
+    <div class="v1-counter">
+      <div class="v1-cl">
+        <div class="v1-ctag">Based on $25,000 balance</div>
+        <div class="v1-clabel">Added to your IRS debt<br>since this page loaded</div>
+      </div>
+      <div class="v1-sep"></div>
+      <div class="v1-cr">
+        <div class="v1-num" id="v1-counter">$0.00</div>
+        <div class="v1-cnote">and growing every second</div>
       </div>
     </div>
-  </section>
+    <div class="v1-wrap">
+      <div class="v1-ring v1-r1"></div><div class="v1-ring v1-r2"></div><div class="v1-ring v1-r3"></div>
+      <button class="v1-cta" onclick="window.location.href='SympleTax_Portal_v6 (1).html'">Stop the Clock — See What I Qualify For <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="v1-trust">
+      <div class="v1-ti"><span class="ck">✓</span> 256-bit SSL</div>
+      <div class="v1-ti"><span class="ck">✓</span> IRS-Accredited Specialists</div>
+      <div class="v1-ti"><span class="ck">✓</span> 4.9 ★ Rating</div>
+      <div class="v1-ti"><span class="ck">✓</span> A+ BBB</div>
+      <div class="v1-ti"><span class="ck">✓</span> No Credit Card</div>
+    </div>
+  </div>
+</section>
 </div>
 
-<!-- VARIANT 2 -->
+<!-- ══════════════ V2: THE AUTHORITY ══════════════ -->
 <div id="v2" class="variant">
-  <section class="v2-hero">
-    <div class="v2-content">
-      <div class="v2-badge"><span class="v2-badge-dot"></span>Tax Relief Experts</div>
-      <h1 class="v2-h1">Get Out of <em>Tax Debt</em><br>in Just 10 Minutes</h1>
-      <p class="v2-sub">Answer a few simple questions and discover what IRS relief programs you qualify for. Personalized. Transparent. 100% confidential.</p>
-      <button class="v2-cta">
-        Get Your Free Analysis
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
-      <div class="v2-meta">
-        <span>No credit card</span>
-        <span class="v2-meta-dot"></span>
-        <span>Takes ~10 min</span>
-        <span class="v2-meta-dot"></span>
-        <span>100% confidential</span>
+<section class="v2">
+  <div class="v2-cred">
+    <div class="v2-ci"><span class="st">★★★★★</span> 4.9/5 Rating</div>
+    <div class="v2-ci"><span class="ck">✓</span> 12,000+ Clients</div>
+    <div class="v2-ci"><span class="ck">✓</span> $500M+ Debt Resolved</div>
+    <div class="v2-ci"><span class="ck">✓</span> IRS-Accredited Specialists</div>
+    <div class="v2-ci"><span class="ck">✓</span> A+ BBB Rating</div>
+  </div>
+  <div class="v2-bcircle"></div><div class="v2-bdots"></div>
+  <div class="v2-main">
+    <div class="v2-left">
+      <div class="v2-badge"><div class="v2-bdot"></div>IRS Tax Relief — 100% Online</div>
+      <h1 class="v2-h1">Finally, a Clear Path<br>Out of <em>IRS Debt.</em></h1>
+      <p class="v2-sub">Our IRS-accredited specialists have helped 12,000+ Americans settle their tax debt for a fraction of what they owed. See what's possible for you — free.</p>
+      <div class="v2-bullets">
+        <div class="v2-bullet"><div class="v2-bcheck">✓</div><div><strong>Personalized settlement analysis</strong> — every IRS relief program you qualify for, laid out clearly</div></div>
+        <div class="v2-bullet"><div class="v2-bcheck">✓</div><div><strong>Dedicated 4-person team</strong> — Case Manager, Enrolled Agent, Negotiation Officer &amp; Tax Specialist</div></div>
+        <div class="v2-bullet"><div class="v2-bcheck">✓</div><div><strong>100% online</strong> — start and finish from your phone in about 10 minutes, no office visits</div></div>
+      </div>
+      <div>
+        <button class="v2-cta" onclick="window.location.href='SympleTax_Portal_v6 (1).html'">Get My Free Case Analysis <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <div class="v2-meta"><span>~10 min</span><div class="v2-mdot"></div><span>No credit card</span><div class="v2-mdot"></div><span>100% confidential</span></div>
       </div>
     </div>
-  </section>
+    <div class="v2-right">
+      <div class="v2-card">
+        <div class="v2-chdr">
+          <div class="v2-cico" data-cursor-element-id="cursor-el-1">
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3" y="10" width="4" height="9" rx="1.2" fill="white" opacity="0.9"/>
+              <rect x="10" y="6" width="4" height="13" rx="1.2" fill="white" opacity="0.95"/>
+              <rect x="17" y="3" width="4" height="16" rx="1.2" fill="white"/>
+            </svg>
+          </div>
+          <div><div class="v2-ctitle">Sample Case Analysis</div><div class="v2-csub">Based on a $45,000 IRS balance</div></div>
+        </div>
+        <div class="v2-rows">
+          <div class="v2-row"><div class="v2-rlabel">Total Balance Owed</div><div class="v2-rval red" id="v2-debt">—</div></div>
+          <div class="v2-row"><div class="v2-rlabel">Offer in Compromise</div><div class="v2-rval" id="v2-oic">—</div></div>
+          <div class="v2-row hl"><div class="v2-rlabel">Estimated Savings</div><div class="v2-rval" id="v2-sav">—</div></div>
+        </div>
+        <div class="v2-cnote">Estimates follow IRS Collection Financial Standards.<br>Actual results confirmed during your case review.</div>
+      </div>
+      <div class="v2-stats">
+        <div class="v2-stat"><div class="v2-snum" id="v2p1">—</div><div class="v2-slbl">Clients Helped</div></div>
+        <div class="v2-stat"><div class="v2-snum" id="v2p2">—</div><div class="v2-slbl">Debt Resolved</div></div>
+        <div class="v2-stat"><div class="v2-snum" id="v2p3">—</div><div class="v2-slbl">Avg. Rating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════════ V3: THE CALCULATOR ══════════════ -->
+<div id="v3" class="variant">
+<section class="v3">
+  <div class="v3l">
+    <div class="v3l-blob"></div>
+    <div class="v3-eye">IRS Tax Relief Specialists</div>
+    <h1 class="v3-h1">Resolve Your Debt.<br>See Your <em>Real Numbers.</em></h1>
+    <div class="v3-feats">
+      <div class="v3-feat"><div class="v3-fico">✓</div><div class="v3-ftext"><strong>IRS-accredited specialists</strong> represent you at every stage of negotiations</div></div>
+      <div class="v3-feat"><div class="v3-fico">✓</div><div class="v3-ftext"><strong>Average 74% reduction</strong> — clients settle for far less than they owe</div></div>
+      <div class="v3-feat"><div class="v3-fico">✓</div><div class="v3-ftext"><strong>100% online</strong> — start your free case review in under 10 minutes</div></div>
+      <div class="v3-feat"><div class="v3-fico">✓</div><div class="v3-ftext"><strong>30-day money-back guarantee</strong> — zero risk to get started today</div></div>
+    </div>
+    <button class="v3-cta" onclick="window.location.href='SympleTax_Portal_v6 (1).html'">Start My Free Review <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="v3r">
+    <div class="v3r-deco"></div>
+    <div class="v3-chdr">
+      <div class="v3-ctitle">Your IRS Balance Right Now</div>
+      <div class="v3-live"><div class="v3-ldot"></div>Live</div>
+    </div>
+    <div class="v3-bignum" id="v3-num">$25,000.00</div>
+    <div class="v3-numlabel">Estimated balance — growing every second you wait</div>
+      <div class="v3-table">
+      <div class="v3-trow"><div class="v3-tlabel">Original Principal</div><div class="v3-tval">$25,000.00</div></div>
+      <div class="v3-trow"><div class="v3-tlabel">Accrued Today (IRS)</div><div class="v3-tval red" id="v3-acc">+$0.00</div></div>
+      <div class="v3-trow"><div class="v3-tlabel">Daily Rate</div><div class="v3-tval teal">0.0822% / day</div></div>
+      <div class="v3-trow"><div class="v3-tlabel" style="font-weight:700;color:var(--red)">Current Total</div><div class="v3-tval red" id="v3-tot">$25,000.00</div></div>
+    </div>
+      <div class="v3-warn">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="flex-shrink:0">
+          <path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/>
+          <path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="12" cy="17.25" r="1" fill="white"/>
+        </svg>
+        <span>Every day without action, the IRS adds more in penalties and interest. <strong>Act now to stop the clock.</strong></span>
+      </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════════ V4: THE HUMAN ══════════════ -->
+<div id="v4" class="variant">
+<section class="v4">
+  <div class="v4-act">
+    <div class="v4-track">
+      <span class="v4-item"><div class="v4-av">MR</div><span class="v4-aname">Marcus from Atlanta</span>&nbsp;<span class="v4-aaction">just saved $31,200 on his IRS debt</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">2 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">JL</div><span class="v4-aname">Jennifer from Houston</span>&nbsp;<span class="v4-aaction">stopped wage garnishment in 48 hours</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">5 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">DK</div><span class="v4-aname">David from Phoenix</span>&nbsp;<span class="v4-aaction">settled $78,000 in IRS debt for $14,400</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">11 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">SR</div><span class="v4-aname">Sarah from Dallas</span>&nbsp;<span class="v4-aaction">enrolled and is now in IRS negotiation</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">18 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">TC</div><span class="v4-aname">Thomas from Chicago</span>&nbsp;<span class="v4-aaction">reduced IRS debt by 81% via OIC</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">24 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">MR</div><span class="v4-aname">Marcus from Atlanta</span>&nbsp;<span class="v4-aaction">just saved $31,200 on his IRS debt</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">2 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">JL</div><span class="v4-aname">Jennifer from Houston</span>&nbsp;<span class="v4-aaction">stopped wage garnishment in 48 hours</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">5 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">DK</div><span class="v4-aname">David from Phoenix</span>&nbsp;<span class="v4-aaction">settled $78,000 in IRS debt for $14,400</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">11 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">SR</div><span class="v4-aname">Sarah from Dallas</span>&nbsp;<span class="v4-aaction">enrolled and is now in IRS negotiation</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">18 min ago</span></span>
+      <span class="v4-item"><div class="v4-av">TC</div><span class="v4-aname">Thomas from Chicago</span>&nbsp;<span class="v4-aaction">reduced IRS debt by 81% via OIC</span>&nbsp;<span class="v4-green"></span>&nbsp;<span class="v4-atime">24 min ago</span></span>
+    </div>
+  </div>
+  <div class="v4-main">
+    <div class="v4-stars">
+      <span class="v4-star">★</span><span class="v4-star">★</span><span class="v4-star">★</span><span class="v4-star">★</span><span class="v4-star">★</span>
+      <span class="v4-rating">4.9</span><span class="v4-rcount">· 3,240+ verified reviews</span>
+    </div>
+    <h1 class="v4-h1">Thousands of Americans Found<br>Their Way Out of <em>IRS Debt.</em></h1>
+    <p class="v4-sub">Our specialists have resolved over $500 million in tax debt for everyday people — not just the wealthy. Your free case review takes 10 minutes.</p>
+    <button class="v4-cta" onclick="window.location.href='SympleTax_Portal_v6 (1).html'">See What I Qualify For — Free <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    <div class="v4-cmeta"><span>No credit card</span><div class="v4-cmetadot"></div><span>~10 min</span><div class="v4-cmetadot"></div><span>100% confidential</span></div>
+    <div class="v4-reviews">
+      <div class="v4-review">
+        <div class="v4-rstars">★★★★★</div>
+        <div class="v4-rtext">"I owed over $45,000 and thought there was no way out. SympleTax got me down to $9,200. Honestly life-changing."</div>
+        <div class="v4-rauthor">Michael R.</div><div class="v4-rloc">Dallas, TX</div>
+        <div class="v4-rsaving">Saved $35,800</div>
+      </div>
+      <div class="v4-review">
+        <div class="v4-rstars">★★★★★</div>
+        <div class="v4-rtext">"My wage garnishment was stopped within 48 hours of enrolling. My case manager kept me calm the whole way."</div>
+        <div class="v4-rauthor">Sarah T.</div><div class="v4-rloc">Miami, FL</div>
+        <div class="v4-rsaving">Garnishment Stopped</div>
+      </div>
+      <div class="v4-review">
+        <div class="v4-rstars">★★★★★</div>
+        <div class="v4-rtext">"They negotiated my $78,000 balance down to $14,400. The whole thing was done online — no stress, no office visits."</div>
+        <div class="v4-rauthor">David L.</div><div class="v4-rloc">Phoenix, AZ</div>
+        <div class="v4-rsaving">Saved $63,600</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════════ V5: THE PREMIUM ══════════════ -->
+<div id="v5" class="variant">
+<section class="v5">
+  <div class="v5-geo v5-g1"></div><div class="v5-geo v5-g2"></div>
+  <div class="v5-grid"></div>
+  <div class="v5-inner">
+    <div class="v5-pill">
+      <div class="v5-pi"><span class="ck">✓</span> IRS-Accredited</div>
+      <div class="v5-psep"></div>
+      <div class="v5-pi"><span style="color:#F59E0B">★</span> 4.9/5 Rating</div>
+      <div class="v5-psep"></div>
+      <div class="v5-pi"><span class="ck">✓</span> A+ BBB</div>
+      <div class="v5-psep"></div>
+      <div class="v5-pi"><span class="ck">✓</span> 12,000+ Clients</div>
+    </div>
+    <span class="v5-tag">IRS Tax Relief</span>
+    <h1 class="v5-h1">Tax Debt Doesn't Have to<br>Define <span class="grad">Your Future.</span></h1>
+    <p class="v5-sub">Get a personalized plan from the specialists who've resolved over $500 million in IRS debt. Clear, honest, and built around your situation.</p>
+    <button class="v5-cta">Start My Free Case Analysis <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    <div class="v5-meta"><span>About 10 minutes</span><div class="v5-mdot"></div><span>No credit card</span><div class="v5-mdot"></div><span>100% confidential</span></div>
+    <div class="v5-stats">
+      <div class="v5-stat"><div class="v5-snum" id="v5s1">—</div><div class="v5-slbl">Clients helped across the US</div></div>
+      <div class="v5-stat"><div class="v5-snum" id="v5s2">—</div><div class="v5-slbl">Total tax debt resolved</div></div>
+      <div class="v5-stat"><div class="v5-snum" id="v5s3">—</div><div class="v5-slbl">Average debt reduction</div></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══════════════ V6: THE CONVERTER ══════════════ -->
+<div id="v6" class="variant">
+<section class="v6">
+  <div class="v6-blob v6-b1"></div><div class="v6-blob v6-b2"></div><div class="v6-blob v6-b3"></div>
+  <div class="v6-prog">
+    <div class="v6-ptext"><strong id="v6-count">12,847</strong> people checked eligibility this week</div>
+    <div class="v6-ptrack"><div class="v6-pfill"></div></div>
+    <div class="v6-ptext">Spots filling fast</div>
+  </div>
+  <div class="v6-main">
+    <div class="v6-qual"><div class="v6-qdot"></div>You likely qualify for IRS relief — check now</div>
+    <h1 class="v6-h1">Stop Paying the IRS<br><span class="sh">More Than You Owe.</span></h1>
+    <p class="v6-sub">The IRS has relief programs most taxpayers never hear about. Find out which ones apply to your situation — in 10 minutes, free, no obligation.</p>
+    <div class="v6-strip">
+      <div class="v6-ss"><div class="v6-ssnum" id="v6s1">—</div><div class="v6-sslbl">Clients Helped</div></div>
+      <div class="v6-ss"><div class="v6-ssnum" id="v6s2">—</div><div class="v6-sslbl">Tax Debt Resolved</div></div>
+      <div class="v6-ss"><div class="v6-ssnum" id="v6s3">—</div><div class="v6-sslbl">Avg. Reduction</div></div>
+    </div>
+    <div class="v6-ctawrap">
+      <button class="v6-cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"></circle>
+          <line x1="15.5" y1="15.5" x2="20" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+        </svg>
+        <span>Find Out What I Qualify For — Free</span>
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="v6-csub"><span>No credit card</span><div class="v6-csdot"></div><span>~10 min</span><div class="v6-csdot"></div><span>100% confidential</span><div class="v6-csdot"></div><span>30-day guarantee</span></div>
+    </div>
+        <div class="v6-proof">
+        <div style="display:flex;align-items:center;gap:16px">
+          <img class="v6-faces" src="attached_assets/targeted_element_1773292486551.png" alt="Smiling SympleTax clients" loading="lazy">
+          <div class="v6-fcount">Join <strong>12,000+</strong> Americans who found relief</div>
+        </div>
+      <div class="v6-trust">
+        <div class="v6-ti"><span class="ck">✓</span> 256-bit SSL</div>
+        <div class="v6-ti"><span class="ck">✓</span> IRS-Accredited Specialists</div>
+        <div class="v6-ti"><span class="ck">✓</span> A+ BBB Rating</div>
+        <div class="v6-ti"><span class="ck">✓</span> 4.9 ★ Verified Reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 
 <script>
-function showVariant(n) {
-  document.querySelectorAll('.variant').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.btn-variant').forEach(b => b.classList.remove('active'));
-  document.getElementById('v' + n).classList.add('active');
-  document.querySelectorAll('.btn-variant')[n-1].classList.add('active');
+// ── Debt math ──────────────────────────────────
+const BASE = 25000, DAILY = 0.000822;
+const PER_SEC = (BASE * DAILY) / 86400;
+function fmt(n){ return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function fmtInt(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+
+// ── Animation helpers ──────────────────────────
+let v1raf=null, v3raf=null;
+function animNum(id,target,dur,pre,suf,dec){
+  const el=document.getElementById(id); if(!el)return;
+  const t0=performance.now();
+  function step(now){
+    const p=Math.min((now-t0)/dur,1), e=1-Math.pow(1-p,3), v=target*e;
+    el.textContent=dec>0?pre+v.toFixed(dec)+suf:pre+Math.round(v).toLocaleString()+suf;
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
+
+// ── V1 live counter ────────────────────────────
+function startV1(){
+  if(v1raf){cancelAnimationFrame(v1raf);v1raf=null;}
+  const t0=performance.now();
+  function tick(now){
+    const el=document.getElementById('v1-counter');
+    if(el) el.textContent=fmt((now-t0)/1000*PER_SEC);
+    v1raf=requestAnimationFrame(tick);
+  }
+  v1raf=requestAnimationFrame(tick);
+}
+
+// ── V2 card counters ───────────────────────────
+function startV2(){
+  setTimeout(()=>{
+    animNum('v2-debt',45000,1600,'$','',0);
+    animNum('v2-oic',9800,2000,'$','',0);
+    animNum('v2-sav',35200,2200,'$','',0);
+    animNum('v2p1',12000,1800,'','+',0);
+    animNum('v2p2',500,1800,'$','M+',0);
+    animNum('v2p3',4.9,1200,'','★',1);
+  },200);
+}
+
+// ── V3 live debt clock ─────────────────────────
+function startV3(){
+  if(v3raf){cancelAnimationFrame(v3raf);v3raf=null;}
+  const t0=performance.now();
+  const already=(8*3600)*PER_SEC; // simulate 8h into today
+  function tick(now){
+    const today=already+(now-t0)/1000*PER_SEC, total=BASE+today;
+    const n=document.getElementById('v3-num'), a=document.getElementById('v3-acc'), t=document.getElementById('v3-tot');
+    if(n) n.textContent=fmt(total);
+    if(a) a.textContent='+'+fmt(today);
+    if(t) t.textContent=fmt(total);
+    v3raf=requestAnimationFrame(tick);
+  }
+  v3raf=requestAnimationFrame(tick);
+}
+
+// ── V5 stats ───────────────────────────────────
+function startV5(){
+  setTimeout(()=>{
+    animNum('v5s1',12,1600,'','K+',0);
+    animNum('v5s2',500,1800,'$','M+',0);
+    animNum('v5s3',74,1400,'','%',0);
+  },200);
+}
+
+// ── V6 stats + live count ──────────────────────
+function startV6(){
+  setTimeout(()=>{
+    animNum('v6s1',12000,2000,'','+',0);
+    animNum('v6s2',500,1800,'$','M+',0);
+    animNum('v6s3',74,1400,'','%',0);
+    let cnt=12847;
+    const el=document.getElementById('v6-count');
+    setInterval(()=>{ cnt+=Math.floor(Math.random()*3); if(el) el.textContent=cnt.toLocaleString(); },3000);
+  },300);
+}
+
+// ── Tab switcher ───────────────────────────────
+function showV(n){
+  if(v1raf){cancelAnimationFrame(v1raf);v1raf=null;}
+  if(v3raf){cancelAnimationFrame(v3raf);v3raf=null;}
+  document.querySelectorAll('.variant').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('v'+n).classList.add('active');
+  document.querySelectorAll('.tab')[n-1].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===1) startV1();
+  if(n===2) startV2();
+  if(n===3) startV3();
+  if(n===5) startV5();
+  if(n===6) startV6();
+}
+
+// ── Init ───────────────────────────────────────
+startV1();
 </script>
 </body>
 </html>

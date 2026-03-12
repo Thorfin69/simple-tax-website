@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const HTML_FILE = path.join(__dirname, 'SympleTax_Portal_v6 (1).html');
 
 const server = http.createServer((req, res) => {
