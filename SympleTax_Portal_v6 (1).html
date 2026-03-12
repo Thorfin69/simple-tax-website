@@ -987,7 +987,7 @@ function s5(){
         <div class="field"><label>Last Name</label><input id="ln" placeholder="Smith" value="${S.lastName}"></div>
       </div>
       <div class="field"><label>Email Address</label><input id="em" type="email" placeholder="john@email.com" value="${S.email}"></div>
-      <div class="field"><label>Phone Number</label><input id="ph" type="tel" placeholder="(555) 000-0000" value="${S.phone}"></div>
+      <div class="field"><label>Phone Number</label><input id="ph" type="tel" placeholder="(555) 000-0000" value="${S.phone}" oninput="formatPhone(this)"></div>
     </div>
     <button class="cta dark" onclick="saveContactAndGo()">
       Continue
@@ -1368,6 +1368,13 @@ function selectPlan(plan){
 
 function fmtCard(el){ let v=el.value.replace(/\D/g,'').substring(0,16); el.value=v.replace(/(.{4})/g,'$1 ').trim(); }
 function fmtExp(el){ let v=el.value.replace(/\D/g,'').substring(0,4); if(v.length>=2) v=v.substring(0,2)+' / '+v.substring(2); el.value=v; }
+function formatPhone(el){
+  let v=el.value.replace(/\D/g,'').substring(0,10);
+  if(v.length===0) el.value='';
+  else if(v.length<=3) el.value='('+v;
+  else if(v.length<=6) el.value='('+v.substring(0,3)+') '+v.substring(3);
+  else el.value='('+v.substring(0,3)+') '+v.substring(3,6)+'-'+v.substring(6);
+}
 
 function processPayment(){
   const num = document.getElementById('ccnum')?.value.replace(/\s/g,'')||'';
