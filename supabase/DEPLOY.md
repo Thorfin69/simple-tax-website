@@ -44,3 +44,26 @@ const SUPABASE_FUNCTIONS_URL = 'https://YOUR_PROJECT_REF.supabase.co/functions/v
 1. Open your deployed portal
 2. Complete the form and payment (use Stripe test card 4242 4242 4242 4242)
 3. Check that the user and client both receive confirmation emails
+
+## Troubleshooting: "Could not find the 'active_collections' column"
+
+If you get a 400 error about missing columns, run the migration to add them:
+
+```bash
+supabase db push
+```
+
+Or run this SQL manually in **Supabase Dashboard → SQL Editor**:
+
+```sql
+alter table public.leads add column if not exists active_collections text;
+alter table public.leads add column if not exists tax_type text;
+alter table public.leads add column if not exists filing_status text;
+alter table public.leads add column if not exists household_size text;
+alter table public.leads add column if not exists vehicles_owned text;
+alter table public.leads add column if not exists owns_real_estate text;
+alter table public.leads add column if not exists home_value int default 0;
+alter table public.leads add column if not exists home_mortgage int default 0;
+alter table public.leads add column if not exists monthly_income int default 0;
+alter table public.leads add column if not exists additional_income int default 0;
+```
