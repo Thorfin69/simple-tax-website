@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SympleTax — Resolve Your Tax Debt 100% Online</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,7 @@
 
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Inter', 'Outfit', sans-serif;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
   background: var(--white);
   color: var(--navy);
   min-height: 100vh;
@@ -47,12 +47,28 @@ body {
   justify-content: space-between;
 }
 .logo { display: flex; align-items: baseline; gap: 1px; text-decoration: none; }
-.logo .l1 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); }
-.logo .l2 { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--teal); }
+.logo .l1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); }
+.logo .l2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; color: var(--teal); }
 .hdr-right { display: flex; align-items: center; gap: 24px; }
 .hdr-secure { font-size: 12px; font-weight: 500; color: var(--muted); display: flex; align-items: center; gap: 5px; }
-.hdr-phone { font-size: 13px; font-weight: 600; color: var(--navy); text-decoration: none; letter-spacing: 0.2px; }
-.hdr-phone:hover { color: var(--teal); }
+.hdr-phone {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--navy); text-decoration: none; letter-spacing: 0.2px;
+  padding: 6px 12px; border-radius: 100px;
+  background: rgba(0,180,176,.08); border: 1px solid rgba(0,180,176,.2);
+}
+.hdr-phone:hover { color: var(--teal); background: rgba(0,180,176,.14); }
+.hdr-phone:hover .hdr-phone-icon { background: rgba(0,180,176,.2); }
+.hdr-phone-icon {
+  display: flex;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,180,176,.12); color: var(--teal);
+  align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background .2s;
+}
+.hdr-phone-icon svg { width: 14px; height: 14px; }
+.hdr-phone-number { display: none; }
+.hdr-phone-call { display: inline; }
 
 /* ─── PROGRESS BAR (portal only) ───────── */
 .prog-wrap {
@@ -67,6 +83,37 @@ body {
 .prog-lbl { font-size: 12px; font-weight: 600; color: var(--muted); white-space: nowrap; }
 .prog-lbl span { color: var(--navy); }
 
+/* PORTAL TRUST / TESTIMONIAL */
+.portal-trust {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
+  background: linear-gradient(to top, rgba(255,255,255,.98), rgba(255,255,255,.95));
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  padding: 16px 24px 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.portal-trust-stars { font-size: 14px; color: #F59E0B; letter-spacing: 2px; }
+.portal-trust-testimonial {
+  max-width: 420px; text-align: center; min-height: 52px;
+}
+.portal-trust-quote {
+  font-size: 48px; line-height: 0.4; color: #E5E7EB;
+  font-family: Georgia, serif; margin-bottom: 4px;
+}
+.portal-trust-text {
+  font-style: italic; font-size: 14px; color: var(--body);
+  line-height: 1.5; margin-bottom: 8px;
+  transition: opacity .3s ease;
+}
+.portal-trust-author {
+  font-size: 12px; color: var(--muted); font-style: normal;
+  transition: opacity .3s ease;
+}
+.portal-trust-badges {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center;
+  font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px;
+}
+
 /* ─── LANDING ────────────────────────────── */
 #landing { display: block; }
 
@@ -75,199 +122,209 @@ body {
   min-height: 100vh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center;
-  padding: 100px 24px 60px;
-  background: linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 50%, var(--off) 100%);
+  padding: 80px 24px 0px;
+  background: #FFFFFF;
   position: relative;
   overflow: hidden;
 }
 .hero::before {
   content: '';
-  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-  width: 900px; height: 900px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,180,176,.06), transparent 60%);
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,180,176,.05) 0%, transparent 70%);
   pointer-events: none;
 }
-.hero::after {
-  content: '';
-  position: absolute; top: 0; right: 0; width: 600px; height: 600px;
-  background: radial-gradient(ellipse at 100% 0%, rgba(15,31,69,.03), transparent 70%);
-  pointer-events: none;
-}
+.hero > * { position: relative; z-index: 1; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--white); border: 1px solid var(--line);
-  border-radius: 24px; padding: 7px 18px;
-  font-size: 13px; font-weight: 600; color: var(--teal);
-  letter-spacing: 0.3px; margin-bottom: 32px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.04);
-  animation: fadeUp .6s ease both;
+  background: rgba(0,180,176,.07); border: 1px solid rgba(0,180,176,.18);
+  border-radius: 100px; padding: 7px 18px 7px 12px;
+  font-size: 12px; font-weight: 700; color: var(--teal2);
+  letter-spacing: 0.6px; text-transform: uppercase;
+  margin-bottom: 32px;
+  animation: fadeUp .5s ease both;
 }
-.hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s ease infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+.hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2.5s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
 .hero-h1 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(36px, 5.5vw, 58px);
-  font-weight: 800; line-height: 1.1;
-  color: var(--navy); max-width: 720px;
-  margin-bottom: 20px; letter-spacing: -1.5px;
-  animation: fadeUp .6s .1s ease both;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800; line-height: 1.06;
+  color: #0A1629; max-width: 820px;
+  margin-bottom: 24px; letter-spacing: -2.5px;
+  animation: fadeUp .5s .1s ease both;
 }
 .hero-h1 em { font-style: normal; color: var(--teal); }
 .hero-sub {
-  font-size: 17px; font-weight: 400; color: var(--body);
-  line-height: 1.7; max-width: 520px;
-  margin-bottom: 36px;
-  animation: fadeUp .6s .2s ease both;
+  font-size: 18px; font-weight: 400; color: #5A6577;
+  line-height: 1.75; max-width: 480px;
+  margin-bottom: 40px;
+  animation: fadeUp .5s .15s ease both;
 }
 .hero-cta {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: linear-gradient(135deg, var(--teal), var(--teal2));
-  color: white;
-  border: none; border-radius: 16px;
-  padding: 18px 44px; font-family: 'Outfit', sans-serif;
-  font-size: 17px; font-weight: 600; cursor: pointer;
-  transition: all .25s; letter-spacing: 0.2px;
-  box-shadow: 0 8px 32px rgba(0,180,176,.3), 0 2px 8px rgba(0,180,176,.15);
-  animation: fadeUp .6s .3s ease both;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #0A1629; color: white;
+  border: none; border-radius: 100px;
+  padding: 18px 40px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  transition: all .2s; letter-spacing: -0.2px;
+  box-shadow: 0 4px 24px rgba(10,22,41,.2);
+  animation: fadeUp .5s .2s ease both;
 }
-.hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(0,180,176,.38), 0 4px 12px rgba(0,180,176,.2); }
+.hero-cta svg { transition: transform .2s; }
+.hero-cta:hover { background: #1A2E54; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(10,22,41,.26); }
+.hero-cta:hover svg { transform: translateX(3px); }
 .hero-meta {
-  margin-top: 20px; font-size: 13px; color: var(--muted);
+  margin-top: 18px; font-size: 13px; color: #9CA3AF;
   display: flex; align-items: center; gap: 8px;
-  animation: fadeUp .6s .4s ease both;
+  animation: fadeUp .5s .25s ease both;
 }
-.hero-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--line); }
-
+.hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #D1D5DB; }
 .hero-trust {
-  margin-top: 40px;
-  display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: center;
-  animation: fadeUp .6s .5s ease both;
+  margin-top: 52px; padding-top: 36px;
+  border-top: 1px solid #F0F2F5;
+  width: 100%; max-width: 840px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 32px;
+  flex-wrap: nowrap;
+  animation: fadeUp .5s .3s ease both;
 }
-.htrust { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); font-weight: 500; }
-.htrust svg { color: var(--teal); flex-shrink: 0; }
+.htrust {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; color: #6B7280; font-weight: 500;
+  white-space: nowrap;
+}
+.htrust svg { color: #9CA3AF; flex-shrink: 0; }
 
-/* CONFIDENTIALITY */
-.confidentiality {
-  margin-top: 32px;
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px; color: var(--muted); font-weight: 400;
-  animation: fadeUp .6s .55s ease both;
-  max-width: 500px; text-align: center;
-  line-height: 1.6;
+/* ACCREDITATION LOGOS */
+.logos-section {
+  display: none;
 }
-.confidentiality svg { flex-shrink: 0; color: var(--teal); }
+.logos-inner { max-width: 840px; margin: 0 auto; text-align: center; }
+.logos-label {
+  font-size: 11px; font-weight: 700; color: #B0BAC9;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px;
+}
+.logos-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 56px; flex-wrap: wrap;
+}
+.logo-item { display: flex; flex-direction: column; align-items: center; gap: 4px; opacity: 0.65; }
+.logo-item-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 800; color: #374151; letter-spacing: -0.3px;
+}
+.logo-item-rating { font-size: 11px; color: #9CA3AF; font-weight: 500; }
+.logo-item-stars { color: #F59E0B; }
 
 /* REVIEWS */
-.reviews-section {
-  background: var(--white);
-  padding: 80px 24px 60px;
-  border-top: 1px solid var(--line);
-}
-.reviews-inner { max-width: 820px; margin: 0 auto; }
+.reviews-section { background: #FFFFFF; padding: 70px 20px; }
+.reviews-inner { max-width: 880px; margin: 0 auto; }
 .reviews-label {
-  text-align: center; font-size: 12px; font-weight: 600; color: var(--muted);
-  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 32px;
+  text-align: center; font-size: 11px; font-weight: 700; color: var(--teal);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;
+}
+.reviews-title {
+  text-align: center; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 34px; font-weight: 800; color: #0A1629;
+  margin-bottom: 48px; letter-spacing: -1.2px;
 }
 .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .review-card {
-  background: var(--off); border: 1px solid var(--line);
-  border-radius: 16px; padding: 24px;
+  background: #F9FAFB; border: 1px solid #F0F2F5;
+  border-radius: 20px; padding: 28px;
+  transition: box-shadow .2s, transform .2s;
 }
-.review-stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
-.review-text { font-size: 14px; color: var(--body); line-height: 1.65; margin-bottom: 16px; }
-.review-author { font-size: 13px; font-weight: 600; color: var(--navy); }
-.review-author span { font-weight: 400; color: var(--muted); }
+.review-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,.07); transform: translateY(-2px); }
+.review-stars { color: #F59E0B; font-size: 12px; letter-spacing: 2px; margin-bottom: 14px; }
+.review-text { font-size: 14px; color: #4B5563; line-height: 1.72; margin-bottom: 18px; font-style: italic; }
+.review-author { font-size: 13px; font-weight: 700; color: #0A1629; }
+.review-author span { font-weight: 400; color: #9CA3AF; }
 
 /* CEO SECTION */
-.ceo-section {
-  background: var(--off); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  padding: 80px 24px;
-}
+.ceo-section { background: #F9FAFB; border-top: 1px solid #F0F2F5; border-bottom: 1px solid #F0F2F5; padding: 70px 20px; }
 .ceo-inner {
-  max-width: 680px; margin: 0 auto;
-  display: flex; gap: 48px; align-items: flex-start;
+  max-width: 620px; margin: 0 auto;
+  background: #FFFFFF; border: 1px solid #E8EDF5;
+  border-radius: 24px; padding: 48px;
+  box-shadow: 0 2px 20px rgba(0,0,0,.04);
 }
+.ceo-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
+.ceo-quote-mark { font-size: 72px; line-height: 0.8; color: #E8EDF5; font-family: Georgia, serif; margin-bottom: 16px; }
+.ceo-quote {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px; font-weight: 500;
+  color: #0A1629; line-height: 1.75; margin-bottom: 28px;
+}
+.ceo-sig-row { display: flex; align-items: center; gap: 14px; }
 .ceo-avatar {
-  width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, #0A1629, #1A3068);
   display: flex; align-items: center; justify-content: center;
-  font-size: 32px; border: 3px solid white;
-  box-shadow: 0 4px 20px rgba(15,31,69,.15);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 800; color: #C8D8F0;
+  border: 2px solid #E8EDF5;
 }
 .ceo-content {}
-.ceo-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
-.ceo-quote {
-  font-family: 'Outfit', sans-serif;
-  font-size: 19px; font-weight: 400;
-  color: var(--navy); line-height: 1.7; margin-bottom: 20px;
-}
-.ceo-quote::before { content: '\201C'; }
-.ceo-quote::after  { content: '\201D'; }
-.ceo-sig { font-size: 14px; font-weight: 600; color: var(--body); }
-.ceo-sig span { font-weight: 400; color: var(--muted); }
+.ceo-sig { font-size: 14px; font-weight: 700; color: #0A1629; }
+.ceo-sig span { font-weight: 400; color: #9CA3AF; display: block; margin-top: 2px; font-size: 13px; }
 
 /* HOW IT WORKS */
-.hiw-section { padding: 100px 24px; background: var(--white); }
-.hiw-inner { max-width: 760px; margin: 0 auto; }
+.hiw-section { padding: 70px 20px; background: #FFFFFF; }
+.hiw-inner { max-width: 620px; margin: 0 auto; }
 .section-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--teal); margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
 }
-.section-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--teal); border-radius: 1px; }
 .section-h2 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 38px; font-weight: 600; color: var(--navy);
-  margin-bottom: 56px; letter-spacing: -0.5px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 36px; font-weight: 800; color: #0A1629;
+  margin-bottom: 52px; letter-spacing: -1.2px;
 }
-.hiw-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; position: relative; }
-.hiw-steps::before {
+.hiw-steps { display: flex; flex-direction: column; }
+.hiw-step { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
+.hiw-step:not(:last-child)::before {
   content: ''; position: absolute;
-  top: 28px; left: calc(16.67% + 20px); right: calc(16.67% + 20px);
-  height: 1px; background: var(--line);
+  left: 21px; top: 52px; bottom: 0; width: 2px; background: #F0F2F5;
 }
-.hiw-step { padding: 0 24px 0 0; }
-.hiw-step:last-child { padding-right: 0; }
+.hiw-num-wrap { flex-shrink: 0; }
 .hiw-num {
-  width: 56px; height: 56px; border-radius: 50%;
-  border: 2px solid var(--line); background: var(--white);
+  width: 44px; height: 44px; border-radius: 50%; background: #0A1629;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700;
-  color: var(--navy); margin-bottom: 24px; position: relative; z-index: 1;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800;
+  color: white; position: relative; z-index: 1;
 }
-.hiw-step-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-.hiw-step-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.hiw-step-content { padding-top: 8px; }
+.hiw-step-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 700; color: #0A1629; margin-bottom: 8px; }
+.hiw-step-desc { font-size: 14px; color: #6B7280; line-height: 1.72; }
 
 /* BOTTOM CTA */
-.bottom-cta {
-  background: var(--navy);
-  padding: 100px 24px;
-  text-align: center;
-}
+.bottom-cta { background: #0A1629; padding: 80px 20px; text-align: center; }
 .bottom-cta-h2 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 40px; font-weight: 600; color: white;
-  margin-bottom: 16px; letter-spacing: -0.5px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 42px; font-weight: 800; color: white;
+  margin-bottom: 16px; letter-spacing: -1.5px;
 }
 .bottom-cta-h2 em { font-style: normal; color: var(--teal); }
-.bottom-cta-sub { font-size: 16px; color: rgba(255,255,255,.6); margin-bottom: 36px; }
-.bottom-cta-btn {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: var(--teal); color: white;
-  border: none; border-radius: 14px;
-  padding: 18px 40px; font-family: 'Outfit', sans-serif;
-  font-size: 17px; font-weight: 600; cursor: pointer;
-  transition: all .2s;
-  box-shadow: 0 8px 32px rgba(0,180,176,.35);
+.bottom-cta-sub {
+  font-size: 16px; color: rgba(255,255,255,.5); line-height: 1.7;
+  max-width: 440px; margin: 0 auto 40px;
 }
-.bottom-cta-btn:hover { background: var(--teal2); transform: translateY(-2px); }
-.bottom-note { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 14px; }
+.bottom-cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--teal); color: white;
+  border: none; border-radius: 100px;
+  padding: 18px 40px; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px; font-weight: 700; cursor: pointer; transition: all .2s;
+  box-shadow: 0 8px 32px rgba(0,180,176,.3);
+}
+.bottom-cta-btn:hover { background: #00CCC8; transform: translateY(-2px); }
+.bottom-note { font-size: 12px; color: rgba(255,255,255,.25); margin-top: 20px; }
 
 /* ─── PORTAL ─────────────────────────────── */
 #portal { display: none; }
 .stage {
   min-height: 100vh;
-  padding-top: 120px; padding-bottom: 80px;
+  padding-top: 120px; padding-bottom: 110px;
   display: flex; align-items: flex-start; justify-content: center;
 }
 .stage-inner {
@@ -286,12 +343,20 @@ body {
 
 /* HEADLINE */
 .hed {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 34px; font-weight: 600; line-height: 1.2;
   color: var(--navy); margin-bottom: 10px; letter-spacing: -0.3px;
 }
 .hed em { font-style: normal; color: var(--teal); }
 .sub { font-size: 15px; color: var(--body); line-height: 1.65; margin-bottom: 32px; }
+
+.debt-step-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #e0f2fe; color: #0284c7;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.debt-step-icon svg { flex-shrink: 0; }
 
 /* CHOICE LIST */
 .choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
@@ -314,6 +379,32 @@ body {
 .choice.sel .c-radio::after { opacity:1; }
 .c-body { flex:1; }
 .c-title { font-size: 15px; font-weight: 600; color: var(--navy); }
+.c-text { flex:1; min-width:0; }
+.c-text .c-sub { font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+/* Filing status cards — elevated card style */
+.filing-choices {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px;
+}
+.filing-choice {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 20px; border: 2px solid var(--line);
+  border-radius: 16px; cursor: pointer; background: var(--white);
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.filing-choice:hover {
+  border-color: rgba(0,180,176,.4);
+  background: #FAFFFE;
+  box-shadow: 0 4px 12px rgba(0,180,176,.08);
+}
+.filing-choice.sel {
+  border-color: var(--teal);
+  background: linear-gradient(135deg, #F0FDFB 0%, #E6FFFA 100%);
+  box-shadow: 0 4px 16px rgba(0,180,176,.12);
+}
+.filing-choice .c-radio { margin-top: 2px; }
+.filing-choice .c-text .c-title { font-size: 15px; font-weight: 600; color: var(--navy); letter-spacing: -0.2px; }
+.filing-choice .c-text .c-sub { font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 6px; line-height: 1.45; }
 .c-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .c-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
 .badge-warn { background:#FEF3C7; color:var(--gold); }
@@ -327,7 +418,7 @@ body {
 .gbtn {
   padding: 16px 12px; border: 1.5px solid var(--line);
   border-radius: 12px; cursor: pointer; text-align: center;
-  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600;
   color: var(--body); background: var(--white); transition: all .18s;
   line-height: 1.3;
 }
@@ -342,20 +433,28 @@ body {
   display: flex; gap: 10px; align-items: flex-start;
 }
 .notice.warn {
-  background: #FFFCF5;
-  border: none; border-left: 3px solid #F59E0B;
-  border-radius: 0; padding: 11px 0 11px 16px;
-  display: block; color: var(--body);
+  background: linear-gradient(135deg, #FFFBEB 0%, #FFF7ED 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex; gap: 14px; align-items: flex-start;
+  color: var(--body);
   font-size: 14px;
+  line-height: 1.6;
 }
-.notice.warn svg { display: none; }
-.notice.warn::before {
-  content: 'URGENT';
-  display: block;
-  font-family: 'Outfit', sans-serif;
+.notice.warn svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.notice.warn .notice-warn-content {
+  flex: 1;
+}
+.notice.warn .notice-warn-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; color: #D97706;
-  margin-bottom: 5px; line-height: 0.75;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: #B45309;
+  margin-bottom: 4px;
 }
 .notice.warn strong { color: var(--navy); font-weight: 700; }
 .notice.info { background:#F0FDFB; border:1px solid #6EE7E0; color:#065F46; }
@@ -366,7 +465,7 @@ body {
   border-radius: 14px; padding: 20px 22px; margin-bottom: 24px;
 }
 .hbox-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-.hbox-val { font-family: 'Outfit', sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); }
+.hbox-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); }
 .hbox-val.red { color: var(--red); }
 .hbox-val.green { color: var(--green); }
 .hbox-desc { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.6; }
@@ -377,10 +476,65 @@ body {
 /* SECTION LABEL */
 .sec-lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 12px; }
 
+/* DEBT AMOUNT INPUT */
+.debt-input-wrap {
+  margin-bottom: 28px;
+}
+.debt-input-wrap .debt-input {
+  width: 100%; height: 56px; padding: 0 20px 0 48px;
+  border: 2px solid var(--line); border-radius: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 600;
+  color: var(--navy); background: var(--white); outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.debt-input-wrap .debt-input::placeholder { color: #C0C8D8; font-weight: 500; }
+.debt-input-wrap .debt-input:focus {
+  border-color: var(--teal); box-shadow: 0 0 0 4px rgba(0,180,176,.12);
+}
+.debt-input-wrap { position: relative; }
+.debt-input-wrap .debt-prefix {
+  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 600;
+  color: var(--muted); pointer-events: none;
+}
+
+/* WHAT HAPPENS NEXT CARD */
+.what-next-card {
+  border: 1px solid rgba(0,180,176,.25); border-radius: 12px; padding: 24px;
+  margin-bottom: 24px; background: #F0FDFB;
+}
+.what-next-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 700; letter-spacing: -0.2px;
+  color: var(--teal2); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.what-next-title svg { flex-shrink: 0; stroke: var(--teal); }
+.what-next-steps { display: flex; flex-direction: column; gap: 14px; }
+.what-next-step {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.what-next-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--teal); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600;
+  flex-shrink: 0;
+}
+.what-next-step-text {
+  font-size: 14px; color: var(--navy); line-height: 1.5;
+  font-weight: 500; padding-top: 4px;
+}
+.what-next-footer {
+  margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(0,180,176,.2);
+  font-size: 12px; color: var(--muted);
+}
+.what-next-footer strong { color: var(--teal2); font-weight: 600; }
+
 /* CTA BUTTON */
 .cta {
   width: 100%; height: 54px; border: none; border-radius: 14px;
-  font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600;
   cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
   transition: all .2s; letter-spacing: 0.2px;
 }
@@ -434,13 +588,13 @@ body {
   top:-100px; right:-100px; pointer-events:none;
 }
 .sav-lbl { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:10px; }
-.sav-amount { font-family: 'Outfit', sans-serif; font-size:60px; font-weight:700; color:var(--teal); line-height:1; margin-bottom:10px; }
+.sav-amount { font-family: 'Plus Jakarta Sans', sans-serif; font-size:60px; font-weight:700; color:var(--teal); line-height:1; margin-bottom:10px; }
 .sav-sub { font-size:14px; color:rgba(255,255,255,.6); }
 .sav-sub strong { color:white; }
 
 .stats-row { display: grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:20px; }
 .stat { text-align:center; padding:16px 10px; border:1.5px solid var(--line); border-radius:12px; }
-.stat-val { font-family: 'Outfit', sans-serif; font-size:21px; font-weight:600; color:var(--navy); }
+.stat-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size:21px; font-weight:600; color:var(--navy); }
 .stat-val.red { color:var(--red); }
 .stat-val.green { color:var(--green); }
 .stat-lbl { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); margin-top:4px; }
@@ -454,19 +608,44 @@ body {
 }
 .prog-pill::before { content:'✓'; }
 
+/* ACTIVATE PLAN — Service details (client rhythm) */
+.activate-includes {
+  background: var(--off); border: 1.5px solid var(--line);
+  border-radius: 16px; padding: 22px 24px; margin-bottom: 20px;
+}
+.activate-includes-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.activate-includes-item:last-child { border-bottom: none; padding-bottom: 0; }
+.activate-includes-item:first-child { padding-top: 0; }
+.activate-includes-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--teal); color: white; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; margin-top: 2px;
+}
+.activate-includes-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.activate-includes-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.activate-accred {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  font-size: 13px; color: var(--muted); font-weight: 600;
+}
+.activate-accred-badge { color: var(--green); }
+
 /* COST OF WAITING */
 .cow-hero {
   background:var(--off); border:1px solid var(--line);
   border-radius:14px; padding:28px; text-align:center; margin-bottom:22px;
 }
-.cow-num { font-family: 'Outfit', sans-serif; font-size:50px; font-weight:700; color:var(--red); line-height:1; margin:10px 0; }
+.cow-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size:50px; font-weight:700; color:var(--red); line-height:1; margin:10px 0; }
 .cow-lbl { font-size:13px; color:var(--muted); }
 .cow-table { width:100%; border-collapse:collapse; margin-bottom:20px; }
 .cow-table thead th { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); padding:8px 16px; text-align:left; border-bottom:1px solid var(--line); }
 .cow-table tbody tr { border-bottom:1px solid var(--line); }
 .cow-table tbody tr:last-child { border-bottom:none; }
 .cow-table tbody td { padding:13px 16px; font-size:14px; color:var(--body); font-weight:500; }
-.cow-table td.amt { font-family: 'Outfit', sans-serif; font-size:17px; font-weight:600; color:var(--red); text-align:right; }
+.cow-table td.amt { font-family: 'Plus Jakarta Sans', sans-serif; font-size:17px; font-weight:600; color:var(--red); text-align:right; }
 
 /* INLINE CALCULATOR (after situation step) */
 .calc-panel {
@@ -485,7 +664,7 @@ body {
   box-shadow: 0 16px 48px rgba(0,180,176,.42), 0 6px 20px rgba(0,180,176,.28) !important;
 }
 .calc-panel-title {
-  font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700;
   color: var(--navy); margin-bottom: 6px;
 }
 .calc-panel-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
@@ -494,14 +673,14 @@ body {
   border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 16px;
 }
 .calc-daily-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.calc-daily-num { font-family: 'Outfit', sans-serif; font-size: 36px; font-weight: 700; color: var(--red); }
+.calc-daily-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 700; color: var(--red); }
 .calc-daily-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .calc-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
 .calc-table thead th { font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); }
 .calc-table thead th:last-child { text-align: right; }
 .calc-table tbody td { padding: 10px 12px; font-size: 14px; color: var(--body); font-weight: 500; border-bottom: 1px solid var(--line); }
 .calc-table tbody tr:last-child td { border-bottom: none; }
-.calc-table td.calc-amt { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: var(--red); text-align: right; }
+.calc-table td.calc-amt { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--red); text-align: right; }
 
 /* TEAM */
 .team-list { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
@@ -529,7 +708,7 @@ body {
   letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 12px;
   border-radius: 10px; white-space: nowrap;
 }
-.plan-card-price { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.plan-card-price { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
 .plan-card-label { font-size: 13px; color: var(--muted); font-weight: 500; }
 .plan-card.sel .plan-card-price { color: var(--teal); }
 .plan-radio {
@@ -546,7 +725,7 @@ body {
 .pay-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; font-size:14px; border-bottom:1px solid var(--line); }
 .pay-row:last-child { border-bottom:none; padding-top:14px; margin-top:4px; }
 .pay-row:last-child .pk { font-weight:700; font-size:15px; color:var(--navy); }
-.pay-row:last-child .pv { font-family: 'Outfit', sans-serif; font-size:26px; font-weight:700; color:var(--navy); }
+.pay-row:last-child .pv { font-family: 'Plus Jakarta Sans', sans-serif; font-size:26px; font-weight:700; color:var(--navy); }
 .pk { color:var(--muted); font-weight:500; }
 .pv { font-weight:600; color:var(--navy); }
 .pv.red { color:var(--red); }
@@ -563,8 +742,25 @@ body {
   transition:border-color .2s, box-shadow .2s;
 }
 .field input::placeholder { color:#C0C8D8; font-weight:400; }
+.field-select, .location-input {
+  width:100%; height:50px; padding:0 16px;
+  border:2px solid var(--line); border-radius:12px;
+  font-family:'Inter',sans-serif; font-size:15px; font-weight:500;
+  color:var(--navy); background:var(--white); outline:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.field-select { cursor:pointer; }
+.field-select:focus, .location-input:focus {
+  border-color:var(--teal); box-shadow:0 0 0 4px rgba(0,180,176,.1);
+}
 .field input:focus { border-color:var(--teal); box-shadow:0 0 0 4px rgba(0,180,176,.1); }
 .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+.form-trust-note {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--muted); margin-bottom: 20px;
+}
+.form-trust-note svg { flex-shrink: 0; color: #9CA3AF; }
 
 .guarantee {
   display:flex; gap:14px; align-items:flex-start;
@@ -577,6 +773,55 @@ body {
 
 .processing { text-align:center; padding:48px 0; display:none; }
 .proc-ring { width:52px; height:52px; border-radius:50%; border:3px solid var(--line); border-top-color:var(--teal); animation:spin .9s linear infinite; margin:0 auto 18px; }
+
+/* Setup consultation loading */
+.setup-loading {
+  text-align: center; padding: 24px 0;
+}
+.setup-loading-icon {
+  width: 64px; height: 64px; margin: 0 auto 24px;
+  border-radius: 50%; border: 2px solid rgba(0,180,176,.3);
+  background: rgba(0,180,176,.06);
+  display: flex; align-items: center; justify-content: center;
+}
+.setup-loading-icon svg { color: var(--teal); }
+.setup-loading-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px; font-weight: 700; color: var(--navy);
+  margin-bottom: 28px;
+}
+.setup-loading-steps {
+  list-style: none; padding: 0; margin: 0 0 24px;
+  text-align: left; max-width: 320px; margin-left: auto; margin-right: auto;
+}
+.setup-loading-step {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; font-size: 14px; color: var(--body);
+  border-bottom: 1px solid var(--line);
+  transition: color .3s;
+}
+.setup-loading-step:last-child { border-bottom: none; }
+.setup-loading-step.done { color: var(--navy); }
+.setup-loading-step.done .setup-step-icon {
+  background: #16A34A; border-color: #16A34A;
+  color: white;
+}
+.setup-loading-step.done .setup-step-icon svg { opacity: 1; }
+.setup-loading-step.active .setup-step-icon {
+  border-color: var(--teal); background: rgba(0,180,176,.35);
+  color: var(--teal);
+}
+.setup-step-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--line); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .35s ease;
+  background: #F3F4F6;
+}
+.setup-step-icon svg { width: 14px; height: 14px; opacity: 0; }
+.setup-loading-sub {
+  font-size: 13px; color: var(--muted);
+}
 @keyframes spin { to{transform:rotate(360deg)} }
 
 /* SUCCESS */
@@ -590,7 +835,7 @@ body {
 @keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
 .case-box { border:2px dashed var(--line); border-radius:14px; padding:22px; text-align:center; margin:22px 0; }
 .case-box-lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
-.case-box-num { font-family: 'Outfit', sans-serif; font-size:28px; font-weight:700; color:var(--navy); letter-spacing:3px; }
+.case-box-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size:28px; font-weight:700; color:var(--navy); letter-spacing:3px; }
 .nsteps { display:flex; flex-direction:column; gap:0; }
 .ns { display:flex; gap:15px; padding:15px 0; border-bottom:1px solid var(--line); }
 .ns:last-child { border-bottom:none; }
@@ -603,6 +848,15 @@ body {
 .titem { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--muted); font-weight:500; }
 .titem svg { color:var(--teal); }
 
+/* PAYMENT CARD ICONS */
+.payment-icons { display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+.payment-icons-label { font-size:12px; color:var(--muted); font-weight:600; margin-right:4px; }
+.payment-icon { height:24px; display:flex; align-items:center; }
+.payment-icon svg { height:100%; width:auto; }
+.payment-icons-inline { display:flex; align-items:center; gap:6px; }
+.payment-icon-sm { width:32px; height:20px; object-fit:contain; display:inline-block; }
+.payment-icon img { height:100%; width:auto; object-fit:contain; }
+
 /* GROUP LABEL */
 .group-label {
   font-size: 12px; font-weight: 700; text-transform: uppercase;
@@ -612,7 +866,7 @@ body {
 /* TAX YEARS SECTION */
 .years-section { margin-bottom: 20px; }
 .years-section-title {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 16px; font-weight: 700; color: var(--navy);
   margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
 }
@@ -623,13 +877,34 @@ body {
 }
 .yicon.fed { background: #EFF6FF; }
 .yicon.st { background: #FEF3C7; }
+
+/* Section with icon (bank, location, etc.) */
+.section-with-icon {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px; font-weight: 700; color: var(--navy);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.section-with-icon .sicon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.section-with-icon .sicon.bank { background: #EFF6FF; }
+.section-with-icon .sicon.invest { background: #ECFDF5; }
+.section-with-icon .sicon.location { background: #EFF6FF; }
+.section-with-icon .sicon.people { background: #FEF3C7; }
+.section-with-icon .sicon.car { background: #F3E8FF; }
+.location-section .choice .c-text { font-size: 15px; font-weight: 600; }
 .years-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.years-count {
+  font-size: 13px; color: var(--muted); margin-top: 8px;
 }
 .ybtn {
   padding: 12px 8px; border: 1.5px solid var(--line);
   border-radius: 10px; cursor: pointer; text-align: center;
-  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600;
   color: var(--body); background: var(--white); transition: all .18s;
 }
 .ybtn:hover { border-color: var(--teal); color: var(--teal); background: #F0FDFB; }
@@ -637,12 +912,12 @@ body {
 
 /* FOOTER */
 footer {
-  background:var(--navy); padding:32px 40px;
-  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  background: #07101F; padding: 32px 40px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
 }
-.footer-logo .l1 { font-family: 'Outfit', sans-serif; font-size:18px; font-weight:600; color:white; }
-.footer-logo .l2 { font-family: 'Outfit', sans-serif; font-size:18px; font-weight:600; color:var(--teal); }
-footer p { font-size:12px; color:rgba(255,255,255,.3); }
+.footer-logo .l1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: white; }
+.footer-logo .l2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--teal); }
+footer p { font-size: 12px; color: rgba(255,255,255,.25); }
 
 /* INFO NOTICE override */
 .notice.info {
@@ -652,6 +927,26 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 /* RESPONSIVE */
 @media (max-width:700px) {
   .hdr { padding:0 20px; }
+  .hdr-phone { padding: 5px 10px; gap: 6px; font-size: 12px; }
+  .hdr-phone-icon { width: 26px; height: 26px; }
+  .hdr-phone-icon svg { width: 12px; height: 12px; }
+  .hdr-secure { display: none; }
+  .hero {
+    min-height: 80vh;
+    padding: 64px 24px 32px;
+  }
+  .hero-trust {
+    flex-direction: column; gap: 0; overflow: hidden;
+    min-height: 44px; position: relative; justify-content: center;
+  }
+  .hero-trust .htrust {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    opacity: 0; transition: opacity .5s ease; pointer-events: none;
+    white-space: nowrap; width: max-content;
+  }
+  .hero-trust .htrust.hero-trust-active {
+    opacity: 1;
+  }
   .hero-h1 { font-size:32px; }
   .hero-sub { font-size:15px; }
   .reviews-grid { grid-template-columns: 1fr; }
@@ -664,8 +959,271 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   .prog-wrap { padding:10px 20px; }
   .plan-cards { grid-template-columns: 1fr; }
   .years-grid { grid-template-columns: repeat(3, 1fr); }
+  .filing-choices { grid-template-columns: 1fr; }
+  .stage { padding-bottom: 160px; }
 }
+/* ─── IRS AUTOFILL BUTTON ─────────────────── */
+.irs-autofill-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,180,176,.08); border: 1.5px solid rgba(0,180,176,.3);
+  color: var(--teal); border-radius: 10px;
+  padding: 10px 18px; font-size: 13px; font-weight: 600;
+  cursor: pointer; margin-bottom: 20px; transition: all .2s;
+}
+.irs-autofill-btn:hover { background: rgba(0,180,176,.15); }
+.irs-autofill-btn.auto-filled { background: #DCFCE7; border-color: #22C55E; color: #15803D; }
+.irs-autofill-btn.auto-filled:hover { background: #BBF7D0; }
+
+/* Expandable expense categories */
+.exp-cat {
+  border: 2px solid var(--line); border-radius: 16px;
+  margin-bottom: 12px; overflow: hidden; background: var(--white);
+  transition: border-color .2s, box-shadow .2s;
+}
+.exp-cat:hover { border-color: rgba(0,180,176,.3); }
+.exp-cat-header {
+  display: flex; align-items: center; gap: 14px; padding: 18px 20px;
+  cursor: pointer; transition: background .2s;
+}
+.exp-cat-header:hover { background: #FAFFFE; }
+.exp-cat-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.exp-cat-icon.housing { background: #EFF6FF; }
+.exp-cat-icon.daily { background: #FEF3C7; }
+.exp-cat-icon.transport { background: #F3E8FF; }
+.exp-cat-icon.medical { background: #FEE2E2; }
+.exp-cat-body { flex: 1; min-width: 0; }
+.exp-cat-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); }
+.exp-cat-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.exp-cat-right {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+.exp-cat-maxed {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; color: #15803D;
+  background: #DCFCE7; padding: 4px 10px; border-radius: 20px;
+}
+.exp-cat-overlimit {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; color: #B45309;
+  background: #FEF3C7; padding: 4px 10px; border-radius: 20px;
+}
+.exp-progress-fill.over { background: #F59E0B; }
+.exp-cat-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); }
+.exp-cat-chevron {
+  width: 24px; height: 24px; color: var(--muted);
+  transition: transform .25s ease;
+}
+.exp-cat.open .exp-cat-chevron { transform: rotate(180deg); }
+.exp-cat-inner {
+  padding: 0 20px 20px; border-top: 1px solid var(--line);
+  display: none;
+}
+.exp-cat.open .exp-cat-inner { display: block; }
+.exp-subfield {
+  margin-top: 16px; display: flex; flex-direction: column; gap: 8px;
+}
+.exp-subfield:first-child { margin-top: 20px; }
+.exp-subfield label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.exp-subfield .exp-input-wrap {
+  position: relative; display: flex; align-items: center;
+}
+.exp-subfield .exp-input-wrap .dollar { position: absolute; left: 14px; font-size: 15px; font-weight: 600; color: var(--muted); }
+.exp-subfield .exp-input-wrap input {
+  width: 100%; height: 48px; padding: 0 16px 0 36px;
+  border: 2px solid var(--line); border-radius: 12px;
+  font-size: 15px; font-weight: 600; color: var(--navy);
+  background: var(--white); outline: none;
+  transition: border-color .2s;
+}
+.exp-subfield .exp-input-wrap input:focus { border-color: var(--teal); }
+.exp-progress { height: 6px; background: var(--line); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.exp-progress-fill { height: 100%; background: var(--teal); border-radius: 3px; transition: width .3s; }
+.exp-progress-lbl { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 4px; }
+.exp-banner {
+  background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%);
+  border: 1px solid #86EFAC; border-radius: 14px;
+  padding: 16px 20px; margin-bottom: 24px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.exp-banner-icon { flex-shrink: 0; color: #15803D; }
+.exp-banner-text { font-size: 14px; color: #166534; line-height: 1.5; }
+.exp-banner-text strong { font-weight: 700; }
+.exp-summary {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 24px; background: var(--off); border: 2px solid var(--line);
+  border-radius: 16px; margin: 24px 0;
+}
+.exp-summary-left .exp-summary-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
+.exp-summary-left .exp-summary-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 700; color: var(--teal); }
+.exp-summary-right .exp-summary-lbl { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; text-align: right; }
+.exp-summary-right .exp-summary-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); text-align: right; }
+
+.exp-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--off); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px 16px;
+  font-size: 14px; color: var(--muted); margin-bottom: 4px;
+}
+.exp-total-row strong { font-size: 18px; font-weight: 700; color: var(--navy); }
+
+/* ─── OBLIGATIONS STEP (card-style inputs) ─── */
+.oblig-card {
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  background: var(--white);
+  transition: border-color .2s;
+}
+.oblig-card:focus-within { border-color: var(--teal); }
+.oblig-card .oblig-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--navy);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+}
+.oblig-card .oblig-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.oblig-card .oblig-icon.health { background: #EFF6FF; }
+.oblig-card .oblig-icon.childcare { background: #F3E8FF; }
+.oblig-card .oblig-icon.tax { background: #FEF3C7; }
+.oblig-card .oblig-icon.other { background: #ECFDF5; }
+.oblig-notice {
+  background: linear-gradient(135deg, #FFFBEB 0%, #FFF7ED 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 14px;
+  padding: 16px 20px; margin-bottom: 24px;
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 14px; line-height: 1.55; color: var(--body);
+}
+.oblig-notice-icon { flex-shrink: 0; color: #D97706; }
+.oblig-notice strong { color: #B45309; font-weight: 700; }
+
+/* ─── STRIPE CARD ELEMENT ─────────────────── */
+.stripe-input {
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color .2s;
+}
+.stripe-input.StripeElement--focus { border-color: var(--teal); }
+.stripe-input.StripeElement--invalid { border-color: var(--red); }
+#card-errors { color: var(--red); font-size: 13px; margin-top: 6px; display: none; }
+
+/* ─── OVERVIEW MODAL / EDIT POPUP ───────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(15,31,69,.4); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
+}
+.overlay.open { opacity: 1; visibility: visible; }
+.overlay-modal {
+  background: var(--white); border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.18);
+  max-width: 420px; width: 100%; max-height: 90vh; overflow-y: auto;
+  transform: scale(0.95); transition: transform .25s ease;
+}
+.overlay.open .overlay-modal { transform: scale(1); }
+.overlay-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 24px; border-bottom: 1px solid var(--line);
+}
+.overlay-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px; font-weight: 700; color: var(--navy);
+}
+.overlay-close {
+  width: 36px; height: 36px; border-radius: 10px;
+  border: none; background: var(--off); color: var(--muted);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s;
+}
+.overlay-close:hover { background: var(--line); color: var(--navy); }
+.overlay-body { padding: 24px; }
+.overlay-body .field { margin-bottom: 18px; }
+.overlay-body .field:last-of-type { margin-bottom: 0; }
+.overlay-hint {
+  font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5;
+}
+.overlay-footer {
+  padding: 20px 24px; border-top: 1px solid var(--line);
+}
+.overlay-footer .cta { margin: 0; }
+.overlay-modal.overlay-modal-wide { max-width: 480px; }
+.year-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 44px; }
+.year-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 8px;
+  background: rgba(0,180,176,.12); color: var(--teal2);
+  font-size: 13px; font-weight: 600;
+}
+.year-tag-remove {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(0,180,176,.25); border: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; line-height: 1; color: var(--teal2);
+  padding: 0; transition: background .2s;
+}
+.year-tag-remove:hover { background: rgba(0,180,176,.4); }
+.year-tags-select {
+  min-width: 100px; height: 36px; padding: 0 10px;
+  border: 1.5px solid var(--line); border-radius: 8px;
+  font-size: 13px; font-weight: 500; color: var(--navy);
+  background: var(--white); cursor: pointer;
+}
+
+/* ─── OVERVIEW SNAPSHOT CARDS ───────────────────── */
+.snap-card {
+  background: var(--white); border: 1.5px solid var(--line);
+  border-radius: 18px; padding: 22px 24px; margin-bottom: 18px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.snap-card:hover { border-color: rgba(0,180,176,.25); box-shadow: 0 4px 20px rgba(0,0,0,.04); }
+.snap-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+}
+.snap-card-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--muted);
+}
+.snap-edit {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--teal);
+  background: none; border: none; cursor: pointer;
+  padding: 4px 0; transition: color .2s;
+}
+.snap-edit:hover { color: var(--teal2); }
+.snap-edit svg { width: 14px; height: 14px; }
+.snap-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; font-size: 14px; border-bottom: 1px solid var(--line);
+}
+.snap-row:last-child { border-bottom: none; }
+.snap-row-lbl { color: var(--muted); font-weight: 500; }
+.snap-row-val { font-weight: 600; color: var(--navy); }
+.snap-row-val.green { color: var(--green); font-size: 18px; }
+.snap-row-val.red { color: var(--red); }
+.snap-disposable {
+  margin-top: 14px; padding-top: 16px; border-top: 2px solid var(--line);
+}
+.snap-disposable-lbl { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.snap-disposable-val {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 700;
+}
+.snap-disposable-val.positive { color: var(--green); }
+.snap-disposable-val.negative { color: var(--red); }
+.snap-disposable-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
 </style>
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -678,7 +1236,13 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       Secure & Encrypted
     </div>
-    <a class="hdr-phone" href="tel:18005551234">(800) 555-1234</a>
+    <a class="hdr-phone" href="tel:18005551234">
+      <span class="hdr-phone-icon" aria-hidden="true">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </span>
+      <span class="hdr-phone-number">(800) 555-1234</span>
+      <span class="hdr-phone-call">Call Us</span>
+    </a>
   </div>
 </header>
 
@@ -697,62 +1261,85 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge"><div class="hero-badge-dot"></div>IRS Tax Relief — 100% Online</div>
+    <div class="hero-badge"><div class="hero-badge-dot"></div>IRS-Accredited Tax Relief</div>
     <h1 class="hero-h1">Stop Stressing About<br>Your <em>Tax Debt.</em></h1>
-    <p class="hero-sub">Answer a few questions to find out what IRS relief programs you qualify for and get a personalized resolution plan — in about 10 minutes.</p>
+    <p class="hero-sub">Answer a few questions to find out what IRS relief programs you qualify for — and get a personalized resolution plan in about 10 minutes.</p>
     <button class="hero-cta" onclick="startPortal()">
       See What You Qualify For
-      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
     <div class="hero-meta">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       <span>Takes ~10 minutes</span>
       <div class="hero-meta-dot"></div>
       <span>No obligation</span>
       <div class="hero-meta-dot"></div>
       <span>100% confidential</span>
     </div>
-    <div class="hero-trust">
-      <div class="htrust">
+    <div class="hero-trust" id="heroTrust">
+      <div class="htrust hero-trust-active">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        256-bit SSL
+        256-bit SSL Encryption
       </div>
       <div class="htrust">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         IRS-Accredited Specialists
       </div>
       <div class="htrust">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-        4.9 Star Rating
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Federal Privacy Protections
       </div>
       <div class="htrust">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
         A+ BBB Rating
       </div>
     </div>
-    <div class="confidentiality">
-      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Your information is fully confidential and protected under federal privacy regulations. We will never share your data with anyone without your written consent.
+  </section>
+
+  <!-- ACCREDITATION LOGOS -->
+  <section class="logos-section">
+    <div class="logos-inner">
+      <div class="logos-label">Trusted &amp; Accredited</div>
+      <div class="logos-row">
+        <div class="logo-item">
+          <div class="logo-item-name">BBB</div>
+          <div class="logo-item-rating"><span class="logo-item-stars">★★★★★</span> A+ Accredited</div>
+        </div>
+        <div class="logo-item">
+          <div class="logo-item-name">Trustpilot</div>
+          <div class="logo-item-rating"><span class="logo-item-stars">★★★★★</span> 4.9 / 5.0</div>
+        </div>
+        <div class="logo-item">
+          <div class="logo-item-name">NATP</div>
+          <div class="logo-item-rating">Member</div>
+        </div>
+        <div class="logo-item">
+          <div class="logo-item-name">NAEA</div>
+          <div class="logo-item-rating">Member</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- REVIEWS -->
   <section class="reviews-section">
     <div class="reviews-inner">
-      <div class="reviews-label">What Our Clients Say</div>
+      <div class="reviews-label">Client Stories</div>
+      <h2 class="reviews-title">Real people. Real results.</h2>
       <div class="reviews-grid">
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <div class="review-text">I owed over $45,000 to the IRS and thought there was no way out. SympleTax helped me settle for a fraction of what I owed. The process was easy and completely online.</div>
+          <p class="review-text">I owed over $45,000 to the IRS and thought there was no way out. SympleTax helped me settle for a fraction of what I owed. The process was easy and completely online.</p>
           <div class="review-author">Michael R. <span>— Dallas, TX</span></div>
         </div>
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <div class="review-text">Professional, fast, and actually affordable. My case manager kept me updated the whole way through. I finally feel like I can breathe again.</div>
+          <p class="review-text">Professional, fast, and actually affordable. My case manager kept me updated the whole way through. I finally feel like I can breathe again.</p>
           <div class="review-author">Sarah T. <span>— Miami, FL</span></div>
         </div>
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <div class="review-text">I was getting wage garnishment notices and didn't know what to do. SympleTax stopped the garnishment within days and negotiated a much lower amount.</div>
+          <p class="review-text">I was getting wage garnishment notices and didn't know what to do. SympleTax stopped the garnishment within days and negotiated a much lower amount.</p>
           <div class="review-author">David L. <span>— Phoenix, AZ</span></div>
         </div>
       </div>
@@ -762,13 +1349,14 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   <!-- CEO MESSAGE -->
   <section class="ceo-section">
     <div class="ceo-inner">
-      <div class="ceo-avatar">
-        <span style="font-size:20px;font-weight:700;color:#E5EDF7;letter-spacing:1px;">AH</span>
-      </div>
-      <div class="ceo-content">
-        <div class="ceo-label">A Message from Our CEO</div>
-        <p class="ceo-quote">For more than a decade, my team and I have been working to make tax relief more affordable, more transparent, and easier for everyday taxpayers to navigate. Today, we're proud to offer a solution that gives you a faster, clearer path to resolving your tax issues. We hope this experience helps you move forward with confidence — we're honored to be part of that journey.</p>
-        <div class="ceo-sig">Ari AlaEddin &nbsp;<span>— CEO, SympleTax</span></div>
+      <div class="ceo-label">A Message from Our CEO</div>
+      <div class="ceo-quote-mark">&ldquo;</div>
+      <p class="ceo-quote">For more than a decade, my team and I have been working to make tax relief more affordable, more transparent, and easier for everyday taxpayers to navigate. Today, we're proud to offer a solution that gives you a faster, clearer path to resolving your tax issues. We hope this experience helps you move forward with confidence — we're honored to be part of that journey.</p>
+      <div class="ceo-sig-row">
+        <div class="ceo-avatar">AA</div>
+        <div class="ceo-content">
+          <div class="ceo-sig">Ari AlaEddin <span>CEO, SympleTax</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -776,23 +1364,29 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   <!-- HOW IT WORKS -->
   <section class="hiw-section">
     <div class="hiw-inner">
-      <div class="section-eyebrow">How it works</div>
+      <div class="section-eyebrow">The Process</div>
       <h2 class="section-h2">Three steps to resolution.</h2>
       <div class="hiw-steps">
         <div class="hiw-step">
-          <div class="hiw-num">1</div>
-          <div class="hiw-step-title">Answer a few questions</div>
-          <div class="hiw-step-desc">Tell us about your tax situation — an estimate is all we need to get started.</div>
+          <div class="hiw-num-wrap"><div class="hiw-num">1</div></div>
+          <div class="hiw-step-content">
+            <div class="hiw-step-title">Answer a few questions</div>
+            <div class="hiw-step-desc">Tell us about your tax situation — an estimate is all we need to get started. Takes about 10 minutes.</div>
+          </div>
         </div>
         <div class="hiw-step">
-          <div class="hiw-num">2</div>
-          <div class="hiw-step-title">We analyze your case</div>
-          <div class="hiw-step-desc">We identify every IRS relief program you qualify for and calculate your settlement range.</div>
+          <div class="hiw-num-wrap"><div class="hiw-num">2</div></div>
+          <div class="hiw-step-content">
+            <div class="hiw-step-title">We analyze your case</div>
+            <div class="hiw-step-desc">We identify every IRS relief program you qualify for and calculate your settlement range based on your specific situation.</div>
+          </div>
         </div>
         <div class="hiw-step">
-          <div class="hiw-num">3</div>
-          <div class="hiw-step-title">Get your personalized plan</div>
-          <div class="hiw-step-desc">See your resolution options, choose a path, and enroll — all online in minutes.</div>
+          <div class="hiw-num-wrap"><div class="hiw-num">3</div></div>
+          <div class="hiw-step-content">
+            <div class="hiw-step-title">Get your personalized plan</div>
+            <div class="hiw-step-desc">See your resolution options, choose a path, and enroll — all online in minutes. No office visits required.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -800,11 +1394,11 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 
   <!-- BOTTOM CTA -->
   <section class="bottom-cta">
-    <h2 class="bottom-cta-h2">Ready to <em>stop the clock</em> on your IRS debt?</h2>
+    <h2 class="bottom-cta-h2">Ready to <em>stop the clock</em><br>on your IRS debt?</h2>
     <p class="bottom-cta-sub">The IRS adds penalties every single day. Find out what you owe and how much you could save — free.</p>
     <button class="bottom-cta-btn" onclick="startPortal()">
       Start My Free Analysis
-      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
     <p class="bottom-note">No credit card required &nbsp;·&nbsp; Takes about 10 minutes &nbsp;·&nbsp; 100% confidential</p>
   </section>
@@ -821,34 +1415,153 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 <!-- ════════════════════════════════════════ -->
 <div id="portal">
   <div class="stage"><div class="stage-inner" id="content"></div></div>
+  <div id="overlayContainer"></div>
+  <div class="portal-trust" id="portalTrust">
+    <div class="portal-trust-stars">★★★★★</div>
+    <div class="portal-trust-testimonial" id="portalTestimonial">
+      <div class="portal-trust-quote">"</div>
+      <div class="portal-trust-text" id="portalTestimonialText">I was drowning in back taxes from a failed business. SympleTax got the IRS off my back and cut my balance by more than half.</div>
+      <div class="portal-trust-author" id="portalTestimonialAuthor">Derek Nguyen · Phoenix, AZ</div>
+    </div>
+  </div>
 </div>
 
-
+<script src="./us-states-counties.js"></script>
 <script>
 
 const S = {
   step:1,
-  debtRange:'', debtType:'', irsNotice:'', taxSituation:'',
+  debtRange:'', debtAmount:0,
+  debtType:'', irsNotice:'', taxSituation:'',
+  taxType:'personal', activeCollections:'no',
   federalYears:[], stateYears:[],
-  income:'', expenses:'', assets:'', equity:'',
+  income:'', onIRSPlan:'', irsPlanMonthlyAmount:0, expenses:'', assets:'', equity:'',
+  // Detailed expense breakdown
+  expHousing:0, expFood:0, expClothing:0, expPersonalCare:0, expHousehold:0, expOther:0, expCarPayment:0, expGas:0, expInsuranceMaintenance:0, expUtilities:0, expMedical:0,
+  expHealthInsurance:0, expChildcare:0, expOtherTax:0, expOtherObligations:0,
+  expandedExpCat:'housing', irsAutoFilled:false,
+  // Assets & equity (exact amounts)
+  assetAmount:0,
+  homeValue:0, homeMortgage:0,
+  carValue:0,  carLoan:0,
   firstName:'', lastName:'', email:'', phone:'',
+  filingStatus:'',
+  bankBalance:0, investmentsAmount:0,
+  state:'', county:'', householdSize:'', vehiclesOwned:'',
+  monthlyIncome:0,
   paymentPlan:'full',
-  caseNum:''
+  caseNum:'', leadId:''
 };
 
-const TOTAL_STEPS = 12;
+const TOTAL_STEPS = 17;
+const STORAGE_KEY = 'sympletax_portal_state_v1';
 
-const DEBT_MID  = {under5:3000,s5to10:7500,s10to25:17500,s25to50:37500,s50to100:75000,s100plus:125000};
-const INC_MID   = {under30:22500,s30to50:40000,s50to75:62500,s75to100:87500,s100to150:125000,s150plus:175000};
-const EXP_MID   = {under2:1500,s2to3:2500,s3to5:4000,s5plus:6000};
-const ASSET_MID = {none:0,under25:12500,s25to100:62500,s100plus:150000};
-const EQ_MID    = {none:0,under50:25000,s50to150:100000,s150plus:200000};
+function saveLocalState(){
+  if(typeof localStorage === 'undefined') return;
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(S));
+  }catch(e){}
+}
 
-const debt  = ()=> DEBT_MID[S.debtRange]  || 25000;
-const inc   = ()=> INC_MID[S.income]      || 55000;
-const exp   = ()=> EXP_MID[S.expenses]    || 2500;
-const asset = ()=> ASSET_MID[S.assets]    || 0;
-const eq    = ()=> EQ_MID[S.equity]       || 0;
+function loadLocalState(){
+  if(typeof localStorage === 'undefined') return;
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    if(data && typeof data === 'object'){
+      Object.assign(S, data);
+    }
+  }catch(e){}
+}
+
+function clearLocalState(){
+  if(typeof localStorage === 'undefined') return;
+  try{
+    localStorage.removeItem(STORAGE_KEY);
+  }catch(e){}
+}
+
+// Capture current form values from DOM into S (before refresh/close)
+function captureFormToState(){
+  try {
+    const step = S.step;
+    if(step === 1){
+      const el = document.getElementById('debtAmount');
+      if(el){ const r = el.value.replace(/[^0-9]/g,''); S.debtAmount = parseInt(r) || 0; }
+    } else if(step === 5){
+      S.firstName = (document.getElementById('fn')?.value||'').trim();
+      S.lastName  = (document.getElementById('ln')?.value||'').trim();
+      S.email     = (document.getElementById('em')?.value||'').trim();
+      S.phone     = (document.getElementById('ph')?.value||'').trim();
+    } else if(step === 6){
+      const el = document.getElementById('debtAmount2');
+      if(el){ const r = el.value.replace(/[^0-9]/g,''); S.debtAmount = parseInt(r) || 0; }
+    } else if(step === 7){
+      const el = document.getElementById('irsPlanMonthly');
+      if(el){ const r = el.value.replace(/[^0-9]/g,''); S.irsPlanMonthlyAmount = parseInt(r) || 0; }
+    } else if(step === 9){
+      const bb = document.getElementById('bankBalance');
+      const inv = document.getElementById('investments');
+      if(bb){ const r = bb.value.replace(/[^0-9]/g,''); S.bankBalance = parseInt(r) || 0; }
+      if(inv){ const r = inv.value.replace(/[^0-9]/g,''); S.investmentsAmount = parseInt(r) || 0; }
+    } else if(step === 10){
+      const st = document.getElementById('stateSelect');
+      const co = document.getElementById('countyInput');
+      if(st) S.state = st.value || '';
+      if(co) S.county = co.value || '';
+    }
+    // Edit overlays (step 15 overview - capture if overlay is open)
+    const editFn = document.getElementById('editFirstName');
+    if(editFn){
+      S.firstName = (editFn.value||'').trim();
+      S.lastName  = (document.getElementById('editLastName')?.value||'').trim();
+      S.phone    = (document.getElementById('editPhone')?.value||'').trim();
+      S.email    = (document.getElementById('editEmail')?.value||'').trim();
+    }
+    const editInc = document.getElementById('editMonthlyIncome');
+    if(editInc){ const r = editInc.value.replace(/[^0-9]/g,''); S.monthlyIncome = parseInt(r) || 0; }
+  } catch(e){}
+}
+
+function normalizeLoadedState(){
+  // Guardrails so a bad/localStorage state can't break the app.
+  if(!Number.isFinite(S.step)) S.step = 1;
+  S.step = Math.max(1, Math.min(TOTAL_STEPS, parseInt(S.step,10) || 1));
+  if(!Array.isArray(S.federalYears)) S.federalYears = [];
+  if(!Array.isArray(S.stateYears)) S.stateYears = [];
+  // ensure numeric fields are numbers (not strings)
+  [
+    'debtAmount','irsPlanMonthlyAmount','bankBalance','investmentsAmount',
+    'assetAmount','homeValue','homeMortgage','carValue','carLoan',
+    'monthlyIncome',
+    'expHousing','expFood','expClothing','expPersonalCare','expHousehold','expOther','expCarPayment','expGas','expInsuranceMaintenance','expUtilities','expMedical',
+    'expHealthInsurance','expChildcare','expOtherTax','expOtherObligations'
+  ].forEach(k=>{ S[k] = parseInt(S[k],10) || 0; });
+  if(!S.taxType) S.taxType = 'personal';
+  if(!S.activeCollections) S.activeCollections = 'no';
+  if(!S.paymentPlan) S.paymentPlan = 'full';
+}
+
+// Load persisted state immediately on page load
+loadLocalState();
+normalizeLoadedState();
+
+const INC_MID = {under30:22500,s30to50:40000,s50to75:62500,s75to100:87500,s100to150:125000,s150plus:175000};
+const DEBT_RANGE_MID = {under_5k:2500, '5k_10k':7500, '10k_25k':17500, '25k_50k':37500, '50k_75k':62500, '75k_plus':100000};
+
+const debt  = ()=> S.debtAmount || (DEBT_RANGE_MID[S.debtRange] || 25000);
+const inc   = ()=> (S.monthlyIncome && S.monthlyIncome > 0) ? (S.monthlyIncome * 12) : (INC_MID[S.income] || 55000);
+const exp   = ()=> {
+  const total = (S.expHousing||0)+(S.expFood||0)+(S.expClothing||0)+(S.expPersonalCare||0)+(S.expHousehold||0)+(S.expCarPayment||0)+(S.expGas||0)+(S.expInsuranceMaintenance||0)+(S.expUtilities||0)+(S.expMedical||0)+(S.expOther||0)+(S.expHealthInsurance||0)+(S.expChildcare||0)+(S.expOtherTax||0)+(S.expOtherObligations||0);
+  return total || 2500;
+};
+const asset = ()=> S.assetAmount || 0;
+const eq    = ()=> {
+  const home = Math.max((S.homeValue||0)-(S.homeMortgage||0), 0);
+  const car  = Math.max((S.carValue||0)-(S.carLoan||0), 0);
+  return home + car;
+};
 
 const rcp     = ()=> Math.max((inc()/12 - exp())*0.55, 0);
 const oic     = ()=> Math.max(rcp()*12 + (asset()+eq())*0.8, 500);
@@ -859,108 +1572,107 @@ const pct     = (s,d)=> Math.round(s/d*100);
 const planPrice = ()=> S.paymentPlan==='monthly' ? 89 : 129;
 const planLabel = ()=> S.paymentPlan==='monthly' ? '$89/mo x 2' : '$129';
 
+const PORTAL_TESTIMONIALS = [
+  { text: 'I was drowning in back taxes from a failed business. SympleTax got the IRS off my back and cut my balance by more than half.', author: 'Derek Nguyen', loc: 'Phoenix, AZ' },
+  { text: 'No more stress. They handled everything—I just answered questions and signed. My lien was released in under 4 months.', author: 'Tasha Williams', loc: 'Atlanta, GA' },
+  { text: 'I put off my taxes for years. Thought I was done for. These folks actually listened and found a path I could afford.', author: 'Roberto Mendez', loc: 'Denver, CO' },
+  { text: 'Professional, responsive, and they actually explained what was happening. Finally felt like I had someone in my corner.', author: 'Amanda Foster', loc: 'Seattle, WA' },
+];
+let portalTestimonialIdx = 0;
+let portalTestimonialInterval;
+
 function startPortal(){
   document.getElementById('landing').style.display = 'none';
   document.getElementById('portal').style.display  = 'block';
   document.getElementById('progWrap').style.display = 'block';
   window.scrollTo({top:0});
   render();
+  startPortalTestimonialRotation();
+}
+function startPortalTestimonialRotation(){
+  if(portalTestimonialInterval) clearInterval(portalTestimonialInterval);
+  function update(){
+    const el = document.getElementById('portalTestimonial');
+    if(!el) return;
+    const t = PORTAL_TESTIMONIALS[portalTestimonialIdx];
+    const textEl = document.getElementById('portalTestimonialText');
+    const authorEl = document.getElementById('portalTestimonialAuthor');
+    if(textEl && authorEl && t){
+      textEl.style.opacity = '0';
+      authorEl.style.opacity = '0';
+      setTimeout(()=>{
+        textEl.textContent = t.text;
+        authorEl.textContent = t.author + ' · ' + t.loc;
+        textEl.style.opacity = '1';
+        authorEl.style.opacity = '1';
+      }, 300);
+    }
+    portalTestimonialIdx = (portalTestimonialIdx + 1) % PORTAL_TESTIMONIALS.length;
+  }
+  portalTestimonialInterval = setInterval(update, 5000);
 }
 
 function go(n){ S.step=n; render(); }
 function back(){ if(S.step>1){S.step--; render();} }
 
 function render(){
-  const p = Math.round((S.step/TOTAL_STEPS)*100);
+  const phase1Steps = 5;
+  const phase2Steps = TOTAL_STEPS - phase1Steps;
+  const showPhase1 = S.step <= phase1Steps;
+  let cur, total, p;
+  if(showPhase1){
+    cur = S.step; total = phase1Steps;
+    p = Math.round((cur/total)*100);
+  } else {
+    cur = S.step - phase1Steps;
+    total = phase2Steps;
+    p = Math.round((cur/total)*100);
+  }
   document.getElementById('progFill').style.width = p+'%';
-  document.getElementById('progCur').textContent  = S.step;
+  document.getElementById('progCur').textContent = cur;
+  document.getElementById('progTotal').textContent = total;
+  const trustEl = document.getElementById('portalTrust');
+  if(trustEl) trustEl.style.display = (S.step === 5 || S.step === 15) ? 'flex' : 'none';
   const c = document.getElementById('content');
   c.style.animation='none'; c.offsetHeight; c.style.animation='';
   c.innerHTML = STEPS[S.step]();
   window.scrollTo({top:0,behavior:'smooth'});
   afterRender();
+  saveLocalState();
 }
 
-// ── S1: How much do you owe ──────────────────────
+// ── S1: How much do you owe (text input) ──
 function s1(){
-  const opts=[
-    {val:'under5',   label:'Under $5,000'},
-    {val:'s5to10',   label:'$5,000 – $10,000'},
-    {val:'s10to25',  label:'$10,000 – $25,000'},
-    {val:'s25to50',  label:'$25,000 – $50,000'},
-    {val:'s50to100', label:'$50,000 – $100,000'},
-    {val:'s100plus', label:'$100,000+'},
-  ];
+  const displayVal = S.debtAmount ? S.debtAmount.toLocaleString() : '';
   return `
     <div class="eyebrow"><div class="eyebrow-dot"></div>Step 1</div>
-    <h1 class="hed">How much do you currently owe the IRS?</h1>
-    <p class="sub">Select your best estimate — we can refine this later.</p>
-    <div class="choices">
-      ${opts.map(o=>`
-        <div class="choice${S.debtRange===o.val?' sel':''}" onclick="tapGo('debtRange','${o.val}',this,2)">
-          <div class="c-radio"></div>
-          <div class="c-text"><strong>${o.label}</strong></div>
-        </div>`).join('')}
+    <h1 class="hed">How much do you owe in taxes?</h1>
+    <p class="sub">An estimate is fine — we'll verify the exact amount later.</p>
+    <div class="debt-input-wrap">
+      <span class="debt-prefix">$</span>
+      <input id="debtAmount" class="debt-input" type="text" inputmode="numeric" placeholder="e.g. 25,000" value="${displayVal}" oninput="formatDebtInput(this)" onkeydown="if(event.key==='Enter')saveDebtAndGo()">
     </div>
+    <button class="cta teal" onclick="saveDebtAndGo()">
+      Continue
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
   `;
 }
 
-// ── S2: Federal / State / Both ───────────────────
+// ── S2: Situation + Inline Auto-Calculator ───────
 function s2(){
   const opts=[
-    {val:'federal', label:'Federal Taxes'},
-    {val:'state',   label:'State Taxes'},
-    {val:'both',    label:'Federal & State'},
-    {val:'unsure',  label:"I'm Not Sure"},
-  ];
-  return `
-    <div class="eyebrow"><div class="eyebrow-dot"></div>Tax Type</div>
-    <h1 class="hed">Do you owe Federal taxes, State taxes, or both?</h1>
-    <div class="choices">
-      ${opts.map(o=>`
-        <div class="choice${S.debtType===o.val?' sel':''}" onclick="tapGo('debtType','${o.val}',this,3)">
-          <div class="c-radio"></div>
-          <div class="c-text"><strong>${o.label}</strong></div>
-        </div>`).join('')}
-    </div>
-    <button class="back-btn" onclick="go(1)">&larr; Back</button>
-  `;
-}
-
-// ── S3: IRS Notices ──────────────────────────────
-function s3(){
-  const opts=[
-    {val:'none',        label:'No Notice Yet'},
-    {val:'cp14',        label:'Balance Due Notice (CP14 / CP501)'},
-    {val:'levy',        label:'Bank Levy'},
-    {val:'garnishment', label:'Wage Garnishment'},
-    {val:'lien',        label:'Federal Tax Lien'},
-    {val:'unsure',      label:"I'm Not Sure"},
-  ];
-  const urgent=S.irsNotice==='levy'||S.irsNotice==='garnishment';
-  return `
-    <div class="eyebrow"><div class="eyebrow-dot"></div>IRS Activity</div>
-    <h1 class="hed">Have you received any IRS notices?</h1>
-    <div class="choices">
-      ${opts.map(o=>`
-        <div class="choice${S.irsNotice===o.val?' sel':''}" onclick="pickNotice('${o.val}',this)">
-          <div class="c-radio"></div>
-          <div class="c-text"><strong>${o.label}</strong></div>
-        </div>`).join('')}
-    </div>
-    ${urgent?`<div class="notice warn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0"><path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/><path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.25" r="1" fill="white"/></svg><span><strong>This requires immediate action.</strong> Our team can issue an emergency hold on IRS collection activity within 24–48 hours of filing.</span></div><button class="cta dark" onclick="go(4)" style="margin-top:20px">Continue</button>`:''}
-    <button class="back-btn" onclick="go(2)">&larr; Back</button>
-  `;
-}
-
-// ── S4: Situation + Inline Auto-Calculator ───────
-function s4(){
-  const opts=[
-    {val:'back_taxes', label:'I owe back taxes'},
-    {val:'unfiled',    label:"I haven't filed my taxes"},
+    {val:'back_taxes', label:'Owe Back Taxes'},
+    {val:'unfiled',    label:"Haven't Filed"},
     {val:'both',       label:'Both'},
-    {val:'unsure',     label:"I'm not sure"},
+    {val:'unsure',     label:"I'm Not Sure"},
   ];
+  const optsSub = {
+    back_taxes: "I've filed but owe money.",
+    unfiled: "I have years I haven't filed.",
+    both: "Unfiled returns and unpaid balance.",
+    unsure: "We'll figure it out together.",
+  };
 
   const showCalc = !!S.taxSituation;
   const d = debt(), da = daily();
@@ -982,7 +1694,7 @@ function s4(){
         </table>
         <div class="notice warn" style="margin-bottom:20px"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0"><path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/><path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.25" r="1" fill="white"/></svg><span>Every day you wait, your debt grows. Let's stop the clock and get you on a path to resolution.</span></div>
         <div style="display: flex; justify-content: center; margin-top: 28px;">
-          <button class="cta teal calc-cta" onclick="go(5)">
+          <button class="cta teal calc-cta" onclick="go(3)">
             Let's Get Started
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -993,14 +1705,109 @@ function s4(){
   return `
     <div class="eyebrow"><div class="eyebrow-dot"></div>Your Situation</div>
     <h1 class="hed">What best describes your situation?</h1>
+    <p class="sub">This helps us calculate what the IRS is charging you.</p>
     <div class="choices">
       ${opts.map(o=>`
         <div class="choice${S.taxSituation===o.val?' sel':''}" onclick="pickSituation('${o.val}',this)">
           <div class="c-radio"></div>
-          <div class="c-text"><strong>${o.label}</strong></div>
+          <div class="c-text"><strong>${o.label}</strong>${optsSub[o.val]?'<br><span style="font-weight:400;color:var(--muted);font-size:14px">'+optsSub[o.val]+'</span>':''}</div>
         </div>`).join('')}
     </div>
     ${calcHTML}
+    <button class="back-btn" onclick="go(1)">&larr; Back</button>
+  `;
+}
+
+// ── S3: Who do you owe ───────────────────────────
+function s3(){
+  const opts=[
+    {val:'federal', label:'IRS (Federal)'},
+    {val:'state',   label:'State'},
+    {val:'both',    label:'Both IRS & State'},
+  ];
+  const optsSub = {
+    federal: 'Federal taxes owed to the IRS.',
+    state: 'State-level taxes.',
+    both: 'You owe at both levels.',
+  };
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Tax Type</div>
+    <h1 class="hed">Who do you owe?</h1>
+    <p class="sub">IRS and state rules are different, so we need to know which applies.</p>
+    <div class="choices">
+      ${opts.map(o=>`
+        <div class="choice${S.debtType===o.val?' sel':''}" onclick="tapGo('debtType','${o.val}',this,4)">
+          <div class="c-radio"></div>
+          <div class="c-text"><strong>${o.label}</strong><br><span style="font-weight:400;color:var(--muted);font-size:14px">${optsSub[o.val]}</span></div>
+        </div>`).join('')}
+    </div>
+    <button class="back-btn" onclick="go(2)">&larr; Back</button>
+  `;
+}
+
+// ── S4: Cost of waiting (balance increasing) ──────
+function s4(){
+  const d = debt(), da = daily();
+  const monthly = da * 30;
+  const yearly = da * 365;
+  const penaltyPortion = monthly * 0.48;
+  const interestPortion = monthly * 0.52;
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Your Balance</div>
+    <h1 class="hed">Your balance is increasing each month</h1>
+    <p class="sub">IRS penalties and interest continue to add up until your case is resolved.</p>
+    <div style="border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin-bottom:24px;background:#fafafa">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <svg width="16" height="16" viewBox="0 0 24 24" style="flex-shrink:0">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="#9CA3AF"/>
+        </svg>
+        <div class="sec-lbl" style="margin:0">MONTHLY COST OF WAITING</div>
+      </div>
+      <h2 style="font-size:32px;color:var(--red);margin:0 0 8px 0;font-weight:700">~${fmt(monthly)}</h2>
+      <p class="sub" style="margin:0 0 8px 0">every month you wait in penalties and interest.</p>
+      <p class="sub" style="margin:0 0 12px 0;font-size:13px;color:var(--muted)">~${fmt(penaltyPortion)}/mo in penalties + ${fmt(interestPortion)}/mo in interest</p>
+      <p class="sub" style="margin:0;font-size:14px;font-weight:500">That's roughly <strong style="color:var(--red)">${fmt(yearly)}/year</strong> on top of what you already owe.</p>
+    </div>
+    <div class="notice info" style="margin-bottom:20px">These penalties can often be reduced or stopped once your case is handled.</div>
+    <div class="what-next-card">
+      <div class="what-next-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+          <rect x="9" y="3" width="6" height="4" rx="2"/>
+          <path d="M9 12h6M9 16h6"/>
+        </svg>
+        What happens next
+      </div>
+      <div class="what-next-steps">
+        <div class="what-next-step">
+          <div class="what-next-num">1</div>
+          <div class="what-next-step-text">We pull your IRS transcripts</div>
+        </div>
+        <div class="what-next-step">
+          <div class="what-next-num">2</div>
+          <div class="what-next-step-text">We analyze your situation</div>
+        </div>
+        <div class="what-next-step">
+          <div class="what-next-num">3</div>
+          <div class="what-next-step-text">You get clear resolution options</div>
+        </div>
+      </div>
+      <div class="what-next-footer">Takes about <strong>10 minutes</strong></div>
+    </div>
+    <div class="notice warn" style="margin-bottom:24px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+        <path d="M12 9v4M12 17h.01"/>
+      </svg>
+      <div class="notice-warn-content">
+        <div class="notice-warn-label">Heads up</div>
+        <span>While this accrues, the IRS collection process can escalate to federal tax liens on your property, wage garnishment, and bank levies.</span>
+      </div>
+    </div>
+    <button class="cta teal" onclick="go(5)">
+      Start My Tax Investigation
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
     <button class="back-btn" onclick="go(3)">&larr; Back</button>
   `;
 }
@@ -1013,11 +1820,15 @@ function s5(){
     <p class="sub">We need a few details to start building your personalized resolution plan.</p>
     <div class="fields">
       <div class="field-row">
-        <div class="field"><label>First Name</label><input id="fn" placeholder="John" value="${S.firstName}"></div>
-        <div class="field"><label>Last Name</label><input id="ln" placeholder="Smith" value="${S.lastName}"></div>
+        <div class="field"><label>First Name</label><input id="fn" placeholder="John" value="${S.firstName}" oninput="S.firstName=this.value;debouncedSave()"></div>
+        <div class="field"><label>Last Name</label><input id="ln" placeholder="Smith" value="${S.lastName}" oninput="S.lastName=this.value;debouncedSave()"></div>
       </div>
-      <div class="field"><label>Email Address</label><input id="em" type="email" placeholder="john@email.com" value="${S.email}"></div>
-      <div class="field"><label>Phone Number</label><input id="ph" type="tel" placeholder="(555) 000-0000" value="${S.phone}" oninput="formatPhone(this)"></div>
+      <div class="field"><label>Email Address</label><input id="em" type="email" placeholder="john@email.com" value="${S.email}" oninput="S.email=this.value;debouncedSave()"></div>
+      <div class="field"><label>Phone Number</label><input id="ph" type="tel" placeholder="(555) 000-0000" value="${S.phone}" oninput="formatPhone(this);S.phone=this.value;debouncedSave()"></div>
+    </div>
+    <div class="form-trust-note">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Bank-level encryption. Your information is never shared.</span>
     </div>
     <button class="cta dark" onclick="saveContactAndGo()">
       Continue
@@ -1027,45 +1838,71 @@ function s5(){
   `;
 }
 
-// ── S6: Annual Income ────────────────────────────
+// ── S6: IRS Balance (how much you owe) ─────────────
 function s6(){
-  const opts=[
-    {val:'under30',   label:'Under $30,000'},
-    {val:'s30to50',   label:'$30,000 – $50,000'},
-    {val:'s50to75',   label:'$50,000 – $75,000'},
-    {val:'s75to100',  label:'$75,000 – $100,000'},
-    {val:'s100to150', label:'$100,000 – $150,000'},
-    {val:'s150plus',  label:'$150,000+'},
-  ];
+  const displayVal = S.debtAmount ? S.debtAmount.toLocaleString() : '';
   return `
-    <div class="eyebrow"><div class="eyebrow-dot"></div>Income</div>
-    <h1 class="hed">What's your approximate annual income?</h1>
-    <div class="choices">
-      ${opts.map(o=>`
-        <div class="choice${S.income===o.val?' sel':''}" onclick="tapGo('income','${o.val}',this,7)">
-          <div class="c-radio"></div>
-          <div class="c-text"><strong>${o.label}</strong></div>
-        </div>`).join('')}
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Tax Balance</div>
+    <h1 class="hed">Do you know roughly how much you owe the IRS?</h1>
+    <p class="sub">A ballpark figure works — we'll confirm the exact amount when we pull your transcripts.</p>
+    <div class="field" style="margin-bottom:24px">
+      <label>Estimated balance owed</label>
+      <div class="debt-input-wrap">
+        <span class="debt-prefix">$</span>
+        <input id="debtAmount2" class="debt-input" type="text" inputmode="numeric" placeholder="e.g. 7,500" value="${displayVal}" oninput="formatDebtInput(this)" onkeydown="if(event.key==='Enter')saveDebtConfirmAndGo()">
+      </div>
     </div>
-    <div class="notice info">
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0">
-        <path d="M12 3a6 6 0 0 0-3.5 10.9c.4.3.7.8.7 1.3V17h5.6v-1.8c0-.5.3-1 .7-1.3A6 6 0 0 0 12 3z" fill="#1D4ED8"/>
-        <path d="M10 19.5h4a1 1 0 0 1 0 2h-4a1 1 0 1 1 0-2z" fill="#1D4ED8"/>
-      </svg>
-      <span>The IRS uses your income to calculate the minimum they can legally require you to pay — your <strong>Reasonable Collection Potential (RCP)</strong>.</span>
-    </div>
+    <button class="cta teal" onclick="saveDebtConfirmAndGo()">
+      Continue
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
     <button class="back-btn" onclick="go(5)">&larr; Back</button>
   `;
 }
 
-// ── S7: Tax Years — Federal + State Split ────────
+// ── S7: IRS Payment Plan ─────────────────────────
 function s7(){
+  const monthlyDisplay = S.irsPlanMonthlyAmount ? S.irsPlanMonthlyAmount.toLocaleString() : '';
+  const showMonthlyInput = S.onIRSPlan === 'yes';
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Payment Plan</div>
+    <h1 class="hed">Are you on an IRS payment plan?</h1>
+    <p class="sub">Do you have an existing payment plan with the IRS?</p>
+    <div class="choices" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px">
+      <div class="choice${S.onIRSPlan==='yes'?' sel':''}" onclick="sel('onIRSPlan','yes',this,'.choices'); render();">
+        <div class="c-radio"></div>
+        <div class="c-text"><strong>Yes</strong></div>
+      </div>
+      <div class="choice${S.onIRSPlan==='no'?' sel':''}" onclick="tapGo('onIRSPlan','no',this,8)">
+        <div class="c-radio"></div>
+        <div class="c-text"><strong>No</strong></div>
+      </div>
+    </div>
+    ${showMonthlyInput ? `
+    <div class="field" style="margin-bottom:24px">
+      <label>How much per month?</label>
+      <div class="debt-input-wrap">
+        <span class="debt-prefix">$</span>
+        <input id="irsPlanMonthly" class="debt-input" type="text" inputmode="numeric" placeholder="Monthly amount" value="${monthlyDisplay}" oninput="formatMonthlyInput(this)" onkeydown="if(event.key==='Enter')saveIRSPlanAndGo()">
+      </div>
+    </div>
+    <button class="cta teal" onclick="saveIRSPlanAndGo()">
+      Continue
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    ` : ''}
+    <button class="back-btn" onclick="go(6)">&larr; Back</button>
+  `;
+}
+
+// ── S8: Tax Years — Federal + State Split ────────
+function s8(){
   const yr=new Date().getFullYear();
   const years=[];
   for(let y=yr;y>=yr-10;y--) years.push(String(y));
 
-  const showState = S.debtType==='state'||S.debtType==='both'||S.debtType==='unsure';
-  const showFederal = S.debtType==='federal'||S.debtType==='both'||S.debtType==='unsure';
+  const showState = S.debtType==='state'||S.debtType==='both';
+  const showFederal = S.debtType==='federal'||S.debtType==='both';
 
   let html = `
     <div class="eyebrow"><div class="eyebrow-dot"></div>Tax Years</div>
@@ -1073,6 +1910,8 @@ function s7(){
     <p class="sub">Select all that apply for each category — include years with unpaid balances or unfiled returns.</p>`;
 
   if(showFederal){
+    const fedCount = S.federalYears.length;
+    const fedLabel = fedCount===0?'No years selected':fedCount===1?'One year selected':fedCount===2?'Two years selected':fedCount===3?'Three years selected':fedCount===4?'Four years selected':fedCount===5?'Five years selected':fedCount===6?'Six years selected':fedCount===7?'Seven years selected':fedCount===8?'Eight years selected':fedCount===9?'Nine years selected':fedCount===10?'Ten years selected':'Eleven years selected';
     html += `
     <div class="years-section">
       <div class="years-section-title">
@@ -1087,10 +1926,13 @@ function s7(){
       <div class="years-grid">
         ${years.map(y=>`<div class="ybtn${S.federalYears.includes(y)?' sel':''}" onclick="toggleFedYear('${y}',this)">${y}</div>`).join('')}
       </div>
+      <div class="years-count">${fedLabel}</div>
     </div>`;
   }
 
   if(showState){
+    const stateCount = S.stateYears.length;
+    const stateLabel = stateCount===0?'No years selected':stateCount===1?'One year selected':stateCount===2?'Two years selected':stateCount===3?'Three years selected':stateCount===4?'Four years selected':stateCount===5?'Five years selected':stateCount===6?'Six years selected':stateCount===7?'Seven years selected':stateCount===8?'Eight years selected':stateCount===9?'Nine years selected':stateCount===10?'Ten years selected':'Eleven years selected';
     html += `
     <div class="years-section">
       <div class="years-section-title">
@@ -1105,57 +1947,264 @@ function s7(){
       <div class="years-grid">
         ${years.map(y=>`<div class="ybtn${S.stateYears.includes(y)?' sel':''}" onclick="toggleStateYear('${y}',this)">${y}</div>`).join('')}
       </div>
+      <div class="years-count">${stateLabel}</div>
     </div>`;
   }
 
   html += `
     <button class="cta dark" onclick="validateYearsAndGo()" style="margin-top:20px">Continue</button>
-    <button class="back-btn" onclick="go(6)">&larr; Back</button>
+    <button class="back-btn" onclick="go(7)">&larr; Back</button>
   `;
   return html;
 }
 
-// ── S8: Expenses & Assets ────────────────────────
-function s8(){
-  const expOpts=[
-    {val:'under2',label:'Under $2,000/mo'},{val:'s2to3',label:'$2,000 – $3,000/mo'},
-    {val:'s3to5',label:'$3,000 – $5,000/mo'},{val:'s5plus',label:'$5,000+/mo'}
+// ── S9: Filing Status ─────────────────────────────
+function s9(){
+  const name = S.firstName ? S.firstName.trim() : '';
+  const heading = name ? name + ", what's your filing status?" : "What's your filing status?";
+  const opts = [
+    {val:'single', label:'Single', sub:'One person filing'},
+    {val:'mfj', label:'Married Filing Jointly', sub:'Both spouses on one return'},
+    {val:'mfs', label:'Married Filing Separately', sub:'Married but filing separately'},
+    {val:'hoh', label:'Head of Household', sub:'Unmarried with qualifying dependents'},
   ];
-  const assetOpts=[
-    {val:'none',label:'None'},{val:'under25',label:'Under $25,000'},
-    {val:'s25to100',label:'$25,000 – $100,000'},{val:'s100plus',label:'$100,000+'}
-  ];
-  const eqOpts=[
-    {val:'none',label:'None'},{val:'under50',label:'Under $50,000'},
-    {val:'s50to150',label:'$50,000 – $150,000'},{val:'s150plus',label:'$150,000+'}
-  ];
-  const mkGroup=(opts,key,label)=>`
-    <p class="group-label">${label}</p>
-    <div class="choices gbtn-group" style="margin-bottom:20px">
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Filing Status</div>
+    <h1 class="hed">${heading}</h1>
+    <p class="sub">This determines whether we need your spouse's information.</p>
+    <div class="filing-choices">
       ${opts.map(o=>`
-        <div class="choice${S[key]===o.val?' sel':''}" onclick="selGroup('${key}','${o.val}',this)">
+        <div class="choice filing-choice${S.filingStatus===o.val?' sel':''}" onclick="sel('filingStatus','${o.val}',this,'.filing-choices'); setTimeout(()=>go(10),280)">
           <div class="c-radio"></div>
-          <div class="c-text"><strong>${o.label}</strong></div>
+          <div class="c-text">
+            <div class="c-title">${o.label}</div>
+            <div class="c-sub">${o.sub}</div>
+          </div>
         </div>`).join('')}
-    </div>`;
+    </div>
+    <button class="back-btn" onclick="go(8)">&larr; Back</button>
+  `;
+}
+
+// ── S10: Bank & Investments ───────────────────────
+function s10(){
+  const bankDisplay = S.bankBalance ? S.bankBalance.toLocaleString() : '';
+  const invDisplay = S.investmentsAmount ? S.investmentsAmount.toLocaleString() : '';
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Assets</div>
+    <h1 class="hed">How much do you have in the bank?</h1>
+    <p class="sub">Include checking, savings, and investments — ballpark figures are fine.</p>
+    <div class="field" style="margin-bottom:24px">
+      <div class="section-with-icon">
+        <span class="sicon bank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/><path d="M4 10v11"/><path d="M20 10v11"/><path d="M8 14v3"/><path d="M12 14v3"/><path d="M16 14v3"/></svg>
+        </span>
+        Total bank account balance
+      </div>
+      <div class="debt-input-wrap">
+        <span class="debt-prefix">$</span>
+        <input id="bankBalance" class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${bankDisplay}" oninput="formatBankInput(this)" onkeydown="if(event.key==='Enter')document.getElementById('investments')?.focus()">
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:28px">
+      <div class="section-with-icon">
+        <span class="sicon invest">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/></svg>
+        </span>
+        Investments <span style="font-weight:400;color:var(--muted);text-transform:none;font-size:14px">(optional)</span>
+      </div>
+      <div class="debt-input-wrap">
+        <span class="debt-prefix">$</span>
+        <input id="investments" class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${invDisplay}" oninput="formatInvestmentsInput(this)" onkeydown="if(event.key==='Enter')saveBankAndGo()">
+      </div>
+    </div>
+    <button class="cta teal" onclick="saveBankAndGo()">
+      Continue
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button class="back-btn" onclick="go(9)">&larr; Back</button>
+  `;
+}
+
+// ── S11: Location (State, County, Household, Vehicles) ───
+function s11(){
+  const name = S.firstName ? S.firstName.trim() : '';
+  const heading = name ? name + ", where do you live?" : "Where do you live?";
+  const counties = (S.state && COUNTIES_BY_STATE[S.state]) ? COUNTIES_BY_STATE[S.state] : [];
+  const stateOpts = US_STATES.map(st=>`<option value="${st}"${S.state===st?' selected':''}>${st}</option>`).join('');
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Location</div>
+    <h1 class="hed">${heading}</h1>
+    <p class="sub">IRS expense standards vary by location and household size.</p>
+    <div class="field" style="margin-bottom:24px">
+      <div class="section-with-icon">
+        <span class="sicon location">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        State
+      </div>
+      <select id="stateSelect" class="field-select" onchange="onStateChange(this.value)">
+        <option value="">Select state</option>
+        ${stateOpts}
+      </select>
+    </div>
+    <div class="field" style="margin-bottom:24px">
+      <div class="section-with-icon">
+        <span class="sicon location">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        County
+      </div>
+      <input id="countyInput" type="text" placeholder="Type or select county" value="${S.county||''}" list="countyList" onchange="S.county=this.value;debouncedSave()" oninput="S.county=this.value;debouncedSave()" class="location-input">
+      <datalist id="countyList">${counties.map(c=>`<option value="${c}">`).join('')}</datalist>
+    </div>
+    <div class="location-section" style="margin-bottom:24px">
+      <div class="section-with-icon">
+        <span class="sicon people">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </span>
+        Household size
+      </div>
+      <div class="choices household-choices" style="display:flex;flex-direction:row;gap:10px;margin-top:12px;flex-wrap:wrap">
+        ${[1,2,3,4,'5+'].map(n=>`<div class="choice${S.householdSize===String(n)?' sel':''}" style="min-width:50px;justify-content:center" onclick="sel('householdSize','${n}',this,'.household-choices'); render();"><div class="c-radio"></div><div class="c-text"><strong>${n}</strong></div></div>`).join('')}
+      </div>
+    </div>
+    <div class="location-section" style="margin-bottom:28px">
+      <div class="section-with-icon">
+        <span class="sicon car">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5H5v5zM5 12l2-4h10l2 4"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
+        </span>
+        Vehicles owned
+      </div>
+      <div class="choices vehicle-choices" style="display:flex;flex-direction:row;gap:10px;margin-top:12px;flex-wrap:wrap">
+        ${['none','1','2'].map(v=>`<div class="choice${S.vehiclesOwned===v?' sel':''}" style="min-width:70px;justify-content:center" onclick="sel('vehiclesOwned','${v}',this,'.vehicle-choices'); render();"><div class="c-radio"></div><div class="c-text"><strong>${v==='none'?'None':v}</strong></div></div>`).join('')}
+      </div>
+    </div>
+    <button class="cta teal" onclick="saveLocationAndGo()">
+      Continue
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button class="back-btn" onclick="go(10)">&larr; Back</button>
+  `;
+}
+
+// ── S12: Expenses & Assets ───────────────────────
+function s12(){
+  const housingTotal = (S.expHousing||0) + (S.expUtilities||0);
+  const dailyTotal = (S.expFood||0) + (S.expClothing||0) + (S.expPersonalCare||0) + (S.expHousehold||0) + (S.expOther||0);
+  const transportTotal = (S.expCarPayment||0) + (S.expGas||0) + (S.expInsuranceMaintenance||0);
+  const totalExp = housingTotal + dailyTotal + transportTotal + (S.expMedical||0);
+  const irsTotal = IRS_STD.expHousing + IRS_STD.expUtilities + IRS_STD.expFood + IRS_STD.expClothing + IRS_STD.expPersonalCare + IRS_STD.expHousehold + IRS_STD.expOther + IRS_STD.expCarPayment + IRS_STD.expGas + IRS_STD.expInsuranceMaintenance + IRS_STD.expMedical;
+  const mkSub=(key,lbl,irsMax)=>{
+    const v = S[key]||0;
+    const pct = irsMax ? Math.min(100, (v/irsMax)*100) : 0;
+    const over = irsMax && v > irsMax;
+    return `<div class="exp-subfield"><label>${lbl}</label><div class="exp-input-wrap"><span class="dollar">$</span><input type="text" inputmode="numeric" placeholder="0" value="${v?v.toLocaleString():''}" oninput="fmtNum(this,'${key}');updateExpTotal()" onblur="render()"></div><div class="exp-progress"><div class="exp-progress-fill${over?' over':''}" style="width:${over?100:pct}%"></div></div><div class="exp-progress-lbl"><span>$0</span><span>IRS allows: $${(irsMax||0).toLocaleString()}</span></div></div>`;
+  };
+  const badge=(val,max)=>{
+    if(!max || val<max) return '';
+    if(val>max) return '<span class="exp-cat-overlimit"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> Over limit</span>';
+    return '<span class="exp-cat-maxed"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Maxed</span>';
+  };
+  const mkAmt=(key)=>`<div style="position:relative"><span style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:15px;font-weight:600;color:var(--muted);pointer-events:none">$</span><input type="text" inputmode="numeric" placeholder="0" style="padding-left:32px" value="${S[key]?Number(S[key]).toLocaleString():''}" oninput="fmtNum(this,'${key}')"></div>`;
   return `
     <div class="eyebrow"><div class="eyebrow-dot"></div>Financial Details</div>
-    <h1 class="hed">A few more financial details.</h1>
-    <p class="sub">These help us calculate your exact IRS settlement range.</p>
-    ${mkGroup(expOpts,'expenses','Monthly Living Expenses')}
-    ${mkGroup(assetOpts,'assets','Total Savings & Investments')}
-    ${mkGroup(eqOpts,'equity','Home / Vehicle Equity')}
-    <div class="btn-row">
-      <button class="back-btn" onclick="go(7)">&larr; Back</button>
-      <button class="cta teal" onclick="if(!S.expenses||!S.assets||!S.equity){alert('Please answer all three sections.');return;} go(9)">
-        Run My Analysis &rarr;
+    <h1 class="hed">Your monthly living expenses</h1>
+    <p class="sub">All standard categories pre-filled. Expand any category to adjust.</p>
+
+    <div class="exp-banner"><span class="exp-banner-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><div class="exp-banner-text">We've maximized your IRS-allowed expenses. Based on your location, <strong>$${irsTotal.toLocaleString()}/mo</strong> in standard expenses have been filled at IRS maximums. Expand any category to adjust.</div></div>
+
+    <div class="exp-cat${S.expandedExpCat==='housing'?' open':''}" data-cat="housing">
+      <div class="exp-cat-header" onclick="toggleExpCat('housing')">
+        <div class="exp-cat-icon housing"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+        <div class="exp-cat-body"><div class="exp-cat-title">Housing &amp; Utilities</div><div class="exp-cat-sub">IRS allows $${IRS_MAX.housing.toLocaleString()}/mo</div></div>
+        <div class="exp-cat-right">${badge(housingTotal,IRS_MAX.housing)}<span class="exp-cat-val">$${housingTotal.toLocaleString()}</span><svg class="exp-cat-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="exp-cat-inner">${mkSub('expHousing','Rent or mortgage',IRS_STD.expHousing)}${mkSub('expUtilities','Utilities (electric, gas, water, internet)',IRS_STD.expUtilities)}</div>
+    </div>
+
+    <div class="exp-cat${S.expandedExpCat==='daily'?' open':''}" data-cat="daily">
+      <div class="exp-cat-header" onclick="toggleExpCat('daily')">
+        <div class="exp-cat-icon daily"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M16 8V6a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><rect x="2" y="8" width="20" height="12" rx="2"/><path d="M2 12h20"/><path d="M12 12v4"/></svg></div>
+        <div class="exp-cat-body"><div class="exp-cat-title">Daily Living</div><div class="exp-cat-sub">IRS allows $${IRS_MAX.daily.toLocaleString()}/mo</div></div>
+        <div class="exp-cat-right">${badge(dailyTotal,IRS_MAX.daily)}<span class="exp-cat-val">$${dailyTotal.toLocaleString()}</span><svg class="exp-cat-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="exp-cat-inner">${mkSub('expFood','Groceries and food',IRS_STD.expFood)}${mkSub('expClothing','Clothing and apparel',IRS_STD.expClothing)}${mkSub('expPersonalCare','Personal care',IRS_STD.expPersonalCare)}${mkSub('expHousehold','Household',IRS_STD.expHousehold)}${mkSub('expOther','Miscellaneous',IRS_STD.expOther)}</div>
+    </div>
+
+    <div class="exp-cat${S.expandedExpCat==='transport'?' open':''}" data-cat="transport">
+      <div class="exp-cat-header" onclick="toggleExpCat('transport')">
+        <div class="exp-cat-icon transport"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M5 17h14v-5H5v5zM5 12l2-4h10l2 4"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg></div>
+        <div class="exp-cat-body"><div class="exp-cat-title">Transportation</div><div class="exp-cat-sub">IRS allows $${IRS_MAX.transport.toLocaleString()}/mo</div></div>
+        <div class="exp-cat-right">${badge(transportTotal,IRS_MAX.transport)}<span class="exp-cat-val">$${transportTotal.toLocaleString()}</span><svg class="exp-cat-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="exp-cat-inner">${mkSub('expCarPayment','Car payments or lease',IRS_STD.expCarPayment)}${mkSub('expGas','Gas',IRS_STD.expGas)}${mkSub('expInsuranceMaintenance','Insurance and maintenance',IRS_STD.expInsuranceMaintenance)}</div>
+    </div>
+
+    <div class="exp-cat${S.expandedExpCat==='medical'?' open':''}" data-cat="medical">
+      <div class="exp-cat-header" onclick="toggleExpCat('medical')">
+        <div class="exp-cat-icon medical"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <div class="exp-cat-body"><div class="exp-cat-title">Copays &amp; Prescriptions</div><div class="exp-cat-sub">IRS allows $${IRS_MAX.medical.toLocaleString()}/mo</div></div>
+        <div class="exp-cat-right">${badge(S.expMedical||0,IRS_MAX.medical)}<span class="exp-cat-val">$${(S.expMedical||0).toLocaleString()}</span><svg class="exp-cat-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      </div>
+      <div class="exp-cat-inner">${mkSub('expMedical','Medical copays &amp; prescriptions',IRS_STD.expMedical)}</div>
+    </div>
+
+    <div class="exp-summary">
+      <div class="exp-summary-left"><div class="exp-summary-lbl">Your total</div><div class="exp-summary-val" id="expTotal">$${totalExp.toLocaleString()}/mo</div></div>
+      <div class="exp-summary-right"><div class="exp-summary-lbl">IRS allows</div><div class="exp-summary-val">$${irsTotal.toLocaleString()}/mo</div></div>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="back-btn" onclick="go(11)">&larr; Back</button>
+      <button class="cta teal" onclick="saveFinancialsAndGo()">Continue</button>
+    </div>
+  `;
+}
+
+// ── S13: Any Other Monthly Obligations ─────────────
+function s13_obligations(){
+  const v=(k)=>S[k]?Number(S[k]).toLocaleString():'';
+  const iconHealth='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>';
+  const iconChildcare='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/><path d="M12 8v8M8 12h8"/></svg>';
+  const iconTax='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>';
+  const iconOther='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>';
+  const mkOblig=(key,lbl,iconClass,iconSvg)=>{
+    return `<div class="oblig-card">
+      <div class="oblig-label"><span class="oblig-icon ${iconClass}">${iconSvg}</span>${lbl}</div>
+      <div class="debt-input-wrap">
+        <span class="debt-prefix">$</span>
+        <input class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${v(key)}" oninput="fmtNum(this,'${key}')" onblur="render()">
+      </div>
+    </div>`;
+  };
+  return `
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Financial Details</div>
+    <h1 class="hed">Any other monthly obligations?</h1>
+    <p class="sub">No IRS standard — enter what applies.</p>
+
+    <div class="oblig-notice">
+      <span class="oblig-notice-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></span>
+      <span>These <strong>don't have IRS maximums</strong> — every dollar reported here directly reduces calculated disposable income.</span>
+    </div>
+
+    ${mkOblig('expHealthInsurance','Health insurance premiums','health',iconHealth)}
+    ${mkOblig('expChildcare','Childcare or education','childcare',iconChildcare)}
+    ${mkOblig('expOtherTax','Other tax payments','tax',iconTax)}
+    ${mkOblig('expOtherObligations','Any other monthly obligations','other',iconOther)}
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="back-btn" onclick="go(12)">&larr; Back</button>
+      <button class="cta teal" onclick="saveObligationsAndGo()">
+        Continue
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </div>
   `;
 }
 
-// ── S9: Analysis Animation ───────────────────────
-function s9(){
+// ── S14: Analysis Animation ───────────────────────
+function s13(){
   return `
     <div class="eyebrow"><div class="eyebrow-dot"></div>Analysis Running</div>
     <h1 class="hed">Calculating your IRS settlement range&hellip;</h1>
@@ -1212,92 +2261,151 @@ function s9(){
   `;
 }
 
-// ── S10: Cost of Waiting (detailed) ──────────────
-function s10(){
+// ── S14: Overview / Snapshot (real cost + edit overlays) ───
+function s14(){
   const d=debt(), da=daily();
   const m3=da*90, m6=da*180, m12=da*365;
+  const monthlyInc = inc()/12;
+  const monthlyExp = exp();
+  const disposable = monthlyInc - monthlyExp;
+  const name = S.firstName || 'there';
+  const taxTypeLabel = S.taxType==='business'?'Business':'Personal';
+  const agencyLabel = S.debtType==='federal'?'IRS':S.debtType==='state'?'State':'Both IRS & State';
+  const taxSitLabel = S.taxSituation ? {back_taxes:'Unpaid Back Taxes',unfiled:'Unfiled Returns',both:'Both',unsure:"I'm Not Sure"}[S.taxSituation] || '—' : '—';
+  const yearsOwed = [...new Set([...S.federalYears, ...S.stateYears])].sort((a,b)=>b-a).join(', ') || '—';
+
   return `
-    <div class="eyebrow"><div class="eyebrow-dot"></div>The Real Cost</div>
-    <h1 class="hed">What waiting is <em>already</em> costing you.</h1>
-    <p class="sub">The IRS charges 0.5% per month in failure-to-pay penalties, plus compounding daily interest. Your balance is growing right now.</p>
-    <div class="cow-hero">
-      <div class="hbox-lbl">Penalties and interest added in 12 months</div>
-      <div class="cow-num" id="cowNum">${fmt(da*365)}</div>
-      <div class="cow-lbl">if you don't take action</div>
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Your Snapshot</div>
+    <h1 class="hed">${name}, here's your snapshot.</h1>
+    <p class="sub">Based on everything you've shared. Review and edit any details below.</p>
+
+    <div class="snap-card">
+      <div class="snap-card-header">
+        <span class="snap-card-title">Financial Snapshot</span>
+        <button type="button" class="snap-edit" onclick="openEditOverlay('financial')" aria-label="Edit financial overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Edit
+        </button>
+      </div>
+      <div class="snap-row"><span class="snap-row-lbl">Monthly income</span><span class="snap-row-val">${fmt(monthlyInc)}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Monthly expenses</span><span class="snap-row-val">-${fmt(monthlyExp)}</span></div>
+      <div class="snap-disposable">
+        <div class="snap-disposable-lbl">Disposable income</div>
+        <div class="snap-disposable-val ${disposable>=0?'positive':'negative'}">${disposable>=0?'':'-'}${fmt(Math.abs(disposable))}/mo</div>
+        <div class="snap-disposable-desc">What the IRS says you can pay.</div>
+      </div>
     </div>
-    <table class="cow-table">
-      <thead><tr><th>If you wait</th><th>Penalties added</th><th style="text-align:right">New balance</th></tr></thead>
-      <tbody>
-        <tr><td>3 months</td><td style="color:var(--gold);font-weight:600">+${fmt(m3)}</td><td class="amt">${fmt(d+m3)}</td></tr>
-        <tr><td>6 months</td><td style="color:var(--red);font-weight:600">+${fmt(m6)}</td><td class="amt">${fmt(d+m6)}</td></tr>
-        <tr><td>12 months</td><td style="color:#991B1B;font-weight:600">+${fmt(m12)}</td><td class="amt" style="color:#991B1B">${fmt(d+m12)}</td></tr>
-      </tbody>
-    </table>
-    <div class="notice warn">
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0">
-        <path d="M12 4.5l8.5 15H3.5L12 4.5z" fill="#F97316" stroke="#EA580C" stroke-width="1.5"/>
-        <path d="M12 10v4.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="12" cy="17.25" r="1" fill="white"/>
-      </svg>
-      <span>Once a federal tax lien is filed, your credit score drops and the IRS can seize assets without additional warning.</span>
+
+    <div class="snap-card">
+      <div class="snap-card-header">
+        <span class="snap-card-title">Tax situation</span>
+        <button type="button" class="snap-edit" onclick="openEditOverlay('tax')" aria-label="Edit tax situation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Edit
+        </button>
+      </div>
+      <div class="snap-row"><span class="snap-row-lbl">Tax type</span><span class="snap-row-val">${taxTypeLabel}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Agency</span><span class="snap-row-val">${agencyLabel}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Tax issue</span><span class="snap-row-val">${taxSitLabel}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">IRS liability</span><span class="snap-row-val">${fmt(d)}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Payment plan</span><span class="snap-row-val">${S.onIRSPlan==='yes'?'Yes':'No'}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Active collections</span><span class="snap-row-val">${S.activeCollections==='yes'?'Yes':'No'}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Years owed</span><span class="snap-row-val">${yearsOwed}</span></div>
     </div>
+
+    <div class="snap-card">
+      <div class="snap-card-header">
+        <span class="snap-card-title">Your information</span>
+        <button type="button" class="snap-edit" onclick="openEditOverlay('personal')" aria-label="Edit your information">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Edit
+        </button>
+      </div>
+      <div class="snap-row"><span class="snap-row-lbl">Name</span><span class="snap-row-val">${S.firstName||''} ${S.lastName||''}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Phone</span><span class="snap-row-val">${S.phone||'—'}</span></div>
+      <div class="snap-row"><span class="snap-row-lbl">Email</span><span class="snap-row-val">${S.email||'—'}</span></div>
+    </div>
+
+    <div class="snap-card" style="border-color: rgba(220,38,38,.2); background: linear-gradient(135deg, #FFF5F5 0%, #FEF2F2 100%);">
+      <div class="snap-card-header">
+        <span class="snap-card-title">The real cost of waiting</span>
+      </div>
+      <div class="snap-disposable" style="border-top:none;padding-top:0">
+        <div class="snap-disposable-lbl">Penalties and interest added in 12 months</div>
+        <div class="snap-disposable-val negative" id="cowNum">${fmt(da*365)}</div>
+        <div class="snap-disposable-desc">if you don't take action</div>
+      </div>
+      <table class="cow-table" style="margin-top:16px">
+        <thead><tr><th>If you wait</th><th>Penalties added</th><th style="text-align:right">New balance</th></tr></thead>
+        <tbody>
+          <tr><td>3 months</td><td style="color:var(--gold);font-weight:600">+${fmt(m3)}</td><td class="amt">${fmt(d+m3)}</td></tr>
+          <tr><td>6 months</td><td style="color:var(--red);font-weight:600">+${fmt(m6)}</td><td class="amt">${fmt(d+m6)}</td></tr>
+          <tr><td>12 months</td><td style="color:#991B1B;font-weight:600">+${fmt(m12)}</td><td class="amt" style="color:#991B1B">${fmt(d+m12)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="cta teal" onclick="go(16)">
+      Looks good — continue
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
     <div class="btn-row">
       <button class="back-btn" onclick="back()">&larr; Back</button>
-      <button class="cta teal" onclick="go(11)">
-        Show Me My Savings
-        <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
     </div>
   `;
 }
 
-// ── S11: Savings + Payment ($129 or $89x2) ───────
-function s11(){
-  const d=debt(), o=oic(), s=savings(), sp=pct(s,d);
-  const progs=[];
-  if(o<d*.9) progs.push('Offer in Compromise');
-  if(rcp()<300) progs.push('Currently Not Collectible');
-  progs.push('Penalty Abatement');
-  if(S.federalYears.length+S.stateYears.length>1) progs.push('Installment Agreement');
-  progs.push('IRS Fresh Start Program');
-
+// ── S15: Activate Plan + Payment ────────
+function s15(){
+  const d=debt();
   const isFull = S.paymentPlan==='full';
   const isMonthly = S.paymentPlan==='monthly';
   const todayAmt = isFull ? '$129' : '$89';
   const todayLabel = isFull ? '$129.00' : '$89.00';
 
   return `
-    <div class="eyebrow"><div class="eyebrow-dot"></div>Your Results</div>
-    <h1 class="hed">You may be able to settle for <em>${fmt(o)}.</em></h1>
-    <p class="sub">Based on your profile and IRS guidelines, here is your personalized settlement analysis.</p>
+    <div class="eyebrow"><div class="eyebrow-dot"></div>Activate Your Case</div>
+    <h1 class="hed">Activate your plan</h1>
+    <p class="sub" style="margin-bottom:24px">IRS authorization and expert analysis to resolve your ${fmt(d)} tax situation.</p>
 
-    <div class="sav-hero">
-      <div class="sav-lbl">Estimated Total Savings</div>
-      <div class="sav-amount">${fmt(s)}</div>
-      <div class="sav-sub">Settle <strong>${fmt(d)}</strong> for as little as <strong>${fmt(o)}</strong> — a ${sp}% reduction</div>
+    <div class="activate-includes">
+      <div class="activate-includes-item">
+        <div class="activate-includes-check">&check;</div>
+        <div>
+          <div class="activate-includes-title">IRS Authorization</div>
+          <div class="activate-includes-desc">Power of Attorney (Form 8821) filed on your behalf</div>
+        </div>
+      </div>
+      <div class="activate-includes-item">
+        <div class="activate-includes-check">&check;</div>
+        <div>
+          <div class="activate-includes-title">Transcript Analysis</div>
+          <div class="activate-includes-desc">Complete tax history pulled and analyzed</div>
+        </div>
+      </div>
+      <div class="activate-includes-item">
+        <div class="activate-includes-check">&check;</div>
+        <div>
+          <div class="activate-includes-title">Expert Review</div>
+          <div class="activate-includes-desc">Licensed professional identifies every relief option</div>
+        </div>
+      </div>
+      <div class="activate-includes-item">
+        <div class="activate-includes-check">&check;</div>
+        <div>
+          <div class="activate-includes-title">Your SympleTax Experience</div>
+          <div class="activate-includes-desc">Personalized resolution plan walkthrough</div>
+        </div>
+      </div>
     </div>
 
-    <div class="stats-row">
-      <div class="stat"><div class="stat-val red">${fmt(d)}</div><div class="stat-lbl">You Owe</div></div>
-      <div class="stat"><div class="stat-val">${fmt(o)}</div><div class="stat-lbl">You Pay</div></div>
-      <div class="stat"><div class="stat-val green">${fmt(s)}</div><div class="stat-lbl">You Save</div></div>
+    <div class="activate-accred">
+      <span class="activate-accred-badge">A+</span>
+      <span>BBB Accredited</span>
+      <span>12,000+ reviews</span>
     </div>
 
-    <div class="sec-lbl" style="margin-bottom:10px">Programs You May Qualify For</div>
-    <div class="prog-pills" style="margin-bottom:24px">${progs.map(p=>`<span class="prog-pill">${p}</span>`).join('')}</div>
-
-    <div class="notice info">
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="margin-top:2px;flex-shrink:0">
-        <path d="M12 3a6 6 0 0 0-3.5 10.9c.4.3.7.8.7 1.3V17h5.6v-1.8c0-.5.3-1 .7-1.3A6 6 0 0 0 12 3z" fill="#1D4ED8"/>
-        <path d="M10 19.5h4a1 1 0 0 1 0 2h-4a1 1 0 1 1 0-2z" fill="#1D4ED8"/>
-      </svg>
-      <span>Estimates follow IRS Collection Financial Standards. Your enrolled agent will confirm exact qualification during your onboarding call.</span>
-    </div>
-
-    <div class="div"></div>
-
-    <p style="font-family: 'Outfit', sans-serif;font-size:20px;font-weight:600;color:var(--navy);margin-bottom:6px;">Choose your plan to activate your case</p>
-    <p class="sub" style="margin-bottom:20px">Activate your dedicated 4-person team: Case Manager, Enrolled Agent, Negotiation Officer & Tax Specialist.</p>
+    <p style="font-family: 'Plus Jakarta Sans', sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:16px;">Choose your plan</p>
 
     <div class="plan-cards">
       <div class="plan-card${isFull?' sel':''}" onclick="selectPlan('full')">
@@ -1307,25 +2415,13 @@ function s11(){
         <div class="plan-radio"></div>
       </div>
       <div class="plan-card${isMonthly?' sel':''}" onclick="selectPlan('monthly')">
-        <div class="plan-card-price">$89</div>
-        <div class="plan-card-label">per month &times; 2 months</div>
+        <div class="plan-card-price">$89 &times; 2</div>
+        <div class="plan-card-label">Total: $178. Split 2 weeks apart.</div>
         <div class="plan-radio"></div>
       </div>
     </div>
 
-    <div class="team-list">
-      <div class="tmem"><div class="tavatar">CM</div><div><div class="trole">Case Manager</div><div class="ttitle">Your Direct Point of Contact</div><div class="tdesc">Manages your case end-to-end. Available by phone and email.</div></div></div>
-      <div class="tmem"><div class="tavatar">EA</div><div><div class="trole">Enrolled Agent</div><div class="ttitle">IRS-Licensed Practitioner</div><div class="tdesc">Federally licensed to represent you before the IRS at every level.</div></div></div>
-      <div class="tmem"><div class="tavatar">NO</div><div><div class="trole">Negotiation Officer</div><div class="ttitle">Settlement Specialist</div><div class="tdesc">Handles all IRS communication, OIC submissions, and appeals.</div></div></div>
-      <div class="tmem"><div class="tavatar">TS</div><div><div class="trole">Tax Specialist</div><div class="ttitle">Compliance Expert</div><div class="tdesc">Handles back taxes, amended returns, and IRS compliance.</div></div></div>
-    </div>
-
-    <div class="div"></div>
-
-    <div class="pay-sum">
-      <div class="pay-row"><span class="pk">Tax Debt Owed</span><span class="pv red">${fmt(d)}</span></div>
-      <div class="pay-row"><span class="pk">Estimated Settlement</span><span class="pv">${fmt(o)}</span></div>
-      <div class="pay-row"><span class="pk">Estimated Savings</span><span class="pv green">${fmt(s)}</span></div>
+    <div class="pay-sum" style="margin-bottom:20px">
       <div class="pay-row"><span class="pk">Case Activation Fee</span><span class="pv" id="feeDisplay">${isFull?'$129.00':'$89.00/mo &times; 2'}</span></div>
       <div class="pay-row"><span class="pk">Total Due Today</span><span class="pv" id="totalDisplay">${todayLabel}</span></div>
     </div>
@@ -1343,12 +2439,20 @@ function s11(){
       </div>
     </div>
 
-    <p class="sec-lbl" style="margin-bottom:12px">Payment Details</p>
+    <p class="sec-lbl" style="margin-bottom:8px">Payment Details</p>
+    <div class="payment-icons">
+      <span class="payment-icons-label">We accept</span>
+      <div class="payment-icon" title="Visa" aria-hidden="true"><img src="assets/payment-icons/visa.svg" alt="Visa" width="48" height="24"></div>
+      <div class="payment-icon" title="Mastercard" aria-hidden="true"><img src="assets/payment-icons/mastercard.svg" alt="Mastercard" width="48" height="24"></div>
+      <div class="payment-icon" title="American Express" aria-hidden="true"><img src="assets/payment-icons/amex.svg" alt="American Express" width="48" height="24"></div>
+      <div class="payment-icon" title="Discover" aria-hidden="true"><img src="assets/payment-icons/discover.svg" alt="Discover" width="48" height="24"></div>
+    </div>
+    <p class="sub" style="font-size:12px;color:var(--muted);margin-bottom:12px">or checkout using a credit card</p>
     <div class="fields" id="cardFields">
-      <div class="field"><label>Card Number</label><input id="ccnum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"></div>
-      <div class="field-row">
-        <div class="field"><label>Expiry</label><input placeholder="MM / YY" maxlength="7" oninput="fmtExp(this)"></div>
-        <div class="field"><label>CVV</label><input placeholder="&bull;&bull;&bull;" maxlength="4"></div>
+      <div class="field">
+        <label>Card Details</label>
+        <div id="card-element" class="stripe-input"></div>
+        <div id="card-errors"></div>
       </div>
     </div>
 
@@ -1366,10 +2470,15 @@ function s11(){
       <span>Pay ${todayAmt} & Activate My Case</span>
     </button>
 
-    <div class="trust-row" style="justify-content:center;margin-top:16px">
+    <div class="trust-row" style="justify-content:center;margin-top:16px;align-items:center">
       <div class="titem"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>256-bit SSL</div>
       <div class="titem"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>PCI Compliant</div>
-      <div class="titem"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 10h18M3 14h18"/></svg>Visa / MC / Amex</div>
+      <div class="titem payment-icons-inline">
+        <img src="assets/payment-icons/visa.svg" alt="Visa" class="payment-icon-sm" title="Visa" width="32" height="20">
+        <img src="assets/payment-icons/mastercard.svg" alt="Mastercard" class="payment-icon-sm" title="Mastercard" width="32" height="20">
+        <img src="assets/payment-icons/amex.svg" alt="American Express" class="payment-icon-sm" title="Amex" width="32" height="20">
+        <img src="assets/payment-icons/discover.svg" alt="Discover" class="payment-icon-sm" title="Discover" width="32" height="20">
+      </div>
     </div>
 
     <div class="btn-row">
@@ -1378,8 +2487,8 @@ function s11(){
   `;
 }
 
-// ── S12: Success ─────────────────────────────────
-function s12(){
+// ── S16: Success ─────────────────────────────────
+function s16(){
   const d=debt(), o=oic(), s=savings();
   return `
     <div style="text-align:center">
@@ -1407,7 +2516,7 @@ function s12(){
   `;
 }
 
-const STEPS = {1:s1,2:s2,3:s3,4:s4,5:s5,6:s6,7:s7,8:s8,9:s9,10:s10,11:s11,12:s12};
+const STEPS = {1:s1,2:s2,3:s3,4:s4,5:s5,6:s6,7:s7,8:s8,9:s9,10:s10,11:s11,12:s12,13:s13_obligations,14:s13,15:s14,16:s15,17:s16};
 
 // ══════════════════════════════════════════
 //  HELPERS
@@ -1424,11 +2533,12 @@ function sel(key,val,el,qSelector){
   el.classList.add('sel');
 }
 
-function pickNotice(val,el){
-  sel('irsNotice',val,el,'.choices');
-  const urgent=val==='levy'||val==='garnishment';
-  if(urgent){ render(); }
-  else{ setTimeout(()=>go(4),300); }
+function pickDebtRange(val,el){
+  S.debtRange = val;
+  S.debtAmount = DEBT_RANGE_MID[val] || 25000;
+  document.querySelectorAll('.choices .choice').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  setTimeout(()=>go(2),300);
 }
 
 function pickSituation(val,el){
@@ -1444,24 +2554,60 @@ function saveContactAndGo(){
   if(!S.firstName||!S.lastName){alert('Please enter your first and last name.');return;}
   if(!S.email){alert('Please enter your email address.');return;}
   if(!S.phone){alert('Please enter your phone number.');return;}
-  go(6);
+  showSetupLoading();
+}
+function showSetupLoading(){
+  const name = S.firstName || 'there';
+  const steps = [
+    'Creating your profile...',
+    'Analyzing your tax situation...',
+    'Building your case file...',
+    'Preparing your consultation...',
+    'Finalizing...'
+  ];
+  const checkSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+  const docIcon = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>';
+  const html = `
+    <div class="setup-loading">
+      <div class="setup-loading-icon">${docIcon}</div>
+      <h2 class="setup-loading-title">Setting up your consultation, ${name}...</h2>
+      <ul class="setup-loading-steps" id="setupSteps">
+        ${steps.map((s,i)=>`<li class="setup-loading-step" data-step="${i}"><span class="setup-step-icon">${checkSvg}</span><span>${s}</span></li>`).join('')}
+      </ul>
+      <p class="setup-loading-sub">This usually takes just a moment</p>
+    </div>`;
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('content').style.animation = 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+  let idx = 0;
+  function tick(){
+    const items = document.querySelectorAll('.setup-loading-step');
+    if(idx > 0) items[idx-1].classList.add('done');
+    if(idx < items.length) items[idx].classList.add('active');
+    idx++;
+    if(idx <= items.length) setTimeout(tick, 700);
+    else setTimeout(()=>go(6), 400);
+  }
+  setTimeout(tick, 500);
 }
 
 function toggleFedYear(yr,el){
   const i=S.federalYears.indexOf(yr);
   if(i===-1){ S.federalYears.push(yr); el.classList.add('sel'); }
   else{ S.federalYears.splice(i,1); el.classList.remove('sel'); }
+  render();
 }
 
 function toggleStateYear(yr,el){
   const i=S.stateYears.indexOf(yr);
   if(i===-1){ S.stateYears.push(yr); el.classList.add('sel'); }
   else{ S.stateYears.splice(i,1); el.classList.remove('sel'); }
+  render();
 }
 
 function validateYearsAndGo(){
-  const showFederal = S.debtType==='federal'||S.debtType==='both'||S.debtType==='unsure';
-  const showState = S.debtType==='state'||S.debtType==='both'||S.debtType==='unsure';
+  const showFederal = S.debtType==='federal'||S.debtType==='both';
+  const showState = S.debtType==='state'||S.debtType==='both';
   if(showFederal && S.federalYears.length===0 && showState && S.stateYears.length===0){
     alert('Please select at least one tax year.');
     return;
@@ -1474,7 +2620,7 @@ function validateYearsAndGo(){
     alert('Please select at least one state tax year.');
     return;
   }
-  go(8);
+  go(9);
 }
 
 function selGroup(key,val,el){
@@ -1488,8 +2634,389 @@ function selectPlan(plan){
   render();
 }
 
-function fmtCard(el){ let v=el.value.replace(/\D/g,'').substring(0,16); el.value=v.replace(/(.{4})/g,'$1 ').trim(); }
-function fmtExp(el){ let v=el.value.replace(/\D/g,'').substring(0,4); if(v.length>=2) v=v.substring(0,2)+' / '+v.substring(2); el.value=v; }
+// ── Overview edit overlays ─────────────────────────
+function escAttr(v){
+  if(v==null||v==='') return '';
+  return String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function openEditOverlay(type){
+  const container = document.getElementById('overlayContainer');
+  if(!container) return;
+  const monthlyVal = (S.monthlyIncome && S.monthlyIncome > 0) ? S.monthlyIncome : (inc()/12);
+  let html = '';
+  if(type === 'financial'){
+    html = `
+      <div class="overlay" id="editOverlay">
+        <div class="overlay-modal">
+          <div class="overlay-header">
+            <h2 class="overlay-title">Edit financial overview</h2>
+            <button type="button" class="overlay-close" onclick="closeEditOverlay()" aria-label="Close">&times;</button>
+          </div>
+          <div class="overlay-body">
+            <div class="field">
+              <label>Monthly net income</label>
+              <div class="debt-input-wrap">
+                <span class="debt-prefix">$</span>
+                <input id="editMonthlyIncome" class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${monthlyVal ? Math.round(monthlyVal).toLocaleString() : ''}" oninput="formatEditIncomeInput(this)">
+              </div>
+              <p class="overlay-hint">Expense totals are updated on the expenses step.</p>
+            </div>
+          </div>
+          <div class="overlay-footer">
+            <button class="cta teal" onclick="saveEditFinancial()">Save changes</button>
+          </div>
+        </div>
+      </div>`;
+  } else if(type === 'personal'){
+    const fn=escAttr(S.firstName), ln=escAttr(S.lastName), ph=escAttr(S.phone), em=escAttr(S.email);
+    html = `
+      <div class="overlay" id="editOverlay">
+        <div class="overlay-modal">
+          <div class="overlay-header">
+            <h2 class="overlay-title">Edit your information</h2>
+            <button type="button" class="overlay-close" onclick="closeEditOverlay()" aria-label="Close">&times;</button>
+          </div>
+          <form class="overlay-body" autocomplete="off" onsubmit="saveEditPersonal();return false;">
+            <div class="field-row">
+              <div class="field">
+                <label>First name <span style="color:var(--red)">*</span></label>
+                <input id="editFirstName" type="text" autocomplete="off" placeholder="First name" value="${fn}">
+              </div>
+              <div class="field">
+                <label>Last name <span style="color:var(--red)">*</span></label>
+                <input id="editLastName" type="text" autocomplete="off" placeholder="Last name" value="${ln}">
+              </div>
+            </div>
+            <div class="field">
+              <label>Phone</label>
+              <input id="editPhone" type="tel" autocomplete="off" placeholder="(555) 123-4567" value="${ph}" oninput="formatPhone(this)">
+            </div>
+            <div class="field">
+              <label>Email <span style="color:var(--red)">*</span></label>
+              <input id="editEmail" type="email" autocomplete="off" placeholder="you@example.com" value="${em}">
+            </div>
+          </form>
+          <div class="overlay-footer">
+            <button class="cta teal" onclick="saveEditPersonal()">Save changes</button>
+          </div>
+        </div>
+      </div>`;
+  } else if(type === 'tax'){
+    const debtDisplay = S.debtAmount ? S.debtAmount.toLocaleString() : '';
+    const yr = new Date().getFullYear();
+    const yearOpts = [];
+    for(let y=yr; y>=yr-10; y--) yearOpts.push(y);
+    const yearsOwed = [...new Set([...S.federalYears, ...S.stateYears])].sort((a,b)=>b-a);
+    const yearOptsAvailable = yearOpts.filter(y=>!yearsOwed.includes(String(y)));
+    const yearTagsHtml = yearsOwed.map(y=>`<span class="year-tag"><span>${y}</span><button type="button" class="year-tag-remove" onclick="removeEditYear('${y}')" aria-label="Remove ${y}">&times;</button></span>`).join('');
+    html = `
+      <div class="overlay" id="editOverlay">
+        <div class="overlay-modal overlay-modal-wide">
+          <div class="overlay-header">
+            <h2 class="overlay-title">Edit tax situation</h2>
+            <button type="button" class="overlay-close" onclick="closeEditOverlay()" aria-label="Close">&times;</button>
+          </div>
+          <div class="overlay-body">
+            <div class="field">
+              <label>Tax type</label>
+              <select id="editTaxType" class="field-select">
+                <option value="personal"${S.taxType==='personal'?' selected':''}>Personal</option>
+                <option value="business"${S.taxType==='business'?' selected':''}>Business</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Agency</label>
+              <select id="editDebtType" class="field-select">
+                <option value="federal"${S.debtType==='federal'?' selected':''}>IRS</option>
+                <option value="state"${S.debtType==='state'?' selected':''}>State</option>
+                <option value="both"${S.debtType==='both'?' selected':''}>Both IRS & State</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Tax issue</label>
+              <select id="editTaxSituation" class="field-select">
+                <option value="back_taxes"${S.taxSituation==='back_taxes'?' selected':''}>Unpaid Back Taxes</option>
+                <option value="unfiled"${S.taxSituation==='unfiled'?' selected':''}>Unfiled Returns</option>
+                <option value="both"${S.taxSituation==='both'?' selected':''}>Both</option>
+                <option value="unsure"${S.taxSituation==='unsure'?' selected':''}>I'm Not Sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>IRS liability</label>
+              <div class="debt-input-wrap">
+                <span class="debt-prefix">$</span>
+                <input id="editDebtAmount" class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${debtDisplay}" oninput="formatDebtInput(this)">
+              </div>
+            </div>
+            <div class="field">
+              <label>Payment plan</label>
+              <div class="btn-grid col2">
+                <button type="button" class="gbtn${S.onIRSPlan==='yes'?' sel':''}" onclick="selEditTaxField('onIRSPlan','yes',this)">Yes</button>
+                <button type="button" class="gbtn${S.onIRSPlan==='no'?' sel':''}" onclick="selEditTaxField('onIRSPlan','no',this)">No</button>
+              </div>
+            </div>
+            <div class="field">
+              <label>Active collections</label>
+              <div class="btn-grid col2">
+                <button type="button" class="gbtn${S.activeCollections==='yes'?' sel':''}" onclick="selEditTaxField('activeCollections','yes',this)">Yes</button>
+                <button type="button" class="gbtn${S.activeCollections==='no'?' sel':''}" onclick="selEditTaxField('activeCollections','no',this)">No</button>
+              </div>
+            </div>
+            <div class="field">
+              <label>Years owed</label>
+              <div class="year-tags" id="editYearsContainer">
+                ${yearTagsHtml}
+                <select class="year-tags-select" id="editYearsSelect" onchange="addEditYear(this.value);this.value=''">
+                  <option value="">Add year</option>
+                  ${yearOptsAvailable.map(y=>`<option value="${y}">${y}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="overlay-footer">
+            <button class="cta teal" onclick="saveEditTax()">Save changes</button>
+          </div>
+        </div>
+      </div>`;
+  }
+  container.innerHTML = html;
+  const overlay = document.getElementById('editOverlay');
+  if(overlay){
+    overlay.classList.add('open');
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) closeEditOverlay(); });
+    const onEsc = function(e){ if(e.key==='Escape'){ closeEditOverlay(); document.removeEventListener('keydown',overlay._onEsc); } };
+    overlay._onEsc = onEsc;
+    document.addEventListener('keydown', onEsc);
+    const firstInput = overlay.querySelector('input, select');
+    if(firstInput) setTimeout(()=>firstInput.focus(), 100);
+  }
+}
+
+function closeEditOverlay(){
+  const overlay = document.getElementById('editOverlay');
+  if(overlay){
+    if(overlay._onEsc) document.removeEventListener('keydown', overlay._onEsc);
+    overlay.classList.remove('open');
+  }
+}
+
+function formatEditIncomeInput(el){
+  const raw = el.value.replace(/[^0-9]/g,'');
+  const num = parseInt(raw) || 0;
+  S.monthlyIncome = num;
+  if(raw) el.value = num.toLocaleString();
+  else el.value = '';
+}
+
+function selEditIRSPlan(val, el){
+  S.onIRSPlan = val;
+  el.closest('.btn-grid').querySelectorAll('.gbtn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function selEditTaxField(key, val, el){
+  S[key] = val;
+  el.closest('.btn-grid').querySelectorAll('.gbtn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function addEditYear(y){
+  if(!y) return;
+  const dt = S.debtType==='federal'||S.debtType==='both';
+  const st = S.debtType==='state'||S.debtType==='both';
+  if(dt && !S.federalYears.includes(y)) S.federalYears.push(y);
+  if(st && !S.stateYears.includes(y)) S.stateYears.push(y);
+  if(dt||st) {
+    const container = document.getElementById('editYearsContainer');
+    if(container) {
+      const tag = document.createElement('span');
+      tag.className = 'year-tag';
+      tag.innerHTML = `<span>${y}</span><button type="button" class="year-tag-remove" onclick="removeEditYear('${y}')" aria-label="Remove ${y}">&times;</button>`;
+      const sel = container.querySelector('.year-tags-select');
+      container.insertBefore(tag, sel);
+      const opt = sel.querySelector(`option[value="${y}"]`);
+      if(opt) opt.remove();
+    }
+  }
+}
+function removeEditYear(y){
+  S.federalYears = S.federalYears.filter(x=>x!==y);
+  S.stateYears = S.stateYears.filter(x=>x!==y);
+  const container = document.getElementById('editYearsContainer');
+  if(container) {
+    container.querySelectorAll('.year-tag').forEach(t=>{
+      const span = t.querySelector('span');
+      if(span && span.textContent.trim()===String(y)) t.remove();
+    });
+    const sel = container.querySelector('.year-tags-select');
+    if(sel && !sel.querySelector(`option[value="${y}"]`)) {
+      const opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = y;
+      sel.appendChild(opt);
+    }
+  }
+}
+
+function saveEditFinancial(){
+  const el = document.getElementById('editMonthlyIncome');
+  if(el){
+    const raw = el.value.replace(/[^0-9]/g,'');
+    S.monthlyIncome = parseInt(raw) || 0;
+  }
+  closeEditOverlay();
+  render();
+}
+
+function saveEditPersonal(){
+  S.firstName = (document.getElementById('editFirstName')?.value||'').trim();
+  S.lastName = (document.getElementById('editLastName')?.value||'').trim();
+  S.phone = (document.getElementById('editPhone')?.value||'').trim();
+  S.email = (document.getElementById('editEmail')?.value||'').trim();
+  if(!S.firstName || !S.lastName){ alert('Please enter your first and last name.'); return; }
+  if(!S.email){ alert('Please enter your email address.'); return; }
+  closeEditOverlay();
+  render();
+}
+
+function saveEditTax(){
+  const debtEl = document.getElementById('editDebtAmount');
+  if(debtEl){
+    const raw = debtEl.value.replace(/[^0-9]/g,'');
+    S.debtAmount = parseInt(raw) || 0;
+  }
+  S.debtType = document.getElementById('editDebtType')?.value || S.debtType;
+  S.taxType = document.getElementById('editTaxType')?.value || 'personal';
+  S.taxSituation = document.getElementById('editTaxSituation')?.value || S.taxSituation;
+  closeEditOverlay();
+  render();
+}
+
+// IRS Collection Financial Standards (2024 — 1-person household, national average)
+const IRS_STD = { expHousing:1378, expUtilities:459, expFood:400, expClothing:120, expPersonalCare:80, expHousehold:139, expOther:100, expCarPayment:450, expGas:280, expInsuranceMaintenance:234, expMedical:84 };
+const IRS_MAX = { housing:1837, daily:839, transport:964, medical:84 };
+
+function fmtNum(el, key){
+  const raw = el.value.replace(/[^0-9]/g,'');
+  S[key] = parseInt(raw) || 0;
+  if(raw) el.value = parseInt(raw).toLocaleString();
+  else el.value = '';
+  debouncedSave();
+}
+
+let _saveDebounce;
+function debouncedSave(){ clearTimeout(_saveDebounce); _saveDebounce = setTimeout(saveLocalState, 400); }
+function formatDebtInput(el){
+  const raw = el.value.replace(/[^0-9]/g,'');
+  const num = parseInt(raw) || 0;
+  S.debtAmount = num;
+  if(raw) el.value = num.toLocaleString();
+  else el.value = '';
+  debouncedSave();
+}
+function saveDebtConfirmAndGo(){
+  const el = document.getElementById('debtAmount2');
+  if(el){
+    const raw = el.value.replace(/[^0-9]/g,'');
+    S.debtAmount = parseInt(raw) || 0;
+  }
+  if(!S.debtAmount || S.debtAmount < 100){ alert('Please enter a valid amount owed (minimum $100).'); return; }
+  go(7);
+}
+
+function formatMonthlyInput(el){
+  const raw = el.value.replace(/[^0-9]/g,'');
+  const num = parseInt(raw) || 0;
+  S.irsPlanMonthlyAmount = num;
+  if(raw) el.value = num.toLocaleString();
+  else el.value = '';
+  debouncedSave();
+}
+function saveIRSPlanAndGo(){
+  const el = document.getElementById('irsPlanMonthly');
+  if(el){
+    const raw = el.value.replace(/[^0-9]/g,'');
+    S.irsPlanMonthlyAmount = parseInt(raw) || 0;
+  }
+  if(!S.irsPlanMonthlyAmount || S.irsPlanMonthlyAmount < 1){ alert('Please enter your monthly payment amount.'); return; }
+  go(8);
+}
+
+function formatBankInput(el){
+  const raw = el.value.replace(/[^0-9]/g,'');
+  const num = parseInt(raw) || 0;
+  S.bankBalance = num;
+  if(raw) el.value = num.toLocaleString();
+  else el.value = '';
+  debouncedSave();
+}
+function formatInvestmentsInput(el){
+  const raw = el.value.replace(/[^0-9]/g,'');
+  const num = parseInt(raw) || 0;
+  S.investmentsAmount = num;
+  if(raw) el.value = num.toLocaleString();
+  else el.value = '';
+  debouncedSave();
+}
+function saveBankAndGo(){
+  const el = document.getElementById('bankBalance');
+  if(el){
+    const raw = el.value.replace(/[^0-9]/g,'');
+    S.bankBalance = parseInt(raw) || 0;
+  }
+  go(11);
+}
+
+function onStateChange(val){
+  S.state = val || '';
+  S.county = '';
+  render();
+}
+
+function saveLocationAndGo(){
+  const countyEl = document.getElementById('countyInput');
+  if(countyEl) S.county = countyEl.value.trim();
+  if(!S.state){ alert('Please select your state.'); return; }
+  if(!S.county){ alert('Please enter or select your county.'); return; }
+  if(!S.householdSize){ alert('Please select your household size.'); return; }
+  if(!S.vehiclesOwned){ alert('Please select how many vehicles you own.'); return; }
+  go(12);
+}
+
+function saveDebtAndGo(){
+  const el = document.getElementById('debtAmount');
+  if(el){
+    const raw = el.value.replace(/[^0-9]/g,'');
+    S.debtAmount = parseInt(raw) || 0;
+  }
+  if(!S.debtAmount || S.debtAmount < 100){ alert('Please enter a valid amount owed (minimum $100).'); return; }
+  S.debtRange = null;
+  go(2);
+}
+
+function autofillIRS(){
+  Object.assign(S, IRS_STD);
+  S.irsAutoFilled = true;
+  render();
+}
+function toggleExpCat(id){
+  S.expandedExpCat = S.expandedExpCat === id ? null : id;
+  render();
+}
+
+function updateExpTotal(){
+  const total = (S.expHousing||0)+(S.expFood||0)+(S.expClothing||0)+(S.expPersonalCare||0)+(S.expHousehold||0)+(S.expCarPayment||0)+(S.expGas||0)+(S.expInsuranceMaintenance||0)+(S.expUtilities||0)+(S.expMedical||0)+(S.expOther||0);
+  const el = document.getElementById('expTotal');
+  if(el) el.innerHTML = '<strong>$'+total.toLocaleString()+'</strong>/mo';
+}
+
+function saveFinancialsAndGo(){
+  const totalExp = (S.expHousing||0)+(S.expFood||0)+(S.expClothing||0)+(S.expPersonalCare||0)+(S.expHousehold||0)+(S.expCarPayment||0)+(S.expGas||0)+(S.expInsuranceMaintenance||0)+(S.expUtilities||0)+(S.expMedical||0)+(S.expOther||0);
+  if(totalExp === 0){ alert('Please enter your monthly living expenses.'); return; }
+  go(13);
+}
+function saveObligationsAndGo(){
+  go(14);
+}
+
 function formatPhone(el){
   let v=el.value.replace(/\D/g,'').substring(0,10);
   if(v.length===0) el.value='';
@@ -1498,93 +3025,156 @@ function formatPhone(el){
   else el.value='('+v.substring(0,3)+') '+v.substring(3,6)+'-'+v.substring(6);
 }
 
-function processPayment(){
-  const num = document.getElementById('ccnum')?.value.replace(/\s/g,'')||'';
-  if(num.length<15){alert('Please enter a valid card number.');return;}
+async function processPayment(){
+  if(!stripeCardComplete){
+    const errDiv = document.getElementById('card-errors');
+    errDiv.style.display='block';
+    errDiv.textContent='Please enter your complete card details.';
+    return;
+  }
   document.getElementById('cardFields').style.display='none';
   document.getElementById('payBtn').style.display='none';
   document.querySelector('.back-btn').style.display='none';
   document.getElementById('proc').style.display='block';
-  
-  // Submit lead to backend and process payment
-  submitLeadAndPayment();
+
+  try {
+    // Create PaymentIntent on backend
+    const amount = S.paymentPlan==='monthly' ? 89 : 129;
+    const intentRes = await fetch(`${API_BASE}/create-payment-intent`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ amount, plan: S.paymentPlan, email: S.email, name: `${S.firstName} ${S.lastName}` })
+    });
+    if(!intentRes.ok) throw new Error('Could not initialize payment');
+    const { clientSecret } = await intentRes.json();
+
+    // Confirm card payment with Stripe
+    const result = await stripeInstance.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: stripeCardElement,
+        billing_details: { name: `${S.firstName} ${S.lastName}`, email: S.email }
+      }
+    });
+
+    if(result.error){
+      // Payment declined — show error and restore form
+      document.getElementById('proc').style.display='none';
+      document.getElementById('cardFields').style.display='block';
+      document.getElementById('payBtn').style.display='flex';
+      document.querySelector('.back-btn').style.display='flex';
+      const errDiv = document.getElementById('card-errors');
+      errDiv.style.display='block';
+      errDiv.textContent = result.error.message;
+      return;
+    }
+
+    // Payment confirmed — submit lead
+    await submitLeadAndPayment(result.paymentIntent.id);
+
+  } catch(err){
+    console.error('Payment error:', err);
+    document.getElementById('proc').style.display='none';
+    document.getElementById('cardFields').style.display='block';
+    document.getElementById('payBtn').style.display='flex';
+    document.querySelector('.back-btn').style.display='flex';
+    const errDiv = document.getElementById('card-errors');
+    errDiv.style.display='block';
+    errDiv.textContent='Payment failed. Please try again or contact support.';
+  }
 }
 
 // ══════════════════════════════════════════
 //  BACKEND API INTEGRATION
 // ══════════════════════════════════════════
 
-const API_BASE = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3001/api' 
-  : '/api';
+// Replace YOUR_PROJECT_REF with your Supabase project reference (from project URL)
+const SUPABASE_FUNCTIONS_URL = 'https://YOUR_PROJECT_REF.supabase.co/functions/v1';
+const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:3000'
+  : SUPABASE_FUNCTIONS_URL;
 
-async function submitLeadAndPayment(){
+// ── Stripe ──────────────────────────────────
+const STRIPE_PK = 'pk_test_51TAHlXH225E6WTMYL8oyROJRdYGsrlWNlfqXJqLI5oT4KRs6Yfy3OrBjMQ6S2U06kvrWeGB85qJb4v4YFWWwQ2cm00Ucwo5qN2';
+let stripeInstance, stripeCardElement, stripeCardComplete = false;
+
+async function submitLeadAndPayment(stripePaymentId){
   try {
-    // Prepare lead data
     const leadData = {
       first_name: S.firstName,
       last_name: S.lastName,
       email: S.email,
       phone: S.phone,
-      debt_range: S.debtRange,
       debt_type: S.debtType,
+      tax_type: S.taxType,
+      active_collections: S.activeCollections,
       irs_notice: S.irsNotice,
       tax_situation: S.taxSituation,
       federal_years: S.federalYears,
       state_years: S.stateYears,
       income: S.income,
-      expenses: S.expenses,
-      assets: S.assets,
-      equity: S.equity,
+      on_irs_plan: S.onIRSPlan,
+      irs_plan_monthly: S.onIRSPlan==='yes' ? S.irsPlanMonthlyAmount : null,
+      filing_status: S.filingStatus,
+      bank_balance: S.bankBalance,
+      investments: S.investmentsAmount,
+      state: S.state,
+      county: S.county,
+      household_size: S.householdSize,
+      vehicles_owned: S.vehiclesOwned,
+      exp_health_insurance: S.expHealthInsurance,
+      exp_childcare: S.expChildcare,
+      exp_other_tax: S.expOtherTax,
+      exp_other_obligations: S.expOtherObligations,
       payment_plan: S.paymentPlan,
-      source: 'portal'
+      source: 'portal',
+      pre_estimated_debt: debt(),
+      pre_estimated_settlement: Math.round(oic()),
+      pre_estimated_savings: Math.round(savings())
     };
 
-    console.log('Submitting lead...', leadData);
+    const paymentAmount = S.paymentPlan === 'monthly' ? 89 : 129;
+    const payment = { amount: paymentAmount, plan: S.paymentPlan, stripe_payment_id: stripePaymentId || null };
 
-    // Submit lead
-    const leadResponse = await fetch(`${API_BASE}/leads`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(leadData)
-    });
-
-    if (!leadResponse.ok) {
-      const err = await leadResponse.json();
-      throw new Error(err.error || 'Failed to submit lead');
+    let leadResult;
+    if (API_BASE === SUPABASE_FUNCTIONS_URL) {
+      const res = await fetch(`${API_BASE}/submit-lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leadData, payment })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Failed to submit lead');
+      }
+      leadResult = await res.json();
+    } else {
+      const leadResponse = await fetch(`${API_BASE}/leads`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadData)
+      });
+      if (!leadResponse.ok) {
+        const err = await leadResponse.json();
+        throw new Error(err.error || 'Failed to submit lead');
+      }
+      leadResult = await leadResponse.json();
+      S.leadId = leadResult.lead.id;
+      await fetch(`${API_BASE}/leads/${S.leadId}/payment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payment)
+      });
     }
 
-    const leadResult = await leadResponse.json();
-    console.log('Lead created:', leadResult);
-
-    // Store case number from backend
     S.caseNum = leadResult.lead.case_number;
     S.leadId = leadResult.lead.id;
-
-    // Record payment
-    const paymentAmount = S.paymentPlan === 'monthly' ? 89 : 129;
-    const paymentResponse = await fetch(`${API_BASE}/leads/${S.leadId}/payment`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        amount: paymentAmount,
-        plan: S.paymentPlan
-      })
-    });
-
-    if (!paymentResponse.ok) {
-      console.warn('Payment recording failed, but lead was saved');
-    }
-
-    // Move to success screen
-    S.step = 12;
+    S.step = 17;
     render();
 
   } catch (error) {
     console.error('Submission error:', error);
-    // Still show success even if API fails - generate local case number
     S.caseNum = 'ST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9000) + 1000);
-    S.step = 12;
+    S.step = 17;
     render();
   }
 }
@@ -1601,11 +3191,22 @@ async function savePartialLead(){
       phone: S.phone,
       debt_range: S.debtRange,
       debt_type: S.debtType,
+      tax_type: S.taxType,
+      active_collections: S.activeCollections,
       irs_notice: S.irsNotice,
       tax_situation: S.taxSituation,
       federal_years: S.federalYears,
       state_years: S.stateYears,
       income: S.income,
+      on_irs_plan: S.onIRSPlan,
+      irs_plan_monthly: S.onIRSPlan==='yes' ? S.irsPlanMonthlyAmount : null,
+      filing_status: S.filingStatus,
+      bank_balance: S.bankBalance,
+      investments: S.investmentsAmount,
+      state: S.state,
+      county: S.county,
+      household_size: S.householdSize,
+      vehicles_owned: S.vehiclesOwned,
       expenses: S.expenses,
       assets: S.assets,
       equity: S.equity,
@@ -1613,10 +3214,11 @@ async function savePartialLead(){
       source: 'portal'
     };
 
-    await fetch(`${API_BASE}/leads`, {
+    const url = API_BASE === SUPABASE_FUNCTIONS_URL ? `${API_BASE}/submit-lead` : `${API_BASE}/leads`;
+    await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(leadData)
+      body: JSON.stringify(API_BASE === SUPABASE_FUNCTIONS_URL ? { leadData } : leadData)
     });
   } catch (error) {
     console.log('Partial lead save failed (non-critical):', error);
@@ -1627,8 +3229,41 @@ async function savePartialLead(){
 //  AFTER RENDER
 // ══════════════════════════════════════════
 function afterRender(){
-  if(S.step===9) runAnalysis();
-  if(S.step===10) startTicker();
+  if(S.step===1){ const el=document.getElementById('debtAmount'); if(el){ el.focus(); } }
+  if(S.step===12 && !S.irsAutoFilled) autofillIRS();
+  if(S.step===14) runAnalysis();
+  if(S.step===15) startTicker();
+  if(S.step===16) initStripe();
+}
+
+function initStripe(){
+  if(!window.Stripe) return;
+  stripeInstance = Stripe(STRIPE_PK);
+  const elements = stripeInstance.elements();
+  stripeCardElement = elements.create('card', {
+    style: {
+      base: {
+        fontFamily: "'Inter', sans-serif",
+        fontSize: '15px',
+        color: '#0F1F45',
+        '::placeholder': { color: '#8895AE' },
+        iconColor: '#00B4B0'
+      },
+      invalid: { color: '#DC2626', iconColor: '#DC2626' }
+    }
+  });
+  const mountEl = document.getElementById('card-element');
+  if(mountEl){
+    stripeCardElement.mount('#card-element');
+    stripeCardElement.on('change', e => {
+      stripeCardComplete = e.complete;
+      const errDiv = document.getElementById('card-errors');
+      if(errDiv){
+        errDiv.style.display = e.error ? 'block' : 'none';
+        errDiv.textContent = e.error ? e.error.message : '';
+      }
+    });
+  }
 }
 
 function runAnalysis(){
@@ -1644,7 +3279,7 @@ function runAnalysis(){
       if(c) c.classList.add('active');
       i++; setTimeout(tick,950);
     } else {
-      setTimeout(()=>go(10),500);
+      setTimeout(()=>go(15),500);
     }
   })();
 }
@@ -1664,6 +3299,37 @@ function startTicker(){
     if(shown>=fullYear) clearInterval(iv);
   },50);
 }
+
+// Hero trust carousel (mobile only)
+(function(){
+  const el = document.getElementById('heroTrust');
+  if(!el) return;
+  const items = el.querySelectorAll('.htrust');
+  if(items.length < 2) return;
+  let idx = 0;
+  function cycle(){
+    if(window.innerWidth > 700) return;
+    items.forEach((it,i)=>{ it.classList.toggle('hero-trust-active', i===idx); });
+    idx = (idx + 1) % items.length;
+  }
+  setInterval(cycle, 3500);
+})();
+
+// Auto-resume: if user had progress, show portal at saved step (no re-click needed)
+if(S.step > 1){
+  startPortal();
+}
+
+// Persist form state before refresh/close so user never loses progress
+function persistBeforeUnload(){
+  captureFormToState();
+  saveLocalState();
+}
+window.addEventListener('beforeunload', persistBeforeUnload);
+window.addEventListener('pagehide', persistBeforeUnload);
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'hidden') persistBeforeUnload();
+});
 
 </script>
 </body>

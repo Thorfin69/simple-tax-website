@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 
 const leadsRouter = require('./routes/leads');
+const paymentsRouter = require('./routes/payments');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -16,7 +17,8 @@ app.use(cors({
     'http://127.0.0.1:3000',
     'http://127.0.0.1:5500',
     'https://sympletax.com',
-    'https://www.sympletax.com'
+    'https://www.sympletax.com',
+    'https://ti.sympletax.com'
   ],
   credentials: true
 }));
@@ -45,6 +47,7 @@ app.get('/api/health', (req, res) => {
 
 // API routes
 app.use('/api/leads', leadsRouter);
+app.use('/api/payments', paymentsRouter);
 
 // Serve static files from root directory (for the HTML portal)
 app.use(express.static(path.join(__dirname, '..')));

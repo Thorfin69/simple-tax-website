@@ -1,0 +1,13 @@
+.vercel
+
+# OS / editor junk
+.DS_Store
+.claude/
+.local/
+
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Secrets
+backend/.env

@@ -90,15 +90,15 @@ router.post('/', async (req, res) => {
     // Generate case number
     const caseNumber = generateCaseNumber();
     
-    // Calculate financial estimates
-    const estimatedDebt = getDebt(data.debt_range);
-    const estimatedSettlement = Math.round(calculateOIC(
-      data.income, 
-      data.expenses, 
-      data.assets, 
+    // Use pre-calculated values from frontend if available (exact inputs), otherwise estimate from ranges
+    const estimatedDebt = data.pre_estimated_debt || getDebt(data.debt_range);
+    const estimatedSettlement = data.pre_estimated_settlement || Math.round(calculateOIC(
+      data.income,
+      data.expenses,
+      data.assets,
       data.equity
     ));
-    const estimatedSavings = Math.round(calculateSavings(
+    const estimatedSavings = data.pre_estimated_savings || Math.round(calculateSavings(
       data.debt_range,
       data.income,
       data.expenses,
