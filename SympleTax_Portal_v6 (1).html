@@ -3681,13 +3681,21 @@ async function initStripe(){
         colorText: '#0F1F45',
         colorDanger: '#DC2626',
         fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
-        borderRadius: '12px'
+        borderRadius: '12px',
+        colorIcon: '#6B7A99',
+        colorIconTab: '#6B7A99',
+        colorIconTabSelected: '#00B4B0',
+        colorIconTabHover: '#0F1F45'
       },
       rules: {
         '.Input': { border: '1px solid #E8EDF5', boxShadow: 'none' },
         '.Input:focus': { border: '1px solid #00B4B0', boxShadow: '0 0 0 2px rgba(0,180,176,.15)' },
-        '.Tab': { border: '1px solid #E8EDF5', borderRadius: '10px' },
-        '.Tab--selected': { borderColor: '#00B4B0', backgroundColor: '#F0FDFB' },
+        '.Tab': { border: '1px solid #E8EDF5', borderRadius: '10px', color: '#6B7A99' },
+        '.Tab--selected': { borderColor: '#00B4B0', backgroundColor: '#F0FDFB', color: '#0F1F45' },
+        '.Tab--selected .TabIcon': { color: '#00B4B0' },
+        '.Tab--selected .TabLabel': { color: '#0F1F45' },
+        '.TabIcon': { color: '#6B7A99' },
+        '.TabLabel': { color: '#6B7A99' },
         '.Label': { fontWeight: '600', color: '#0F1F45' }
       }
     };
