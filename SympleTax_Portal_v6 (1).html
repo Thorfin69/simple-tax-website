@@ -3087,9 +3087,10 @@ async function processPayment(){
 //  BACKEND API INTEGRATION
 // ══════════════════════════════════════════
 
-// Replace YOUR_PROJECT_REF with your Supabase project reference (from project URL)
-const SUPABASE_FUNCTIONS_URL = 'https://YOUR_PROJECT_REF.supabase.co/functions/v1';
-const API_BASE = window.location.hostname === 'localhost'
+const SUPABASE_FUNCTIONS_URL = 'https://pmjtjmoekakaguovyndq.supabase.co/functions/v1';
+// Tip: for local testing against Supabase, open `?supabase=1` to bypass localhost API.
+const USE_SUPABASE = new URLSearchParams(window.location.search).get('supabase') === '1';
+const API_BASE = (window.location.hostname === 'localhost' && !USE_SUPABASE)
   ? 'http://localhost:3000'
   : SUPABASE_FUNCTIONS_URL;
 

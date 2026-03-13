@@ -11,3 +11,6 @@ backend/node_modules/
 
 # Secrets
 backend/.env
+
+# Supabase
+supabase/.temp/

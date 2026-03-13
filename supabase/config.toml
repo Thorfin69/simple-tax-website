@@ -2,7 +2,6 @@
 [api]
 enabled = true
 port = 54321
-scheme = "http"
 
 [db]
 port = 54322
@@ -10,6 +9,3 @@ port = 54322
 [studio]
 enabled = true
 port = 54323
-
-[functions]
-verify_jwt = false

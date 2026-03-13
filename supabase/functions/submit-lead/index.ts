@@ -131,31 +131,42 @@ Deno.serve(async (req) => {
       }),
     }
 
+    let userEmailSent = false
+    let clientEmailSent = false
+
     if (resendApiKey && leadData.email && !isPartial) {
       const resend = new Resend(resendApiKey)
-      const fromDomain = Deno.env.get('RESEND_FROM_DOMAIN') || 'onboarding@resend.dev'
+      // RESEND_FROM_DOMAIN must be full email (e.g. noreply@sympletax.com) or domain (e.g. sympletax.com)
+      const fromRaw = Deno.env.get('RESEND_FROM_DOMAIN') || 'onboarding@resend.dev'
+      const fromEmail = fromRaw.includes('@') ? fromRaw : `noreply@${fromRaw}`
 
       try {
-        await resend.emails.send({
-          from: `SympleTax <${fromDomain}>`,
+        const userResult = await resend.emails.send({
+          from: `SympleTax <${fromEmail}>`,
           to: leadData.email as string,
           subject: `Your SympleTax Case Confirmation — ${caseNumber}`,
           html: buildLeadEmailHtml(emailData, 'user'),
         })
+        userEmailSent = !userResult.error
+        if (userResult.error) console.error('User email failed:', userResult.error)
       } catch (e) {
         console.error('User email failed:', e)
       }
 
       try {
-        await resend.emails.send({
-          from: `SympleTax Portal <${fromDomain}>`,
+        const clientResult = await resend.emails.send({
+          from: `SympleTax Portal <${fromEmail}>`,
           to: clientEmail,
           subject: `New Lead: ${leadData.first_name} ${leadData.last_name} — ${caseNumber}`,
           html: buildLeadEmailHtml(emailData, 'client'),
         })
+        clientEmailSent = !clientResult.error
+        if (clientResult.error) console.error('Client email failed:', clientResult.error)
       } catch (e) {
         console.error('Client email failed:', e)
       }
+    } else if (!isPartial && leadData.email) {
+      console.warn('Emails skipped: RESEND_API_KEY missing')
     }
 
     return new Response(
@@ -165,6 +176,7 @@ Deno.serve(async (req) => {
           id: lead.id,
           case_number: caseNumber,
         },
+        emails_sent: { user: userEmailSent, client: clientEmailSent },
       }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
