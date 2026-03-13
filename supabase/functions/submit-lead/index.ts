@@ -36,6 +36,9 @@ Deno.serve(async (req) => {
     const caseNumber = 'ST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9000) + 1000)
     const createdAt = new Date().toISOString()
 
+    const toIntArray = (arr: unknown): number[] =>
+      Array.isArray(arr) ? arr.map((x) => parseInt(String(x), 10)).filter((n) => !isNaN(n)) : []
+
     const dbRow = {
       case_number: caseNumber,
       first_name: leadData.first_name,
@@ -47,8 +50,8 @@ Deno.serve(async (req) => {
       active_collections: leadData.active_collections,
       irs_notice: leadData.irs_notice,
       tax_situation: leadData.tax_situation,
-      federal_years: leadData.federal_years || [],
-      state_years: leadData.state_years || [],
+      federal_years: toIntArray(leadData.federal_years),
+      state_years: toIntArray(leadData.state_years),
       income: leadData.income,
       monthly_income: leadData.monthly_income ?? 0,
       additional_income: leadData.additional_income ?? 0,

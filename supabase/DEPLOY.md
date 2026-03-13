@@ -47,23 +47,12 @@ const SUPABASE_FUNCTIONS_URL = 'https://YOUR_PROJECT_REF.supabase.co/functions/v
 
 ## Troubleshooting: "Could not find the 'active_collections' column"
 
-If you get a 400 error about missing columns, run the migration to add them:
+If you get a 400 error about missing columns:
 
-```bash
-supabase db push
-```
+1. Open **Supabase Dashboard** → **SQL Editor**
+2. Copy the entire contents of `supabase/SCHEMA_FIX.sql`
+3. Paste and click **Run**
 
-Or run this SQL manually in **Supabase Dashboard → SQL Editor**:
+This creates the full schema and adds any missing columns. Safe to run multiple times.
 
-```sql
-alter table public.leads add column if not exists active_collections text;
-alter table public.leads add column if not exists tax_type text;
-alter table public.leads add column if not exists filing_status text;
-alter table public.leads add column if not exists household_size text;
-alter table public.leads add column if not exists vehicles_owned text;
-alter table public.leads add column if not exists owns_real_estate text;
-alter table public.leads add column if not exists home_value int default 0;
-alter table public.leads add column if not exists home_mortgage int default 0;
-alter table public.leads add column if not exists monthly_income int default 0;
-alter table public.leads add column if not exists additional_income int default 0;
-```
+Or use CLI: `supabase db push`
