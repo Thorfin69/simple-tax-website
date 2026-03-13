@@ -2654,6 +2654,7 @@ function s15(){
       <div class="payment-icon" title="Discover" aria-hidden="true"><img src="${PAYMENT_ICONS.discover}" alt="Discover" width="48" height="24"></div>
     </div>
     <p class="sub" style="font-size:12px;color:var(--muted);margin-bottom:12px">or checkout using a credit card</p>
+    ${DEMO_MODE ? '<p class="sub" style="font-size:12px;color:var(--teal);margin-bottom:12px;font-weight:600">Demo mode: Use card <code>4242 4242 4242 4242</code> (any future expiry, any CVC), or <a href="#" onclick="processDemoPayment();return false" style="color:var(--teal);text-decoration:underline">skip payment</a> to test the flow.</p>' : ''}
     <div class="fields" id="cardFields">
       <div class="field">
         <label>Card Details</label>
@@ -3301,6 +3302,26 @@ function formatPhone(el){
   else el.value='('+v.substring(0,3)+') '+v.substring(3,6)+'-'+v.substring(6);
 }
 
+async function processDemoPayment(){
+  document.getElementById('cardFields').style.display='none';
+  document.getElementById('payBtn').style.display='none';
+  const backBtn = document.querySelector('.back-btn');
+  if(backBtn) backBtn.style.display='none';
+  document.getElementById('proc').style.display='block';
+  try {
+    await submitLeadAndPayment('demo-' + Date.now());
+    go(19);
+  } catch(err){
+    console.error('Demo payment error:', err);
+    document.getElementById('proc').style.display='none';
+    document.getElementById('cardFields').style.display='block';
+    document.getElementById('payBtn').style.display='flex';
+    if(backBtn) backBtn.style.display='flex';
+    const errDiv = document.getElementById('card-errors');
+    errDiv.style.display='block';
+    errDiv.textContent = err.message || 'Demo payment failed. Please try again.';
+  }
+}
 async function processPayment(){
   if(!stripeCardComplete){
     const errDiv = document.getElementById('card-errors');
@@ -3366,6 +3387,8 @@ async function processPayment(){
 const SUPABASE_FUNCTIONS_URL = 'https://pmjtjmoekakaguovyndq.supabase.co/functions/v1';
 // Tip: for local testing against Supabase, open `?supabase=1` to bypass localhost API.
 const USE_SUPABASE = new URLSearchParams(window.location.search).get('supabase') === '1';
+// Demo mode: ?demo=1 — shows test card hint + "skip payment" link to bypass Stripe when testing
+const DEMO_MODE = window.location.search.includes('demo=1');
 const API_BASE = (window.location.hostname === 'localhost' && !USE_SUPABASE)
   ? 'http://localhost:3000'
   : SUPABASE_FUNCTIONS_URL;
