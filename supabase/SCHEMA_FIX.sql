@@ -1,96 +1,86 @@
 -- ═══════════════════════════════════════════════════════════════
--- SympleTax: Complete schema fix for leads table
--- Run this in Supabase Dashboard → SQL Editor if you get column errors
--- Safe to run multiple times
+-- SympleTax: Schema matching submit-lead Edge Function
+-- Use this if you need to recreate the leads table from scratch
 -- ═══════════════════════════════════════════════════════════════
 
--- 1. Create leads table if it doesn't exist
-create table if not exists public.leads (
-  id uuid primary key default gen_random_uuid(),
-  case_number text not null,
-  first_name text,
-  last_name text,
-  email text not null,
-  phone text,
-  debt_type text,
-  tax_type text,
-  active_collections text,
-  irs_notice text,
-  tax_situation text,
-  federal_years int[] default '{}',
-  state_years int[] default '{}',
-  income text,
-  on_irs_plan text,
-  irs_plan_monthly int,
-  filing_status text,
-  bank_balance int default 0,
-  investments int default 0,
-  owns_real_estate text,
-  home_value int default 0,
-  home_mortgage int default 0,
-  monthly_income int default 0,
-  additional_income int default 0,
-  state text,
-  county text,
-  household_size text,
-  vehicles_owned text,
-  exp_health_insurance int default 0,
-  exp_childcare int default 0,
-  exp_other_tax int default 0,
-  exp_other_obligations int default 0,
-  payment_plan text default 'full',
-  pre_estimated_debt int default 0,
-  pre_estimated_settlement int default 0,
-  pre_estimated_savings int default 0,
-  source text default 'portal',
-  status text default 'full',
-  created_at timestamptz default now()
+CREATE TABLE IF NOT EXISTS leads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  debt_range TEXT,
+  debt_type TEXT,
+  irs_notice TEXT,
+  tax_situation TEXT,
+  federal_years TEXT[],
+  state_years TEXT[],
+  income TEXT,
+  expenses TEXT,
+  assets TEXT,
+  equity TEXT,
+  estimated_debt INTEGER,
+  estimated_settlement INTEGER,
+  estimated_savings INTEGER,
+  case_number TEXT UNIQUE,
+  payment_plan TEXT DEFAULT 'full',
+  payment_status TEXT DEFAULT 'pending',
+  payment_amount INTEGER,
+  payment_date TIMESTAMPTZ,
+  status TEXT DEFAULT 'new',
+  source TEXT DEFAULT 'portal',
+  ip_address TEXT,
+  user_agent TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 2. Add any missing columns (no-op if they exist)
-alter table public.leads add column if not exists active_collections text;
-alter table public.leads add column if not exists tax_type text;
-alter table public.leads add column if not exists debt_type text;
-alter table public.leads add column if not exists irs_notice text;
-alter table public.leads add column if not exists tax_situation text;
-alter table public.leads add column if not exists federal_years int[] default '{}';
-alter table public.leads add column if not exists state_years int[] default '{}';
-alter table public.leads add column if not exists income text;
-alter table public.leads add column if not exists on_irs_plan text;
-alter table public.leads add column if not exists irs_plan_monthly int;
-alter table public.leads add column if not exists filing_status text;
-alter table public.leads add column if not exists bank_balance int default 0;
-alter table public.leads add column if not exists investments int default 0;
-alter table public.leads add column if not exists owns_real_estate text;
-alter table public.leads add column if not exists home_value int default 0;
-alter table public.leads add column if not exists home_mortgage int default 0;
-alter table public.leads add column if not exists monthly_income int default 0;
-alter table public.leads add column if not exists additional_income int default 0;
-alter table public.leads add column if not exists state text;
-alter table public.leads add column if not exists county text;
-alter table public.leads add column if not exists household_size text;
-alter table public.leads add column if not exists vehicles_owned text;
-alter table public.leads add column if not exists exp_health_insurance int default 0;
-alter table public.leads add column if not exists exp_childcare int default 0;
-alter table public.leads add column if not exists exp_other_tax int default 0;
-alter table public.leads add column if not exists exp_other_obligations int default 0;
-alter table public.leads add column if not exists payment_plan text default 'full';
-alter table public.leads add column if not exists pre_estimated_debt int default 0;
-alter table public.leads add column if not exists pre_estimated_settlement int default 0;
-alter table public.leads add column if not exists pre_estimated_savings int default 0;
-alter table public.leads add column if not exists source text default 'portal';
-alter table public.leads add column if not exists status text default 'full';
+CREATE INDEX IF NOT EXISTS idx_leads_email ON leads(email);
+CREATE INDEX IF NOT EXISTS idx_leads_case_number ON leads(case_number);
+CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
+CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at DESC);
 
--- 3. Create payments table if needed
-create table if not exists public.payments (
-  id uuid primary key default gen_random_uuid(),
-  lead_id uuid references public.leads(id) on delete cascade,
-  amount int not null,
-  plan text default 'full',
-  stripe_payment_id text,
-  created_at timestamptz default now()
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+DROP TRIGGER IF EXISTS update_leads_updated_at ON leads;
+CREATE TRIGGER update_leads_updated_at
+  BEFORE UPDATE ON leads
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Service role has full access" ON leads;
+CREATE POLICY "Service role has full access" ON leads
+  FOR ALL TO service_role
+  USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Anyone can insert leads" ON leads;
+CREATE POLICY "Anyone can insert leads" ON leads
+  FOR INSERT TO anon
+  WITH CHECK (true);
+
+CREATE TABLE IF NOT EXISTS payments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  lead_id UUID REFERENCES leads(id) ON DELETE CASCADE,
+  amount INTEGER NOT NULL,
+  plan TEXT NOT NULL,
+  status TEXT DEFAULT 'completed',
+  stripe_payment_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 4. Enable RLS (required for Supabase)
-alter table public.leads enable row level security;
-alter table public.payments enable row level security;
+CREATE INDEX IF NOT EXISTS idx_payments_lead_id ON payments(lead_id);
+
+ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Service role has full access on payments" ON payments;
+CREATE POLICY "Service role has full access on payments" ON payments
+  FOR ALL TO service_role
+  USING (true) WITH CHECK (true);

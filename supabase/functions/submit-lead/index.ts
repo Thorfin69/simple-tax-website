@@ -36,47 +36,44 @@ Deno.serve(async (req) => {
     const caseNumber = 'ST-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9000) + 1000)
     const createdAt = new Date().toISOString()
 
-    const toIntArray = (arr: unknown): number[] =>
-      Array.isArray(arr) ? arr.map((x) => parseInt(String(x), 10)).filter((n) => !isNaN(n)) : []
+    const toStrArray = (arr: unknown): string[] =>
+      Array.isArray(arr) ? arr.map((x) => String(x)) : []
+
+    const preDebt = Number(leadData.pre_estimated_debt) || 0
+    const preSettlement = Number(leadData.pre_estimated_settlement) || 0
+    const preSavings = Number(leadData.pre_estimated_savings) || 0
+    const expenses =
+      (Number(leadData.exp_health_insurance) || 0) +
+      (Number(leadData.exp_childcare) || 0) +
+      (Number(leadData.exp_other_tax) || 0) +
+      (Number(leadData.exp_other_obligations) || 0)
+    const assets = (Number(leadData.bank_balance) || 0) + (Number(leadData.investments) || 0)
 
     const dbRow = {
+      first_name: leadData.first_name || '',
+      last_name: leadData.last_name || '',
+      email: leadData.email || '',
+      phone: leadData.phone || '',
+      debt_range: leadData.debt_range || null,
+      debt_type: leadData.debt_type || null,
+      irs_notice: leadData.irs_notice || null,
+      tax_situation: leadData.tax_situation || null,
+      federal_years: toStrArray(leadData.federal_years),
+      state_years: toStrArray(leadData.state_years),
+      income: leadData.income || null,
+      expenses: expenses || null,
+      assets: assets || null,
+      equity: leadData.equity ?? null,
+      estimated_debt: preDebt || null,
+      estimated_settlement: preSettlement || null,
+      estimated_savings: preSavings || null,
       case_number: caseNumber,
-      first_name: leadData.first_name,
-      last_name: leadData.last_name,
-      email: leadData.email,
-      phone: leadData.phone,
-      debt_type: leadData.debt_type,
-      tax_type: leadData.tax_type,
-      active_collections: leadData.active_collections,
-      irs_notice: leadData.irs_notice,
-      tax_situation: leadData.tax_situation,
-      federal_years: toIntArray(leadData.federal_years),
-      state_years: toIntArray(leadData.state_years),
-      income: leadData.income,
-      monthly_income: leadData.monthly_income ?? 0,
-      additional_income: leadData.additional_income ?? 0,
-      on_irs_plan: leadData.on_irs_plan,
-      irs_plan_monthly: leadData.irs_plan_monthly,
-      filing_status: leadData.filing_status,
-      bank_balance: leadData.bank_balance ?? 0,
-      investments: leadData.investments ?? 0,
-      owns_real_estate: leadData.owns_real_estate || null,
-      home_value: leadData.home_value ?? 0,
-      home_mortgage: leadData.home_mortgage ?? 0,
-      state: leadData.state,
-      county: leadData.county,
-      household_size: leadData.household_size,
-      vehicles_owned: leadData.vehicles_owned,
-      exp_health_insurance: leadData.exp_health_insurance ?? 0,
-      exp_childcare: leadData.exp_childcare ?? 0,
-      exp_other_tax: leadData.exp_other_tax ?? 0,
-      exp_other_obligations: leadData.exp_other_obligations ?? 0,
       payment_plan: leadData.payment_plan || 'full',
-      pre_estimated_debt: leadData.pre_estimated_debt ?? 0,
-      pre_estimated_settlement: leadData.pre_estimated_settlement ?? 0,
-      pre_estimated_savings: leadData.pre_estimated_savings ?? 0,
+      payment_status: payment ? 'completed' : 'pending',
+      payment_amount: payment?.amount ?? null,
+      payment_date: payment ? createdAt : null,
+      status: leadData.status || 'new',
       source: leadData.source || 'portal',
-      status: leadData.status || 'full',
     }
 
     const { data: lead, error } = await supabase
