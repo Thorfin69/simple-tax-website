@@ -611,12 +611,13 @@ body {
   font-size:13px; font-weight:600; color:var(--muted);
   transition:all .22s; user-select:none; text-align:center;
 }
-.pay-tab svg { flex-shrink:0; transition:color .22s; }
+.pay-tab svg { flex-shrink:0; transition:color .22s; color:var(--muted); }
 .pay-tab.active {
-  background:var(--white); color:var(--navy);
-  box-shadow:0 2px 10px rgba(0,0,0,.09);
+  background:var(--teal) !important;
+  color:#ffffff !important;
+  box-shadow:0 2px 10px rgba(0,180,176,.25);
 }
-.pay-tab.active svg { color:var(--teal); }
+.pay-tab.active svg { color:#ffffff !important; }
 
 /* ACH FIELDS */
 .ach-note {
