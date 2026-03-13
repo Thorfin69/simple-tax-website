@@ -3392,7 +3392,7 @@ async function processPayment(){
     const amount = S.paymentPlan==='monthly' ? 89 : 129;
     const intentRes = await fetch(`${API_BASE}/create-payment-intent`, {
       method:'POST',
-      headers: API_BASE === SUPABASE_FUNCTIONS_URL ? supabaseFetchHeaders() : { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount, plan: S.paymentPlan, email: S.email, name: `${S.firstName} ${S.lastName}` })
     });
     if(!intentRes.ok) throw new Error('Could not initialize payment');
@@ -3438,16 +3438,12 @@ async function processPayment(){
 // ══════════════════════════════════════════
 
 const SUPABASE_FUNCTIONS_URL = 'https://pmjtjmoekakaguovyndq.supabase.co/functions/v1';
-// Anon key required for Edge Function auth (safe to expose). Get from: Supabase Dashboard → Project Settings → API → anon public
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtanRqbW9la2FrYWd1b3Z5bmRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMDQ0NzQsImV4cCI6MjA4ODg4MDQ3NH0.SPY-9I78yUH0DSdLpWIxaZRHTQvJugIP12dySezO6KA';
-// Tip: for local testing against Supabase, open `?supabase=1` to bypass localhost API.
+// URL bypass options: ?supabase=1 (force Supabase), ?demo=1 (test card hint + skip payment)
 const USE_SUPABASE = new URLSearchParams(window.location.search).get('supabase') === '1';
-// Demo mode: ?demo=1 — shows test card hint + "skip payment" link to bypass Stripe when testing
 const DEMO_MODE = window.location.search.includes('demo=1');
 const API_BASE = (window.location.hostname === 'localhost' && !USE_SUPABASE)
   ? 'http://localhost:3000'
   : SUPABASE_FUNCTIONS_URL;
-function supabaseFetchHeaders(){ return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }; }
 
 // ── Stripe ──────────────────────────────────
 const STRIPE_PK = 'pk_test_51TAHlXH225E6WTMYL8oyROJRdYGsrlWNlfqXJqLI5oT4KRs6Yfy3OrBjMQ6S2U06kvrWeGB85qJb4v4YFWWwQ2cm00Ucwo5qN2';
@@ -3514,7 +3510,7 @@ async function submitLeadAndPayment(stripePaymentId){
     if (API_BASE === SUPABASE_FUNCTIONS_URL) {
       const res = await fetch(`${API_BASE}/submit-lead`, {
         method: 'POST',
-        headers: supabaseFetchHeaders(),
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ leadData, payment })
       });
       if (!res.ok) {
@@ -3597,7 +3593,7 @@ async function savePartialLead(){
     const url = API_BASE === SUPABASE_FUNCTIONS_URL ? `${API_BASE}/submit-lead` : `${API_BASE}/leads`;
     await fetch(url, {
       method: 'POST',
-      headers: API_BASE === SUPABASE_FUNCTIONS_URL ? supabaseFetchHeaders() : { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(API_BASE === SUPABASE_FUNCTIONS_URL ? { leadData } : leadData)
     });
   } catch (error) {
