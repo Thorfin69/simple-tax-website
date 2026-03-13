@@ -1728,7 +1728,7 @@ function render(){
   document.getElementById('progCur').textContent = cur;
   document.getElementById('progTotal').textContent = total;
   const trustEl = document.getElementById('portalTrust');
-  if(trustEl) trustEl.style.display = (S.step === 5 || S.step === 15) ? 'flex' : 'none';
+  if(trustEl) trustEl.style.display = (S.step === 5) ? 'flex' : 'none';
   const c = document.getElementById('content');
   c.style.animation='none'; c.offsetHeight; c.style.animation='';
   c.innerHTML = STEPS[S.step]();
@@ -2551,7 +2551,7 @@ function s14(){
       </table>
     </div>
 
-    <button class="cta teal" onclick="go(17)">
+    <button class="cta teal" onclick="go(18)">
       Looks good — continue
       <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
