@@ -1958,15 +1958,15 @@ function s6(){
     <div class="where-you-fall">
       <span class="where-you-fall-lbl">Where you fall</span>
       <div class="where-you-fall-bar">
-        <div class="where-you-fall-fill" style="width:${pct}%"></div>
-        <div class="where-you-fall-dot" style="left:${dotLeft}%"></div>
+        <div id="whereYouFallFill" class="where-you-fall-fill" style="width:${pct}%"></div>
+        <div id="whereYouFallDot" class="where-you-fall-dot" style="left:${dotLeft}%"></div>
       </div>
       <div class="where-you-fall-labels">
         <span>$0</span>
         <span class="where-you-fall-mid">Most clients: $10k–$75k</span>
         <span>$100k+</span>
       </div>
-      <p class="where-you-fall-summary">Your estimated total: <strong>$${amt ? amt.toLocaleString() : '0'}</strong>. ${summaryMsg}</p>
+      <p id="whereYouFallSummary" class="where-you-fall-summary">Your estimated total: <strong>$${amt ? amt.toLocaleString() : '0'}</strong>. ${summaryMsg}</p>
     </div>
     <button class="cta teal" onclick="saveDebtConfirmAndGo()">
       Continue
@@ -2148,9 +2148,6 @@ function s10_income(){
   const heading = name ? name + ", how much do you earn each month?" : "How much do you earn each month?";
   const grossDisp = S.monthlyIncome ? S.monthlyIncome.toLocaleString() : '';
   const addlDisp = S.additionalIncome ? S.additionalIncome.toLocaleString() : '';
-  const totalMo = (S.monthlyIncome || 0) + (S.additionalIncome || 0);
-  const liability = debt();
-  const arrowIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
   return `
     <div class="eyebrow"><div class="eyebrow-dot"></div>Income</div>
     <h1 class="hed">${heading}</h1>
@@ -2164,10 +2161,10 @@ function s10_income(){
       </div>
       <div class="debt-input-wrap">
         <span class="debt-prefix">$</span>
-        <input id="monthlyGross" class="debt-input" type="text" inputmode="numeric" placeholder="e.g. 10,000" value="${grossDisp}" oninput="formatMonthlyGrossInput(this);render()" onkeydown="if(event.key==='Enter')document.getElementById('additionalIncome')?.focus()">
+        <input id="monthlyGross" class="debt-input" type="text" inputmode="numeric" placeholder="e.g. 10,000" value="${grossDisp}" oninput="formatMonthlyGrossInput(this)" onkeydown="if(event.key==='Enter')document.getElementById('additionalIncome')?.focus()">
       </div>
     </div>
-    <div class="field" style="margin-bottom:24px">
+    <div class="field" style="margin-bottom:28px">
       <div class="section-with-icon">
         <span class="sicon invest">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
@@ -2177,15 +2174,9 @@ function s10_income(){
       <p class="sub" style="margin:-8px 0 12px 0;font-size:13px">Side jobs, rental income, Social Security, etc.</p>
       <div class="debt-input-wrap">
         <span class="debt-prefix">$</span>
-        <input id="additionalIncome" class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${addlDisp}" oninput="formatAdditionalIncomeInput(this);render()" onkeydown="if(event.key==='Enter')saveIncomeAndGo()">
+        <input id="additionalIncome" class="debt-input" type="text" inputmode="numeric" placeholder="0" value="${addlDisp}" oninput="formatAdditionalIncomeInput(this)" onkeydown="if(event.key==='Enter')saveIncomeAndGo()">
       </div>
     </div>
-    ${totalMo > 0 ? `
-    <div class="income-summary-box">
-      <div class="income-summary-icon">${arrowIcon}</div>
-      <div>With <strong>$${totalMo.toLocaleString()}/mo income</strong> and a <strong>$${liability.toLocaleString()} liability</strong>, the IRS will look at what you can afford each month. That's what we'll figure out in the expenses section.</div>
-    </div>
-    ` : ''}
     <button class="cta teal" onclick="saveIncomeAndGo()">
       Continue
       <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -3119,12 +3110,28 @@ function fmtNum(el, key){
 
 let _saveDebounce;
 function debouncedSave(){ clearTimeout(_saveDebounce); _saveDebounce = setTimeout(saveLocalState, 400); }
+function updateWhereYouFallBar(){
+  const amt = S.debtAmount || 0;
+  const maxBar = 100000;
+  const pct = Math.min(amt / maxBar, 1) * 100;
+  const dotLeft = Math.max(2, Math.min(98, pct));
+  let summaryMsg = 'This is well within the range we resolve every day.';
+  if (amt >= 75000) summaryMsg = 'We regularly help clients with balances in this range.';
+  else if (amt >= 10000) summaryMsg = 'This is in the typical range we help clients with.';
+  const fillEl = document.getElementById('whereYouFallFill');
+  const dotEl = document.getElementById('whereYouFallDot');
+  const summaryEl = document.getElementById('whereYouFallSummary');
+  if (fillEl) fillEl.style.width = pct + '%';
+  if (dotEl) dotEl.style.left = dotLeft + '%';
+  if (summaryEl) summaryEl.innerHTML = 'Your estimated total: <strong>$' + (amt ? amt.toLocaleString() : '0') + '</strong>. ' + summaryMsg;
+}
 function formatDebtInput(el){
   const raw = el.value.replace(/[^0-9]/g,'');
   const num = parseInt(raw) || 0;
   S.debtAmount = num;
   if(raw) el.value = num.toLocaleString();
   else el.value = '';
+  updateWhereYouFallBar();
   debouncedSave();
 }
 function saveDebtConfirmAndGo(){
@@ -3276,11 +3283,13 @@ function updateExpTotal(){
 function saveFinancialsAndGo(){
   const totalExp = (S.expHousing||0)+(S.expFood||0)+(S.expClothing||0)+(S.expPersonalCare||0)+(S.expHousehold||0)+(S.expCarPayment||0)+(S.expGas||0)+(S.expInsuranceMaintenance||0)+(S.expUtilities||0)+(S.expMedical||0)+(S.expOther||0);
   if(totalExp === 0){ alert('Please enter your monthly living expenses.'); return; }
-  capture();
+  captureFormToState();
+  saveLocalState();
   go(15);
 }
 function saveObligationsAndGo(){
-  capture();
+  captureFormToState();
+  saveLocalState();
   go(16);
 }
 
