@@ -106,12 +106,16 @@ app.get('/favicon.png', (req, res) => {
   res.sendFile(faviconPath);
 });
 
-// Serve the HTML file for root
+// Clean URL routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'SympleTax_Portal_v6 (1).html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Serve static files
+app.get('/get-started', (req, res) => {
+  res.sendFile(path.join(__dirname, 'get-started.html'));
+});
+
+// Serve static files (assets, etc.)
 app.use(express.static(__dirname));
 
 app.listen(PORT, '0.0.0.0', () => {
