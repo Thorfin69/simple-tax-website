@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started – Free Tax Relief Qualification | SympleTax</title>
+  <link rel="icon" href="/favicon.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0F1F45;
+      --navy2:  #1B2F60;
+      --teal:   #00B4B0;
+      --teal2:  #009B98;
+      --white:  #FFFFFF;
+      --off:    #F5F7FC;
+      --line:   #E2E8F4;
+      --muted:  #8895AE;
+      --body:   #3D4A61;
+      --green:  #10B981;
+      --red:    #EF4444;
+      --amber:  #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    .hdr {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 36px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .logo { font-family:'Outfit',sans-serif; font-size:21px; font-weight:800; color:var(--navy); text-decoration:none; letter-spacing:-.5px; }
+    .logo em { color:var(--teal); font-style:normal; }
+    .hdr-right { display:flex; align-items:center; gap:24px; }
+    .hdr-lock { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--muted); }
+    .hdr-lock svg { color:var(--green); }
+    .hdr-phone { font-size:14px; font-weight:700; color:var(--navy); text-decoration:none; letter-spacing:-.2px; }
+    .hdr-phone:hover { color:var(--teal); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 62px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 64px 80px 72px;
+      background: var(--white);
+    }
+    .hero-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #EDF2FF; border: 1px solid #C7D7FD;
+      color: #3151B8; font-size: 12px; font-weight: 700;
+      padding: 5px 13px; border-radius: 999px;
+      margin-bottom: 28px; width: fit-content;
+      letter-spacing: .3px;
+    }
+    .hero-chip span { width:7px; height:7px; border-radius:50%; background:#3151B8; display:inline-block; }
+    .hero-h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 800; line-height: 1.1;
+      color: var(--navy); margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero-h1 mark {
+      background: linear-gradient(135deg, var(--teal), #0084B0);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 17px; color: var(--body); line-height: 1.65;
+      margin-bottom: 40px; max-width: 420px;
+    }
+    .hero-cta-wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--navy); color: var(--white);
+      font-size: 15px; font-weight: 700;
+      padding: 16px 32px; border-radius: 14px;
+      border: none; cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(15,31,69,.3);
+    }
+    .hero-cta:hover { background: var(--navy2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15,31,69,.35); }
+    .hero-cta:active { transform: translateY(0); }
+    .hero-cta-sub { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+    .hero-pill {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--off); border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 14px;
+      font-size: 12px; font-weight: 600; color: var(--body);
+    }
+    .hero-pill svg { color: var(--green); }
+
+    /* Hero right — visual panel */
+    .hero-right {
+      background: var(--navy);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 56px;
+      position: relative; overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(0,180,176,.12);
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(0,180,176,.08);
+    }
+    .hr-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 20px; }
+    .hr-stats { display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 1; margin-bottom: 40px; }
+    .hr-stat {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 18px 22px;
+    }
+    .hr-stat-left { display: flex; align-items: center; gap: 12px; }
+    .hr-stat-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(0,180,176,.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hr-stat-icon svg { color: var(--teal); width: 20px; height: 20px; }
+    .hr-stat-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
+    .hr-stat-desc { font-size: 11px; color: rgba(255,255,255,.4); margin-top: 2px; }
+    .hr-stat-val { font-family:'Outfit',sans-serif; font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+
+    .hr-review {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px; padding: 22px;
+      position: relative; z-index: 1;
+    }
+    .hr-rev-stars { display: flex; gap: 3px; margin-bottom: 10px; }
+    .hr-rev-star { color: var(--amber); font-size: 14px; }
+    .hr-rev-text { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+    .hr-rev-author { display: flex; align-items: center; gap: 10px; }
+    .hr-rev-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), #0084B0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white;
+    }
+    .hr-rev-meta { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); }
+    .hr-rev-meta span { font-size: 11px; font-weight: 400; color: rgba(255,255,255,.4); display: block; margin-top: 1px; }
+
+    /* ─── FORM PAGE ─── */
+    .form-page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 62px;
+    }
+    .form-page.active { display: grid; grid-template-columns: 1fr 380px; }
+
+    /* ─── FORM COL ─── */
+    .form-col {
+      padding: 48px 64px 100px;
+      min-width: 0;
+    }
+
+    /* ─── STEPPER ─── */
+    .stepper {
+      display: flex; align-items: center;
+      margin-bottom: 52px;
+      gap: 0;
+    }
+    .stepper-item {
+      display: flex; flex-direction: column; align-items: center;
+      position: relative; flex: 1;
+    }
+    .stepper-item:last-child { flex: 0; }
+    .stepper-dot {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      border: 2px solid var(--line);
+      background: var(--white); color: var(--muted);
+      transition: all 0.3s; z-index: 1; position: relative;
+      flex-shrink: 0;
+    }
+    .stepper-dot.done {
+      background: var(--navy); border-color: var(--navy); color: white;
+    }
+    .stepper-dot.active {
+      background: var(--navy); border-color: var(--navy); color: white;
+      box-shadow: 0 0 0 5px rgba(15,31,69,.12);
+    }
+    .stepper-dot.done svg { width: 13px; height: 13px; }
+    .stepper-line {
+      flex: 1; height: 2px;
+      background: var(--line);
+      transition: background 0.3s;
+      margin-top: -14px; /* align with dot center */
+      align-self: flex-start;
+      margin-top: 13px;
+    }
+    .stepper-line.done { background: var(--navy); }
+
+    /* ─── STEP CONTENT ─── */
+    #step-content { animation: fadeSlide .35s ease both; }
+    @keyframes fadeSlide {
+      from { opacity:0; transform: translateY(14px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    @keyframes slideFromRight {
+      from { opacity:0; transform: translateX(20px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+    @keyframes slideFromLeft {
+      from { opacity:0; transform: translateX(-20px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+
+    .step-eyebrow {
+      font-size: 11px; font-weight: 700; color: var(--teal);
+      text-transform: uppercase; letter-spacing: 1.2px;
+      margin-bottom: 10px;
+    }
+    .step-q {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(22px, 3.2vw, 30px);
+      font-weight: 800; color: var(--navy);
+      margin-bottom: 8px; line-height: 1.2; letter-spacing: -.5px;
+    }
+    .step-hint { font-size: 14px; color: var(--muted); margin-bottom: 30px; }
+
+    /* ─── OPTION CARDS ─── */
+    .options-grid { display: flex; flex-direction: column; gap: 10px; max-width: 540px; }
+    .options-grid.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .opt-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer; background: var(--white);
+      transition: border-color .15s, background .15s, box-shadow .15s, transform .1s;
+      user-select: none; position: relative;
+    }
+    .opt-card:hover {
+      border-color: rgba(15,31,69,.3);
+      background: #FAFBFE;
+      box-shadow: 0 3px 12px rgba(15,31,69,.07);
+      transform: translateY(-1px);
+    }
+    .opt-card.selected {
+      border-color: var(--navy);
+      background: #F8FAFF;
+      box-shadow: 0 4px 16px rgba(15,31,69,.13);
+    }
+    /* Selected badge in corner */
+    .opt-card.selected::after {
+      content: '';
+      position: absolute; top: -1px; right: -1px;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 24px 24px 0;
+      border-color: transparent var(--navy) transparent transparent;
+      border-radius: 0 12px 0 0;
+    }
+    .opt-card.selected::before {
+      content: '✓';
+      position: absolute; top: 1px; right: 2px;
+      font-size: 9px; font-weight: 800; color: white;
+      z-index: 1;
+    }
+
+    .opt-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--off); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background .15s, border-color .15s;
+    }
+    .opt-icon svg { width: 19px; height: 19px; color: var(--muted); transition: color .15s; }
+    .opt-card.selected .opt-icon { background: rgba(15,31,69,.06); border-color: rgba(15,31,69,.15); }
+    .opt-card.selected .opt-icon svg { color: var(--navy); }
+
+    .opt-text { flex: 1; min-width: 0; }
+    .opt-label { font-size: 15px; font-weight: 600; color: var(--navy); }
+    .opt-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Custom indicators */
+    .opt-indicator {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .opt-indicator.check { border-radius: 5px; }
+    .opt-card.selected .opt-indicator { background: var(--navy); border-color: var(--navy); }
+    .ind-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: white;
+      transform: scale(0); transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+    }
+    .opt-card.selected .ind-dot { transform: scale(1); }
+    .ind-check { opacity:0; transform:scale(0); transition: all .2s cubic-bezier(.34,1.56,.64,1); }
+    .ind-check svg { width: 11px; height: 11px; }
+    .opt-card.selected .ind-check { opacity:1; transform:scale(1); }
+
+    /* ─── BUTTONS ─── */
+    .btn-row { display: flex; align-items: center; gap: 14px; margin-top: 36px; }
+
+    .btn-next {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--navy); color: white;
+      font-size: 15px; font-weight: 700;
+      padding: 14px 28px; border-radius: 12px;
+      border: none; cursor: pointer;
+      transition: all .2s;
+      box-shadow: 0 4px 16px rgba(15,31,69,.28);
+    }
+    .btn-next:hover:not(:disabled) { background: var(--navy2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,31,69,.32); }
+    .btn-next:active:not(:disabled) { transform: translateY(0); }
+    .btn-next:disabled { opacity: .4; cursor: not-allowed; }
+
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: transparent; color: var(--muted);
+      font-size: 13px; font-weight: 600;
+      padding: 12px 4px; border: none; cursor: pointer;
+      transition: color .15s;
+    }
+    .btn-back:hover { color: var(--navy); }
+
+    /* ─── CONTACT FORM (step 7) ─── */
+    .qualify-banner {
+      display: flex; align-items: center; gap: 12px;
+      background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+      border: 1px solid #A7F3D0; border-radius: 12px;
+      padding: 14px 18px; margin-bottom: 28px; max-width: 540px;
+    }
+    .qualify-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .qualify-icon svg { width: 18px; height: 18px; color: white; }
+    .qualify-title { font-size: 14px; font-weight: 700; color: #065F46; }
+    .qualify-sub { font-size: 12px; color: #059669; margin-top: 2px; }
+
+    .contact-q { font-family:'Outfit',sans-serif; font-size:clamp(20px,3vw,27px); font-weight:800; color:var(--navy); margin-bottom:8px; letter-spacing:-.4px; }
+    .contact-sub { font-size:15px; color:var(--body); line-height:1.6; margin-bottom:32px; max-width:500px; }
+
+    .fields { display: flex; flex-direction: column; gap: 16px; max-width: 500px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .field {
+      display: flex; flex-direction: column; gap: 6px; position: relative;
+    }
+    .field label { font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: .5px; }
+    .field input {
+      padding: 13px 16px;
+      border: 1.5px solid var(--line); border-radius: 10px;
+      font-size: 15px; font-family: 'Inter', sans-serif; color: var(--navy);
+      background: var(--white); width: 100%;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .field input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(15,31,69,.08); }
+    .field input.err { border-color: var(--red); }
+    .field-err { font-size: 11px; color: var(--red); font-weight: 600; display: none; }
+    .field input.err + .field-err { display: block; }
+
+    .terms-card {
+      max-width: 500px; margin-top: 8px;
+      background: var(--off); border: 1px solid var(--line);
+      border-radius: 12px; padding: 18px;
+    }
+    .terms-body { font-size: 11.5px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+    .terms-row {
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer; user-select: none;
+    }
+    .terms-box-el {
+      width: 19px; height: 19px; border-radius: 5px;
+      border: 2px solid var(--line); background: white;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .15s;
+    }
+    .terms-box-el.on { background: var(--navy); border-color: var(--navy); }
+    .terms-box-el svg { width: 10px; height: 10px; color: white; opacity: 0; transform: scale(0); transition: all .2s cubic-bezier(.34,1.56,.64,1); }
+    .terms-box-el.on svg { opacity: 1; transform: scale(1); }
+    .terms-lbl { font-size: 13px; font-weight: 600; color: var(--navy); }
+
+    .btn-submit {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      color: white; font-size: 15px; font-weight: 700;
+      padding: 16px 32px; border-radius: 12px;
+      border: none; cursor: pointer;
+      transition: all .2s;
+      box-shadow: 0 4px 18px rgba(15,31,69,.3);
+      margin-top: 12px;
+    }
+    .btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(15,31,69,.35); }
+    .btn-submit:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    /* ─── DARK SIDEBAR ─── */
+    .form-sidebar {
+      background: var(--navy);
+      padding: 48px 32px;
+      display: flex; flex-direction: column; gap: 28px;
+      position: sticky; top: 62px;
+      height: calc(100vh - 62px); overflow-y: auto;
+    }
+
+    .sb-logo { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .sb-logo-text { font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:white; }
+    .sb-logo-text em { color:var(--teal); font-style:normal; }
+
+    /* Contextual tip card */
+    .sb-tip {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 20px;
+      transition: all .4s ease;
+    }
+    .sb-tip-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(0,180,176,.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .sb-tip-icon svg { width: 19px; height: 19px; color: var(--teal); }
+    .sb-tip-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 6px; line-height: 1.3; }
+    .sb-tip-body { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; }
+    .sb-tip-highlight { color: var(--teal); font-weight: 700; }
+
+    /* Trust badges */
+    .sb-trust { }
+    .sb-trust-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px; }
+    .sb-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sb-badge {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 12px 14px; text-align: center;
+    }
+    .sb-badge-val { font-family:'Outfit',sans-serif; font-size: 18px; font-weight: 800; color: white; margin-bottom: 2px; }
+    .sb-badge-lbl { font-size: 10px; color: rgba(255,255,255,.5); font-weight: 500; line-height: 1.4; }
+    .sb-badge.accent .sb-badge-val { color: var(--teal); }
+
+    /* Testimonial */
+    .sb-testimonial {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 20px;
+    }
+    .sb-test-stars { display:flex; gap:3px; margin-bottom:10px; }
+    .sb-test-star { color: var(--amber); font-size: 13px; }
+    .sb-test-text { font-size: 13px; color: rgba(255,255,255,.8); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+    .sb-test-author { display: flex; align-items: center; gap: 10px; }
+    .sb-test-av {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), #0084B0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: white;
+    }
+    .sb-test-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.75); }
+    .sb-test-saved { font-size: 11px; color: var(--teal); font-weight: 600; margin-top: 1px; }
+
+    /* Accreditations */
+    .sb-creds { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .sb-cred {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; padding: 7px 12px;
+      font-size: 11px; font-weight: 800; color: rgba(255,255,255,.75);
+      letter-spacing: .5px;
+    }
+
+    /* ─── THANK YOU ─── */
+    .ty-page {
+      display: none; min-height: 100vh; padding-top: 62px;
+      background: linear-gradient(160deg, #F5F7FC 0%, #FFFFFF 60%);
+    }
+    .ty-page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px; }
+
+    .ty-wrap { max-width: 620px; width: 100%; text-align: center; }
+
+    .ty-success-ring {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+      border: 3px solid #A7F3D0;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      animation: popRing .5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .ty-success-ring svg { width: 44px; height: 44px; color: var(--green); }
+    @keyframes popRing {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .ty-h { font-family:'Outfit',sans-serif; font-size:clamp(28px,5vw,42px); font-weight:800; color:var(--navy); letter-spacing:-.8px; margin-bottom:12px; }
+    .ty-name { color: var(--teal); }
+    .ty-sub { font-size:17px; color:var(--body); line-height:1.6; margin-bottom:48px; }
+
+    /* Next steps timeline */
+    .ty-timeline {
+      display: flex; flex-direction: column; gap: 0;
+      text-align: left; margin-bottom: 40px;
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 16px; overflow: hidden;
+    }
+    .ty-step {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 22px 24px; position: relative;
+    }
+    .ty-step + .ty-step { border-top: 1px solid var(--line); }
+    .ty-step-num {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: var(--navy); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800;
+    }
+    .ty-step:nth-child(1) .ty-step-num { background: var(--teal); }
+    .ty-step:nth-child(2) .ty-step-num { background: var(--navy); }
+    .ty-step:nth-child(3) .ty-step-num { background: var(--green); }
+    .ty-step-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .ty-step-body { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    .ty-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--navy); color: white;
+      font-size: 16px; font-weight: 700;
+      padding: 17px 40px; border-radius: 14px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: all .2s;
+      box-shadow: 0 4px 20px rgba(15,31,69,.28);
+    }
+    .ty-cta:hover { background:var(--navy2); transform:translateY(-2px); box-shadow:0 8px 28px rgba(15,31,69,.35); }
+
+    /* ─── SUPPORT BAR ─── */
+    .support-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 36px;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+    }
+    .support-left .sl { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .support-left .ss { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .support-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1.5px solid var(--navy); color: var(--navy);
+      font-size: 13px; font-weight: 700; padding: 10px 20px;
+      border-radius: 10px; background: transparent; cursor: pointer;
+      text-decoration: none; transition: all .15s;
+    }
+    .support-btn:hover { background: var(--navy); color: white; }
+
+    /* ─── CONFETTI ─── */
+    .confetti-piece {
+      position: fixed; top: -10px; border-radius: 2px;
+      animation: confettiFall linear forwards;
+    }
+    @keyframes confettiFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 32px; }
+      .form-page.active { grid-template-columns: 1fr; }
+      .form-sidebar { display: none; }
+      .form-col { padding: 36px 28px 100px; }
+      .stepper { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hdr { padding: 0 16px; }
+      .hdr-phone { display: none; }
+      .hero-left { padding: 40px 20px; }
+      .form-col { padding: 28px 20px 100px; }
+      .support-bar { padding: 12px 20px; }
+      .options-grid.two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="hdr">
+  <a href="/" class="logo">Symple<em>Tax</em></a>
+  <div class="hdr-right">
+    <div class="hdr-lock">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      256-bit SSL Secured
+    </div>
+    <a href="tel:18005551234" class="hdr-phone">(800) 555-1234</a>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<div class="hero" id="hero-page">
+  <div class="hero-left">
+    <div class="hero-chip">
+      <span></span> IRS-Certified Tax Relief Specialists
+    </div>
+    <h1 class="hero-h1">
+      Resolve your tax debt.<br>
+      <mark>Start for free today.</mark>
+    </h1>
+    <p class="hero-sub">Answer 7 quick questions and find out exactly which tax relief programs you qualify for — no cost, no commitment.</p>
+    <div class="hero-cta-wrap">
+      <button class="hero-cta" onclick="startForm()">
+        Check My Eligibility
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </button>
+      <span class="hero-cta-sub">Takes under 2 minutes</span>
+    </div>
+    <div class="hero-pills">
+      <div class="hero-pill">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        100% Free consultation
+      </div>
+      <div class="hero-pill">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        No upfront fees
+      </div>
+      <div class="hero-pill">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        Enrolled agents on staff
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hr-label">Real results from real clients</div>
+    <div class="hr-stats">
+      <div class="hr-stat">
+        <div class="hr-stat-left">
+          <div class="hr-stat-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+          </div>
+          <div>
+            <div class="hr-stat-name">Clients Helped</div>
+            <div class="hr-stat-desc">Across all 50 states</div>
+          </div>
+        </div>
+        <div class="hr-stat-val">10,000+</div>
+      </div>
+      <div class="hr-stat">
+        <div class="hr-stat-left">
+          <div class="hr-stat-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          </div>
+          <div>
+            <div class="hr-stat-name">Tax Debt Resolved</div>
+            <div class="hr-stat-desc">And counting</div>
+          </div>
+        </div>
+        <div class="hr-stat-val">$250M+</div>
+      </div>
+      <div class="hr-stat">
+        <div class="hr-stat-left">
+          <div class="hr-stat-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/></svg>
+          </div>
+          <div>
+            <div class="hr-stat-name">Average Savings</div>
+            <div class="hr-stat-desc">Per settled case</div>
+          </div>
+        </div>
+        <div class="hr-stat-val">$24K</div>
+      </div>
+    </div>
+
+    <div class="hr-review">
+      <div class="hr-rev-stars">★★★★★</div>
+      <p class="hr-rev-text">"I owed the IRS $62,000 and didn't know where to turn. SympleTax settled my case for $4,800. I can finally breathe again."</p>
+      <div class="hr-rev-author">
+        <div class="hr-rev-avatar">JR</div>
+        <div class="hr-rev-meta">
+          James R., Florida
+          <span>Settled $62K → $4.8K · Verified Client</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FORM PAGE ─── -->
+<div class="form-page" id="form-page">
+  <div class="form-col">
+
+    <!-- STEPPER -->
+    <div class="stepper" id="stepper"></div>
+
+    <!-- STEP CONTENT -->
+    <div id="step-content"></div>
+
+  </div>
+
+  <!-- DARK SIDEBAR -->
+  <aside class="form-sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-text">Symple<em>Tax</em></div>
+    </div>
+
+    <!-- Contextual tip — changes per step -->
+    <div class="sb-tip" id="sb-tip">
+      <div class="sb-tip-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+      </div>
+      <div class="sb-tip-title" id="sb-tip-title">Did you know?</div>
+      <div class="sb-tip-body" id="sb-tip-body">The IRS has over <span class="sb-tip-highlight">$1 billion</span> in unclaimed refunds and relief credits each year. Most people qualify for more relief than they think.</div>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="sb-trust">
+      <div class="sb-trust-label">By the numbers</div>
+      <div class="sb-badges">
+        <div class="sb-badge accent">
+          <div class="sb-badge-val">4.7★</div>
+          <div class="sb-badge-lbl">Trustpilot Rating</div>
+        </div>
+        <div class="sb-badge">
+          <div class="sb-badge-val">A+</div>
+          <div class="sb-badge-lbl">BBB Rating</div>
+        </div>
+        <div class="sb-badge accent">
+          <div class="sb-badge-val">98%</div>
+          <div class="sb-badge-lbl">Client Satisfaction</div>
+        </div>
+        <div class="sb-badge">
+          <div class="sb-badge-val">15yr</div>
+          <div class="sb-badge-lbl">In Business</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="sb-testimonial">
+      <div class="sb-test-stars">★★★★★</div>
+      <p class="sb-test-text">"They reduced my $38,000 debt to just $2,100. The team was professional, fast, and kept me informed every step of the way."</p>
+      <div class="sb-test-author">
+        <div class="sb-test-av">MR</div>
+        <div>
+          <div class="sb-test-name">Michael R., Texas</div>
+          <div class="sb-test-saved">Saved $35,900 · Verified</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Creds -->
+    <div>
+      <div class="sb-trust-label" style="margin-bottom:12px;">Accredited &amp; Certified</div>
+      <div class="sb-creds">
+        <div class="sb-cred">BBB A+</div>
+        <div class="sb-cred">NAEA</div>
+        <div class="sb-cred">NATP</div>
+        <div class="sb-cred">IRS Enrolled Agents</div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ─── THANK YOU ─── -->
+<div class="ty-page" id="ty-page">
+  <div class="ty-wrap">
+    <div class="ty-success-ring">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+    </div>
+    <h2 class="ty-h">Thank you, <span class="ty-name" id="ty-name">there</span>!</h2>
+    <p class="ty-sub">Your information has been received. A SympleTax specialist is already reviewing your case.</p>
+
+    <div class="ty-timeline">
+      <div class="ty-step">
+        <div class="ty-step-num">1</div>
+        <div>
+          <div class="ty-step-title">We're about to call you</div>
+          <div class="ty-step-body">Answer your phone — a SympleTax representative will call within minutes to connect you with a tax resolution expert.</div>
+        </div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">2</div>
+        <div>
+          <div class="ty-step-title">Free case review</div>
+          <div class="ty-step-body">Your expert will review your tax situation and identify every relief program you qualify for — Offer in Compromise, installment plans, penalty abatement, and more.</div>
+        </div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">3</div>
+        <div>
+          <div class="ty-step-title">Resolution & peace of mind</div>
+          <div class="ty-step-body">We handle everything — IRS correspondence, negotiations, and paperwork — so you can get back to living your life debt-free.</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="ty-cta" onclick="return false;">
+      Schedule an Appointment Instead
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ─── SUPPORT BAR ─── -->
+<div class="support-bar">
+  <div class="support-left">
+    <div class="sl">Have questions?</div>
+    <div class="ss">Don't hesitate to reach out — we're here to help.</div>
+  </div>
+  <a href="tel:18005551234" class="support-btn">
+    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+    Get Support
+  </a>
+</div>
+
+<script>
+// ─── STATE ───
+const S = {
+  step: 1,
+  prompted: [],
+  unfiledYears: '',
+  debtAmount: '',
+  taxType: '',
+  issueType: '',
+  bankruptcy: '',
+  firstName: '', lastName: '', email: '', phone: '', agreed: false,
+};
+
+// ─── STEP DEFINITIONS ───
+const STEPS = [
+  {
+    id: 1, type: 'checkbox', key: 'prompted',
+    eyebrow: 'Step 1 of 7',
+    question: 'What prompted you to seek tax relief?',
+    hint: 'Select all that apply — you can choose more than one',
+    tip: { icon: 'bell', title: 'You\'re not alone', body: 'Over <span class="sb-tip-highlight">14 million Americans</span> currently owe back taxes to the IRS. Relief programs exist specifically for situations like yours.' },
+    options: [
+      { value: 'irs_notice', label: 'Received IRS notice', desc: 'CP14, CP2000, or other IRS letters', icon: 'envelope' },
+      { value: 'garnishment', label: 'Garnishment, lien or levy', desc: 'Wage garnishment or bank levy in place', icon: 'lock' },
+      { value: 'unpaid_taxes', label: 'Unpaid taxes', desc: 'Owe taxes from prior years', icon: 'dollar' },
+      { value: 'other', label: 'Other reason', desc: 'A different tax-related concern', icon: 'dots' },
+    ]
+  },
+  {
+    id: 2, type: 'radio', key: 'unfiledYears',
+    eyebrow: 'Step 2 of 7',
+    question: 'Do you have any unfiled tax years?',
+    tip: { icon: 'calendar', title: 'Unfiled returns matter', body: 'The IRS can file a <span class="sb-tip-highlight">Substitute for Return</span> on your behalf — often with the least favorable filing status. Filing late is far better than not filing at all.' },
+    options: [
+      { value: 'yes', label: 'Yes', desc: 'I have one or more years not filed', icon: 'check-x' },
+      { value: 'no', label: 'No', desc: 'All my returns are filed', icon: 'check-ok' },
+      { value: 'not_sure', label: 'Not sure', desc: 'I need help figuring this out', icon: 'question' },
+    ]
+  },
+  {
+    id: 3, type: 'radio', key: 'debtAmount',
+    eyebrow: 'Step 3 of 7',
+    question: 'How much tax debt do you owe?',
+    hint: 'Include penalties and interest in your estimate',
+    tip: { icon: 'shield', title: 'Most debts can be reduced', body: 'Clients with <span class="sb-tip-highlight">$25K–$75K</span> in tax debt are prime candidates for an Offer in Compromise — often settling for 10–20 cents on the dollar.' },
+    options: [
+      { value: 'under5k', label: '$5,000 & under', icon: 'bar1' },
+      { value: '5k-10k', label: '$5,001 – $10,000', icon: 'bar2' },
+      { value: '10k-25k', label: '$10,001 – $25,000', icon: 'bar3' },
+      { value: '25k-50k', label: '$25,001 – $50,000', icon: 'bar4' },
+      { value: '50k-75k', label: '$50,001 – $75,000', icon: 'bar5' },
+      { value: '75k-plus', label: '$75,001 & above', icon: 'bar6' },
+    ]
+  },
+  {
+    id: 4, type: 'radio', key: 'taxType',
+    eyebrow: 'Step 4 of 7',
+    question: 'Do you owe federal or state taxes?',
+    tip: { icon: 'building', title: 'Federal vs. State relief', body: 'Federal and state tax programs <span class="sb-tip-highlight">operate independently</span>. Our team handles both simultaneously to maximize your total savings.' },
+    options: [
+      { value: 'both', label: 'Federal and State', desc: 'I owe both the IRS and my state', icon: 'building' },
+      { value: 'federal', label: 'Federal Only', desc: 'IRS debt only', icon: 'capitol' },
+      { value: 'state', label: 'State Only', desc: 'State tax authority debt only', icon: 'map' },
+    ]
+  },
+  {
+    id: 5, type: 'radio', key: 'issueType',
+    eyebrow: 'Step 5 of 7',
+    question: 'What type of tax issue do you have?',
+    tip: { icon: 'briefcase', title: 'Business tax issues', body: 'Business owners often have access to <span class="sb-tip-highlight">additional relief programs</span> including Trust Fund Recovery Penalty reduction and payroll tax negotiation.' },
+    options: [
+      { value: 'personal', label: 'Personal', desc: 'Individual income tax debt', icon: 'person' },
+      { value: 'business', label: 'Business', desc: 'Business or corporate tax debt', icon: 'briefcase' },
+      { value: 'both', label: 'Personal and Business', desc: 'Both personal and business debt', icon: 'both' },
+    ]
+  },
+  {
+    id: 6, type: 'radio', key: 'bankruptcy',
+    eyebrow: 'Step 6 of 7',
+    question: 'Are you currently in bankruptcy?',
+    tip: { icon: 'shield', title: 'Bankruptcy & tax relief', body: 'Active bankruptcy <span class="sb-tip-highlight">doesn\'t disqualify you</span> from tax relief — it actually triggers an automatic stay on IRS collection actions, which we can leverage in your favor.' },
+    options: [
+      { value: 'yes', label: 'Yes', desc: 'I am currently in bankruptcy proceedings', icon: 'gavel' },
+      { value: 'no', label: 'No', desc: 'I am not currently in bankruptcy', icon: 'shield-check' },
+    ]
+  },
+];
+
+// ─── ICON SVGs ───
+function getIcon(name) {
+  const icons = {
+    envelope: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>`,
+    lock: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>`,
+    dollar: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+    dots: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+    'check-x': `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>`,
+    'check-ok': `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>`,
+    question: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/></svg>`,
+    building: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/></svg>`,
+    capitol: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"/></svg>`,
+    map: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>`,
+    person: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>`,
+    briefcase: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>`,
+    both: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>`,
+    gavel: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>`,
+    'shield-check': `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>`,
+    // bar icons for debt ranges
+    bar1: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75Z"/></svg>`,
+    bar2: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625Z"/></svg>`,
+    bar3: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>`,
+    bar4: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>`,
+    bar5: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/></svg>`,
+    bar6: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+    shield: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>`,
+    bell: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"/></svg>`,
+    calendar: `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>`,
+  };
+  return icons[name] || icons['question'];
+}
+
+// ─── STEPPER RENDER ───
+function renderStepper(current) {
+  const el = document.getElementById('stepper');
+  let html = '';
+  for (let i = 1; i <= 7; i++) {
+    const done = i < current;
+    const active = i === current;
+    const cls = done ? 'done' : active ? 'active' : '';
+    const inner = done
+      ? `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>`
+      : i;
+    html += `<div class="stepper-item"><div class="stepper-dot ${cls}">${inner}</div></div>`;
+    if (i < 7) html += `<div class="stepper-line ${done ? 'done' : ''}"></div>`;
+  }
+  el.innerHTML = html;
+}
+
+// ─── SIDEBAR TIP UPDATE ───
+function updateSidebarTip(stepDef) {
+  if (!stepDef || !stepDef.tip) return;
+  const t = stepDef.tip;
+  document.getElementById('sb-tip-title').textContent = t.title;
+  document.getElementById('sb-tip-body').innerHTML = t.body;
+  const tipEl = document.getElementById('sb-tip');
+  tipEl.style.opacity = '0';
+  setTimeout(() => { tipEl.style.transition = 'opacity .3s'; tipEl.style.opacity = '1'; }, 50);
+}
+
+// ─── RENDER STEP ───
+function renderStep() {
+  const step = S.step;
+  renderStepper(step);
+
+  if (step <= 6) {
+    const def = STEPS[step - 1];
+    updateSidebarTip(def);
+    renderQuestion(def);
+  } else {
+    renderContact();
+  }
+}
+
+function animateIn(direction = 'right') {
+  const el = document.getElementById('step-content');
+  const kf = direction === 'right' ? 'slideFromRight' : 'slideFromLeft';
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = `${kf} .32s ease both`;
+}
+
+// ─── RENDER QUESTION ───
+function renderQuestion(def) {
+  const isCheck = def.type === 'checkbox';
+  const cur = S[def.key];
+
+  const optionsHTML = def.options.map(opt => {
+    const sel = isCheck ? cur.includes(opt.value) : cur === opt.value;
+    const indicator = isCheck
+      ? `<div class="opt-indicator check ${sel ? 'selected-ind' : ''}">
+           <span class="ind-check" style="${sel ? 'opacity:1;transform:scale(1)' : ''}">
+             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+           </span>
+         </div>`
+      : `<div class="opt-indicator">
+           <div class="ind-dot" style="${sel ? 'transform:scale(1)' : ''}"></div>
+         </div>`;
+
+    return `
+      <div class="opt-card${sel ? ' selected' : ''}"
+           onclick="pick(this,'${def.key}','${opt.value}',${isCheck})">
+        <div class="opt-icon">${getIcon(opt.icon)}</div>
+        <div class="opt-text">
+          <div class="opt-label">${opt.label}</div>
+          ${opt.desc ? `<div class="opt-desc">${opt.desc}</div>` : ''}
+        </div>
+        ${indicator}
+      </div>`;
+  }).join('');
+
+  const val = S[def.key];
+  const canNext = Array.isArray(val) ? val.length > 0 : val !== '';
+
+  document.getElementById('step-content').innerHTML = `
+    <div class="step-eyebrow">${def.eyebrow}</div>
+    <h2 class="step-q">${def.question}</h2>
+    ${def.hint ? `<p class="step-hint">${def.hint}</p>` : '<div style="height:20px"></div>'}
+    <div class="options-grid${def.options.length >= 5 ? '' : ''}">
+      ${optionsHTML}
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="goBack()">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        Back
+      </button>
+      <button class="btn-next" id="btn-next" ${canNext ? '' : 'disabled'} onclick="goNext()">
+        Continue
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>`;
+}
+
+// ─── PICK OPTION ───
+function pick(el, key, val, isCheck) {
+  if (isCheck) {
+    const idx = S[key].indexOf(val);
+    if (idx === -1) { S[key].push(val); el.classList.add('selected'); }
+    else { S[key].splice(idx, 1); el.classList.remove('selected'); }
+    // Update indicator
+    const ind = el.querySelector('.ind-check');
+    if (ind) { ind.style.opacity = el.classList.contains('selected') ? '1' : '0'; ind.style.transform = el.classList.contains('selected') ? 'scale(1)' : 'scale(0)'; }
+  } else {
+    S[key] = val;
+    el.closest('.options-grid').querySelectorAll('.opt-card').forEach(c => {
+      c.classList.remove('selected');
+      const dot = c.querySelector('.ind-dot');
+      if (dot) dot.style.transform = 'scale(0)';
+    });
+    el.classList.add('selected');
+    const dot = el.querySelector('.ind-dot');
+    if (dot) dot.style.transform = 'scale(1)';
+    // Auto-advance radio
+    setTimeout(goNext, 280);
+  }
+  const btn = document.getElementById('btn-next');
+  if (btn) {
+    const v = S[key];
+    btn.disabled = Array.isArray(v) ? v.length === 0 : v === '';
+  }
+}
+
+// ─── NAV ───
+function goNext() {
+  const step = S.step;
+  if (step <= 6) {
+    const def = STEPS[step - 1];
+    const v = S[def.key];
+    if (Array.isArray(v) ? v.length === 0 : v === '') return;
+  }
+  S.step++;
+  animateIn('right');
+  renderStep();
+}
+
+function goBack() {
+  if (S.step <= 1) {
+    document.getElementById('form-page').classList.remove('active');
+    document.getElementById('hero-page').style.display = 'grid';
+    return;
+  }
+  S.step--;
+  animateIn('left');
+  renderStep();
+}
+
+function startForm() {
+  document.getElementById('hero-page').style.display = 'none';
+  document.getElementById('form-page').classList.add('active');
+  S.step = 1;
+  renderStep();
+}
+
+// ─── CONTACT STEP ───
+function renderContact() {
+  renderStepper(7);
+  document.getElementById('step-content').innerHTML = `
+    <div class="qualify-banner">
+      <div class="qualify-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+      </div>
+      <div>
+        <div class="qualify-title">You've qualified for a free consultation!</div>
+        <div class="qualify-sub">Based on your answers, tax relief programs are available to you.</div>
+      </div>
+    </div>
+
+    <h2 class="contact-q">Claim your free tax consultation.</h2>
+    <p class="contact-sub">Speak with a tax resolution expert about qualifying for relief programs and protecting yourself from IRS collection actions.</p>
+
+    <div class="fields">
+      <div class="field-row">
+        <div class="field">
+          <label>First name</label>
+          <input id="f-first" type="text" placeholder="John" value="${S.firstName}" oninput="S.firstName=this.value">
+          <span class="field-err">Required</span>
+        </div>
+        <div class="field">
+          <label>Last name</label>
+          <input id="f-last" type="text" placeholder="Smith" value="${S.lastName}" oninput="S.lastName=this.value">
+          <span class="field-err">Required</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email address</label>
+        <input id="f-email" type="email" placeholder="you@example.com" value="${S.email}" oninput="S.email=this.value">
+        <span class="field-err" id="email-err">Valid email required</span>
+      </div>
+      <div class="field">
+        <label>Phone number</label>
+        <input id="f-phone" type="tel" placeholder="(555) 000-0000" value="${S.phone}" oninput="fmtPhone(this)">
+        <span class="field-err">10-digit phone required</span>
+      </div>
+    </div>
+
+    <div class="terms-card">
+      <p class="terms-body">I am providing express written consent to be contacted at the phone number provided and any other subscriber or user of this number by SympleTax and/or its affiliates using automatic dialing systems and pre-recorded and artificial voice and text messages anytime from and after your inquiry, to discuss the products and services offered by its affiliates in response to your requests. I waive any registration to any state, federal, or corporate Do Not Call registry. I understand consent is not required to purchase goods or services and that message & data rates may apply.</p>
+      <label class="terms-row" onclick="toggleTerms()">
+        <div class="terms-box-el ${S.agreed ? 'on' : ''}" id="t-box">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+        </div>
+        <span class="terms-lbl">I agree to these terms and conditions</span>
+      </label>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goBack()">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        Back
+      </button>
+      <button class="btn-submit" id="btn-sub" onclick="submitForm()">
+        Get My Free Consultation
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>`;
+
+  // Update sidebar tip for contact step
+  document.getElementById('sb-tip-title').textContent = 'Almost there!';
+  document.getElementById('sb-tip-body').innerHTML = 'Your information is <span class="sb-tip-highlight">100% confidential</span> and protected by attorney-client privilege. We never sell or share your data.';
+}
+
+function toggleTerms() {
+  S.agreed = !S.agreed;
+  const box = document.getElementById('t-box');
+  if (box) box.classList.toggle('on', S.agreed);
+}
+
+function fmtPhone(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,10);
+  S.phone = v;
+  if (v.length >= 7) el.value = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+  else if (v.length >= 4) el.value = `(${v.slice(0,3)}) ${v.slice(3)}`;
+  else if (v.length) el.value = `(${v}`;
+}
+
+function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+function submitForm() {
+  let ok = true;
+  const fi = document.getElementById('f-first');
+  const fl = document.getElementById('f-last');
+  const fe = document.getElementById('f-email');
+  const fp = document.getElementById('f-phone');
+
+  [fi, fl, fe, fp].forEach(el => el.classList.remove('err'));
+
+  if (!S.firstName.trim()) { fi.classList.add('err'); ok = false; }
+  if (!S.lastName.trim()) { fl.classList.add('err'); ok = false; }
+  if (!validEmail(S.email)) {
+    fe.classList.add('err');
+    document.getElementById('email-err').textContent = S.email ? 'Please enter a valid email.' : 'Email address is required.';
+    ok = false;
+  }
+  if (S.phone.replace(/\D/g,'').length < 10) { fp.classList.add('err'); ok = false; }
+  if (!S.agreed) { alert('Please agree to the terms and conditions.'); return; }
+  if (!ok) return;
+
+  const btn = document.getElementById('btn-sub');
+  btn.disabled = true;
+  btn.innerHTML = `<svg width="16" height="16" style="animation:spin .7s linear infinite" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Submitting...`;
+
+  setTimeout(showThankYou, 1400);
+}
+
+function showThankYou() {
+  document.getElementById('form-page').classList.remove('active');
+  const ty = document.getElementById('ty-page');
+  ty.classList.add('active');
+  document.getElementById('ty-name').textContent = S.firstName || 'there';
+  launchConfetti();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── CONFETTI ───
+function launchConfetti() {
+  const colors = ['#00B4B0','#0F1F45','#10B981','#F59E0B','#6366F1','#EC4899'];
+  for (let i = 0; i < 90; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const size = Math.random() * 8 + 6;
+    piece.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      width: ${size}px; height: ${size * (Math.random() > 0.5 ? 1 : 2.5)}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-duration: ${2 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * .8}s;
+    `;
+    document.body.appendChild(piece);
+    piece.addEventListener('animationend', () => piece.remove());
+  }
+}
+
+// spin keyframe
+document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transform:rotate(360deg)}}</style>');
+</script>
+</body>
+</html>
