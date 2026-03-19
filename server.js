@@ -111,6 +111,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'SympleTax_Portal_v6 (1).html'));
 });
 
+// Get Started page
+app.get('/get-started', (req, res) => {
+  res.sendFile(path.join(__dirname, 'get-started.html'));
+});
+
 // Serve static files
 app.use(express.static(__dirname));
 

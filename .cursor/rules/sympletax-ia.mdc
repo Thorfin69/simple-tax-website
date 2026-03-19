@@ -1,0 +1,36 @@
+---
+description: SympleTax Information Architecture update rules. Apply when editing or regenerating IA HTML files.
+alwaysApply: false
+globs: ["**/*ia*.html", "**/*IA*.html", "**/sympletax*ia*"]
+---
+
+# SympleTax IA Update Rules
+
+## CRITICAL: Never Redesign
+
+When updating the SympleTax Information Architecture (IA) HTML:
+
+1. **Preserve the existing design** — Use the current IA v2 structure as base. Do NOT change layout, card structure, or visual style.
+2. **ADD only** — Insert new sections, expand content, add notes. Do NOT delete or simplify.
+3. **Highlight new/updated content** — Use cyan/blue background (e.g. `background: #e0f7fa` or `rgba(0,188,212,0.15)`) so the client sees what changed.
+4. **NEVER** — Redesign, remove sections, change the method/structure of the IA.
+
+## Scope (14 pages + Blog CMS)
+
+- 5 Core: Home, About, Solutions Overview, Contact, Resources
+- 6 Service: OIC, Installment Agreement, Penalty Abatement, CNC, Innocent Spouse, Unfiled Returns
+- 3 Legal: Privacy, Terms, Disclaimer
+- Blog CMS (50 articles)
+
+## Client Corrections to Apply
+
+- Phone: +1 (949) 287-3015
+- HQ: Irvine, CA
+- NOT "EA" or "Enrolled Agent" — use "Licensed CPAs"
+- Hero: white/solid color (no stock imagery)
+- Founder photo: make smaller
+- Stats: "Fastest growing tax relief company in the nation" (not "50M resolved")
+
+## Reference
+
+See `SYMPLETAX_CONTEXT.md` for full scope, in/out of scope, and codebase references.

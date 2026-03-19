@@ -242,7 +242,7 @@ body {
 .logo-item-stars { color: #F59E0B; }
 
 /* REVIEWS */
-.reviews-section { background: #FFFFFF; padding: 70px 20px; }
+.reviews-section { background: #FFFFFF; padding: 70px 0; overflow: hidden; }
 .reviews-inner { max-width: 880px; margin: 0 auto; }
 .reviews-label {
   text-align: center; font-size: 11px; font-weight: 700; color: var(--teal);
@@ -253,8 +253,24 @@ body {
   font-size: 34px; font-weight: 800; color: #0A1629;
   margin-bottom: 48px; letter-spacing: -1.2px;
 }
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.reviews-track-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: reviewsScroll 30s linear infinite;
+}
+.reviews-track:hover { animation-play-state: paused; }
+@keyframes reviewsScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 .review-card {
+  flex-shrink: 0;
+  width: 273px;
   background: #F9FAFB; border: 1px solid #F0F2F5;
   border-radius: 20px; padding: 28px;
   transition: box-shadow .2s, transform .2s;
@@ -264,6 +280,13 @@ body {
 .review-text { font-size: 14px; color: #4B5563; line-height: 1.72; margin-bottom: 18px; font-style: italic; }
 .review-author { font-size: 13px; font-weight: 700; color: #0A1629; }
 .review-author span { font-weight: 400; color: #9CA3AF; }
+
+@media (max-width: 640px) {
+  .reviews-section { padding: 48px 0; }
+  .reviews-title { font-size: 26px; margin-bottom: 32px; }
+  .review-card { width: 260px; padding: 22px; }
+  .reviews-track { gap: 14px; animation-duration: 20s; }
+}
 
 /* CEO SECTION */
 .ceo-section { background: #F9FAFB; border-top: 1px solid #F0F2F5; border-bottom: 1px solid #F0F2F5; padding: 70px 20px; }
@@ -1041,6 +1064,8 @@ footer p { font-size: 12px; color: var(--muted); }
   .hero-h1 { font-size:32px; }
   .hero-sub { font-size:15px; }
   .reviews-grid { grid-template-columns: 1fr; }
+  .review-card { width: 260px; }
+  .reviews-track { gap: 14px; animation-duration: 20s; }
   .ceo-inner { flex-direction:column; gap:24px; }
   .hiw-steps { grid-template-columns:1fr; }
   .hiw-steps::before { display:none; }
@@ -1425,21 +1450,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="reviews-inner">
       <div class="reviews-label">Client Stories</div>
       <h2 class="reviews-title">Real people. Real results.</h2>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">I owed over $45,000 to the IRS and thought there was no way out. SympleTax helped me settle for a fraction of what I owed. The process was easy and completely online.</p>
-          <div class="review-author">Michael R. <span>— Dallas, TX</span></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">Professional, fast, and actually affordable. My case manager kept me updated the whole way through. I finally feel like I can breathe again.</p>
-          <div class="review-author">Sarah T. <span>— Miami, FL</span></div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">I was getting wage garnishment notices and didn't know what to do. SympleTax stopped the garnishment within days and negotiated a much lower amount.</p>
-          <div class="review-author">David L. <span>— Phoenix, AZ</span></div>
+      <div class="reviews-track-wrap">
+        <div class="reviews-track">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I owed over $45,000 to the IRS and thought there was no way out. SympleTax helped me settle for a fraction of what I owed. The process was easy and completely online.</p>
+            <div class="review-author">Michael R. <span>— Dallas, TX</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Professional, fast, and actually affordable. My case manager kept me updated the whole way through. I finally feel like I can breathe again.</p>
+            <div class="review-author">Sarah T. <span>— Miami, FL</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I was getting wage garnishment notices and didn't know what to do. SympleTax stopped the garnishment within days and negotiated a much lower amount.</p>
+            <div class="review-author">David L. <span>— Phoenix, AZ</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I was drowning in back taxes from a failed business. SympleTax got the IRS off my back and cut my balance by more than half.</p>
+            <div class="review-author">Derek N. <span>— Phoenix, AZ</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I owed over $45,000 to the IRS and thought there was no way out. SympleTax helped me settle for a fraction of what I owed. The process was easy and completely online.</p>
+            <div class="review-author">Michael R. <span>— Dallas, TX</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Professional, fast, and actually affordable. My case manager kept me updated the whole way through. I finally feel like I can breathe again.</p>
+            <div class="review-author">Sarah T. <span>— Miami, FL</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I was getting wage garnishment notices and didn't know what to do. SympleTax stopped the garnishment within days and negotiated a much lower amount.</p>
+            <div class="review-author">David L. <span>— Phoenix, AZ</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">I was drowning in back taxes from a failed business. SympleTax got the IRS off my back and cut my balance by more than half.</p>
+            <div class="review-author">Derek N. <span>— Phoenix, AZ</span></div>
+          </div>
         </div>
       </div>
     </div>
