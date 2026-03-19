@@ -121,6 +121,16 @@ app.get('/get-started', (req, res) => {
   res.redirect(301, '/free-consultation');
 });
 
+// Bypass — clears form state and sends user to home page
+app.get('/reset', (req, res) => {
+  res.send(`<!DOCTYPE html><html><head><title>Redirecting...</title></head><body>
+  <script>
+    localStorage.removeItem('sx_form');
+    localStorage.removeItem('sx_utms');
+    window.location.href = '/';
+  </script></body></html>`);
+});
+
 // Explicitly serve /assets/* from project root (more reliable on Vercel serverless)
 app.get('/assets/:file', (req, res) => {
   const filePath = path.join(process.cwd(), 'assets', req.params.file);
