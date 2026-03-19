@@ -203,16 +203,49 @@
 
     /* Review card */
     .hr-review {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 14px; padding: 18px 20px;
+      background: #fff;
+      border: 1px solid #E8EDF5;
+      border-left: 4px solid #00B87C;
+      border-radius: 14px;
+      padding: 20px 20px 20px 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
     }
-    .hr-rev-stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; margin-bottom: 8px; display: block; }
-    .hr-rev-text { font-size: 13px; color: var(--body); line-height: 1.6; font-style: italic; margin-bottom: 12px; }
+    .hr-rev-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .hr-rev-logo {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #00B87C;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .hr-rev-logo svg { width: 13px; height: 13px; }
+    .hr-rev-score { font-size: 11px; font-weight: 700; color: #191919; }
+    .hr-rev-stars { display: flex; gap: 2px; margin-bottom: 10px; }
+    .hr-rev-stars svg { width: 13px; height: 13px; }
+    .hr-rev-text { font-size: 13px; color: #374151; line-height: 1.65; font-style: italic; margin-bottom: 14px; }
     .hr-rev-author { display: flex; align-items: center; gap: 10px; }
     .hr-rev-avatar {
       width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-      background: var(--off); border: 2px solid var(--line);
+      background: linear-gradient(135deg, #0F1F45, #1A4080);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: #C8D8F0;
+    }
+    .hr-rev-meta { font-size: 13px; font-weight: 700; color: #0A1629; }
+    .hr-rev-meta span { display: block; font-size: 11px; font-weight: 400; color: #9CA3AF; margin-top: 1px; }
+    .hr-rev-verified {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 600; color: #00B87C;
+      text-transform: uppercase; letter-spacing: .4px; margin-top: 4px;
+    }
+    .hr-rev-verified svg { width: 10px; height: 10px; }
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 700; color: var(--navy);
     }
@@ -992,13 +1025,29 @@
 
     <!-- Review -->
     <div class="hr-review">
-      <span class="hr-rev-stars"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+      <div class="hr-rev-top">
+        <div class="hr-rev-logo">
+          <svg viewBox="0 0 24 24" fill="#00B87C"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Trustpilot
+        </div>
+        <div class="hr-rev-score">4.9</div>
+      </div>
+      <div class="hr-rev-stars">
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
       <p class="hr-rev-text">"I can finally breathe again. They handled everything — I didn't have to talk to the IRS once."</p>
       <div class="hr-rev-author">
         <div class="hr-rev-avatar">JR</div>
         <div class="hr-rev-meta">
           James R., Florida
-          <span>Verified Client · SympleTax 2024</span>
+          <div class="hr-rev-verified">
+            <svg viewBox="0 0 24 24" fill="#00B87C"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Verified Client
+          </div>
         </div>
       </div>
     </div>
