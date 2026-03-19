@@ -121,6 +121,14 @@ app.get('/get-started', (req, res) => {
   res.redirect(301, '/free-consultation');
 });
 
+// Explicitly serve /assets/* from project root (more reliable on Vercel serverless)
+app.get('/assets/:file', (req, res) => {
+  const filePath = path.join(process.cwd(), 'assets', req.params.file);
+  res.sendFile(filePath, err => {
+    if (err) res.status(404).send('Asset not found');
+  });
+});
+
 // Serve static files LAST so explicit routes above always take priority
 app.use(express.static(__dirname));
 
