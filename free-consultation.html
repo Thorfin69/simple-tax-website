@@ -543,43 +543,6 @@
     .sb-badge-lbl { font-size: 10px; color: var(--muted); font-weight: 500; line-height: 1.3; }
     .sb-badge.accent .sb-badge-val { color: var(--teal); }
 
-    /* Testimonials */
-    .sb-testimonials {
-      position: relative;
-    }
-    .sb-testimonial {
-      background: #fff;
-      border: 1px solid #e8edf5;
-      border-left: 4px solid #00b67a;
-      border-radius: 10px;
-      padding: 16px;
-      transition: opacity 0.5s ease;
-    }
-    .sb-test-active {
-      opacity: 1;
-    }
-    .sb-testimonial:not(.sb-test-active) {
-      display: none;
-    }
-    .sb-test-stars { display: flex; gap: 2px; margin-bottom: 8px; color: #00b67a; font-size: 12px; }
-    .sb-test-star { color: #00b67a; font-size: 12px; }
-    .sb-test-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 5px; }
-    .sb-test-text { font-size: 12px; color: #6b7280; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
-    .sb-test-author { font-size: 11px; color: #b0b7c3; }
-    .sb-test-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
-    .sb-test-prev, .sb-test-next {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      border: 1px solid #e0e4ec;
-      background: #fff;
-      cursor: pointer;
-      font-size: 11px; color: #6b7280;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .sb-test-prev:hover, .sb-test-next:hover { border-color: #0d1f3c; color: #0d1f3c; }
-    .sb-test-meta { font-size: 10.5px; color: #c0c7d4; }
-
     /* Accreditations */
     .sb-creds { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .sb-cred {
@@ -889,7 +852,33 @@
     .sb-badge-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .sb-badge-pair.hidden { display: none; }
 
-    /* ─── RESPONSIVE ─── */
+    /* Testimonial pairs — swap same way as badge pairs */
+    .sb-test-pair { display: block; }
+    .sb-test-pair.hidden { display: none; }
+    .sb-test-inner {
+      background: #fff;
+      border: 1px solid #e8edf5;
+      border-left: 4px solid #00b67a;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .sb-test-stars { display: flex; gap: 2px; margin-bottom: 8px; color: #00b67a; font-size: 12px; }
+    .sb-test-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 5px; }
+    .sb-test-text { font-size: 12px; color: #6b7280; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
+    .sb-test-author { font-size: 11px; color: #b0b7c3; }
+    .sb-test-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+    .sb-test-prev, .sb-test-next {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 1px solid #e0e4ec;
+      background: #fff;
+      cursor: pointer;
+      font-size: 11px; color: #6b7280;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .sb-test-prev:hover, .sb-test-next:hover { border-color: #0d1f3c; color: #0d1f3c; }
+    .sb-test-meta { font-size: 10.5px; color: #c0c7d4; }
     @media (max-width: 960px) {
       .hero { grid-template-columns: 1fr; }
       .hero-right { display: none; }
@@ -1167,29 +1156,99 @@
 
     <!-- Testimonials (auto-rotating) -->
     <div class="sb-testimonials" id="sb-testimonials">
-      <div class="sb-testimonial sb-test-active">
-        <div class="sb-test-stars">★★★★★</div>
-        <div class="sb-test-title" id="st-title-1">Took a weight off my shoulders</div>
-        <div class="sb-test-text" id="st-body-1">I didn't know where to turn. Sympletax walked me through every option and got my balance down to something I could actually handle.</div>
-        <div class="sb-test-author" id="st-author-1">Verified Client · 3 days ago</div>
+      <div class="sb-test-pair" id="st-pair-a">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Took a weight off my shoulders</div>
+          <div class="sb-test-text">I didn't know where to turn. Sympletax walked me through every option and got my balance down to something I could actually handle.</div>
+          <div class="sb-test-author">Verified Client · 3 days ago</div>
+        </div>
       </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars">★★★★★</div>
-        <div class="sb-test-title" id="st-title-2">Settled for a fraction of what I owed</div>
-        <div class="sb-test-text" id="st-body-2">I had over $30,000 in back taxes. The team negotiated a settlement I never thought was possible. Incredibly grateful.</div>
-        <div class="sb-test-author" id="st-author-2">Verified Client · 2 weeks ago</div>
+      <div class="sb-test-pair hidden" id="st-pair-b">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Settled for a fraction of what I owed</div>
+          <div class="sb-test-text">I had over $30,000 in back taxes. The team negotiated a settlement I never thought was possible. Incredibly grateful.</div>
+          <div class="sb-test-author">Verified Client · 2 weeks ago</div>
+        </div>
       </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars">★★★★★</div>
-        <div class="sb-test-title" id="st-title-3">Professional from start to finish</div>
-        <div class="sb-test-text" id="st-body-3">Every call was on time, every question answered. I always knew what was happening with my case. Highly recommend.</div>
-        <div class="sb-test-author" id="st-author-3">Verified Client · 1 month ago</div>
+      <div class="sb-test-pair hidden" id="st-pair-c">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Professional from start to finish</div>
+          <div class="sb-test-text">Every call was on time, every question answered. I always knew what was happening with my case. Highly recommend.</div>
+          <div class="sb-test-author">Verified Client · 1 month ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-d">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Saved me over $40,000</div>
+          <div class="sb-test-text">I owed the IRS over $45,000 and thought there was no way out. SympleTax settled it for a fraction of what I owed. The process was easy and completely online.</div>
+          <div class="sb-test-author">Verified Client · 5 days ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-e">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Didn't have to talk to the IRS once</div>
+          <div class="sb-test-text">I can finally breathe again. They handled everything — I didn't have to speak with the IRS at all. That peace of mind is priceless.</div>
+          <div class="sb-test-author">Verified Client · 2 months ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-f">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Reduced my tax debt by 78%</div>
+          <div class="sb-test-text">They reduced my tax debt by 78% and set up an affordable monthly payment plan I can actually live with. I had given up hope — they gave me my life back.</div>
+          <div class="sb-test-author">Verified Client · 3 weeks ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-g">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Honest and transparent</div>
+          <div class="sb-test-text">No hidden fees, no runaround. They told me exactly what to expect, delivered on every promise. I'll use them again next tax season for sure.</div>
+          <div class="sb-test-author">Verified Client · 6 days ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-h">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Quick and painless process</div>
+          <div class="sb-test-text">Filed my unfiled returns and got compliant in weeks. I didn't realize how simple it could be. Should have done this years ago.</div>
+          <div class="sb-test-author">Verified Client · 1 week ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-i">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">IRS audit handled expertly</div>
+          <div class="sb-test-text">When I got audited I was terrified. SympleTax took over everything and the audit closed with no changes. Absolutely exceptional team.</div>
+          <div class="sb-test-author">Verified Client · 4 days ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-j">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Affordable payment plan</div>
+          <div class="sb-test-text">They got me on an installment agreement I could actually afford. The IRS was going to take my wages — SympleTax stopped that immediately.</div>
+          <div class="sb-test-author">Verified Client · 10 days ago</div>
+        </div>
+      </div>
+      <div class="sb-test-pair hidden" id="st-pair-k">
+        <div class="sb-test-inner">
+          <div class="sb-test-stars">★★★★★</div>
+          <div class="sb-test-title">Wiped out my tax lien</div>
+          <div class="sb-test-text">Had a tax lien on my house for years. They filed the right forms and got it released. My credit is already climbing. Incredible service.</div>
+          <div class="sb-test-author">Verified Client · 2 weeks ago</div>
+        </div>
       </div>
       <div class="sb-test-controls">
         <div class="sb-test-meta">Showing 4 &amp; 5&#9733; reviews</div>
         <div style="display:flex;gap:5px">
-          <button class="sb-test-prev" onclick="sbRv(-1)">&#8592;</button>
-          <button class="sb-test-next" onclick="sbRv(1)">&#8594;</button>
+          <button class="sb-test-prev" id="st-prev">&#8592;</button>
+          <button class="sb-test-next" id="st-next">&#8594;</button>
         </div>
       </div>
     </div>
@@ -1884,55 +1943,96 @@ function launchConfetti() {
 // spin keyframe
 document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transform:rotate(360deg)}}</style>');
 
-// ─── BADGE CAROUSEL ───
+// ─── UNIFIED CAROUSEL — badges + testimonials swap together ───
 (function() {
   const pairA = document.getElementById('badge-pair-a');
   const pairB = document.getElementById('badge-pair-b');
+  const stA   = document.getElementById('st-pair-a');
+  const stB    = document.getElementById('st-pair-b');
+  const stC    = document.getElementById('st-pair-c');
+  const stD    = document.getElementById('st-pair-d');
+  const stE    = document.getElementById('st-pair-e');
+  const stF    = document.getElementById('st-pair-f');
+  const stG    = document.getElementById('st-pair-g');
+  const stH    = document.getElementById('st-pair-h');
+  const stI    = document.getElementById('st-pair-i');
+  const stJ    = document.getElementById('st-pair-j');
+  const stK    = document.getElementById('st-pair-k');
   if (!pairA || !pairB) return;
-  let showingA = true;
-  setInterval(function() {
-    const outEl = showingA ? pairA : pairB;
-    const inEl  = showingA ? pairB : pairA;
-    outEl.style.transition = 'opacity .5s ease';
-    outEl.style.opacity = '0';
+
+  const stAll = [stA, stB, stC, stD, stE, stF, stG, stH, stI, stJ, stK].filter(Boolean);
+  let step = 0; // 0-9 cycling through testimonials
+  const STEPS = stAll.length;
+  const INTERVAL = 3500;
+
+  function swap() {
+    const sOut = stAll[step];
+    step = (step + 1) % STEPS;
+    const sIn  = stAll[step];
+
+    // Badge swap
+    const bOut = step % 2 === 0 ? pairA : pairB;
+    const bIn  = step % 2 === 0 ? pairB : pairA;
+
+    // Fade out current testimonial + badge
+    sOut.style.transition = 'opacity .5s ease';
+    sOut.style.opacity = '0';
+    bOut.style.transition = 'opacity .5s ease';
+    bOut.style.opacity = '0';
+
     setTimeout(function() {
-      outEl.style.display = 'none';
-      inEl.style.display = 'grid';
-      inEl.style.opacity = '0';
-      inEl.style.transition = 'opacity .5s ease';
-      setTimeout(function() { inEl.style.opacity = '1'; }, 20);
+      sOut.style.display = 'none';
+      bOut.style.display = 'none';
+
+      sIn.style.display = 'block';
+      sIn.style.opacity = '0';
+      sIn.style.transition = 'opacity .5s ease';
+
+      bIn.style.display = 'grid';
+      bIn.style.opacity = '0';
+      bIn.style.transition = 'opacity .5s ease';
+
+      setTimeout(function() {
+        sIn.style.opacity = '1';
+        bIn.style.opacity = '1';
+      }, 20);
     }, 500);
-    showingA = !showingA;
-  }, 3500);
-})();
-
-// ─── TESTIMONIAL ROTATION ───
-(function() {
-  const container = document.getElementById('sb-testimonials');
-  if (!container) return;
-  const testimonials = container.querySelectorAll('.sb-testimonial');
-  if (testimonials.length <= 1) return;
-  let current = 0;
-
-  function show(idx) {
-    testimonials.forEach((t, i) => {
-      t.classList.toggle('sb-test-active', i === idx);
-      t.style.opacity = i === idx ? '1' : '0';
-      t.style.display = i === idx ? 'block' : 'none';
-    });
   }
 
-  // Expose sbRv globally for prev/next buttons
-  window.sbRv = function(d) {
-    current = (current + d + testimonials.length) % testimonials.length;
-    show(current);
-  };
+  swap();
+  setInterval(swap, INTERVAL);
 
-  show(0);
-  // Auto-rotate every 4 seconds
-  setInterval(function() {
-    window.sbRv(1);
-  }, 4000);
+  // Prev / Next buttons for testimonials
+  const prevBtn = document.getElementById('st-prev');
+  const nextBtn = document.getElementById('st-next');
+  if (prevBtn) prevBtn.addEventListener('click', function() {
+    step = (step - 1 + STEPS) % STEPS;
+    stAll.forEach(function(el, i) {
+      if (!el) return;
+      el.style.display = (i === step) ? 'block' : 'none';
+      el.style.opacity = (i === step) ? '1' : '0';
+    });
+    const bp = step % 2 === 0;
+    [pairA, pairB].forEach(function(el, i) {
+      if (!el) return;
+      el.style.display = (i === (bp ? 0 : 1)) ? 'grid' : 'none';
+      el.style.opacity = '1';
+    });
+  });
+  if (nextBtn) nextBtn.addEventListener('click', function() {
+    step = (step + 1) % STEPS;
+    stAll.forEach(function(el, i) {
+      if (!el) return;
+      el.style.display = (i === step) ? 'block' : 'none';
+      el.style.opacity = (i === step) ? '1' : '0';
+    });
+    const bp = step % 2 === 0;
+    [pairA, pairB].forEach(function(el, i) {
+      if (!el) return;
+      el.style.display = (i === (bp ? 0 : 1)) ? 'grid' : 'none';
+      el.style.opacity = '1';
+    });
+  });
 })();
 </script>
 </body>
