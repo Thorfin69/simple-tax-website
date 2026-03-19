@@ -2115,20 +2115,21 @@ document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transfo
   const pairB = document.getElementById('badge-pair-b');
   if (!pairA || !pairB) return;
   let showingA = true;
+  const transitionMs = 300;
   setInterval(function() {
     const outEl = showingA ? pairA : pairB;
     const inEl  = showingA ? pairB : pairA;
-    outEl.style.transition = 'opacity .5s ease';
+    outEl.style.transition = 'opacity ' + transitionMs + 'ms ease';
     outEl.style.opacity = '0';
     setTimeout(function() {
       outEl.style.display = 'none';
       inEl.style.display = 'grid';
       inEl.style.opacity = '0';
-      inEl.style.transition = 'opacity .5s ease';
+      inEl.style.transition = 'opacity ' + transitionMs + 'ms ease';
       setTimeout(function() { inEl.style.opacity = '1'; }, 20);
-    }, 500);
+    }, transitionMs);
     showingA = !showingA;
-  }, 3500);
+  }, 2400);
 })();
 
 // ─── TESTIMONIAL ROTATION ───
@@ -2144,10 +2145,11 @@ document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transfo
     testimonials[i].style.opacity = '0';
     testimonials[i].style.display = 'none';
   }
+  const transitionMs = 300;
   setInterval(function() {
     const outEl = testimonials[current];
     outEl.classList.remove('sb-test-active');
-    outEl.style.transition = 'opacity .5s ease';
+    outEl.style.transition = 'opacity ' + transitionMs + 'ms ease';
     outEl.style.opacity = '0';
     current = (current + 1) % testimonials.length;
     const inEl = testimonials[current];
@@ -2156,10 +2158,10 @@ document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transfo
       outEl.style.display = 'none';
       inEl.style.display = 'block';
       inEl.style.opacity = '0';
-      inEl.style.transition = 'opacity .5s ease';
+      inEl.style.transition = 'opacity ' + transitionMs + 'ms ease';
       setTimeout(function() { inEl.style.opacity = '1'; }, 20);
-    }, 500);
-  }, 4000);
+    }, transitionMs);
+  }, 2400);
 })();
 </script>
 </body>
