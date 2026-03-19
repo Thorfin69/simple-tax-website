@@ -210,26 +210,7 @@
       padding: 20px 20px 20px 18px;
       box-shadow: 0 2px 12px rgba(0,0,0,.04);
     }
-    .hr-rev-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .hr-rev-logo {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      font-weight: 700;
-      color: #00B87C;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-    .hr-rev-logo svg { width: 13px; height: 13px; }
-    .hr-rev-score { font-size: 11px; font-weight: 700; color: #191919; }
-    .hr-rev-stars { display: flex; gap: 2px; margin-bottom: 10px; }
-    .hr-rev-stars svg { width: 13px; height: 13px; }
+    .hr-rev-stars { font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; color: #F59E0B; }
     .hr-rev-text { font-size: 13px; color: #374151; line-height: 1.65; font-style: italic; margin-bottom: 14px; }
     .hr-rev-author { display: flex; align-items: center; gap: 10px; }
     .hr-rev-avatar {
@@ -239,13 +220,12 @@
       font-size: 11px; font-weight: 800; color: #C8D8F0;
     }
     .hr-rev-meta { font-size: 13px; font-weight: 700; color: #0A1629; }
-    .hr-rev-meta span { display: block; font-size: 11px; font-weight: 400; color: #9CA3AF; margin-top: 1px; }
     .hr-rev-verified {
       display: inline-flex; align-items: center; gap: 4px;
-      font-size: 10px; font-weight: 600; color: #00B87C;
-      text-transform: uppercase; letter-spacing: .4px; margin-top: 4px;
+      font-size: 11px; font-weight: 600; color: #00B87C;
+      margin-top: 2px;
     }
-    .hr-rev-verified svg { width: 10px; height: 10px; }
+    .hr-rev-verified svg { width: 11px; height: 11px; }
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 700; color: var(--navy);
     }
@@ -801,7 +781,7 @@
     /* ─── CEO SECTION ─── */
     .ceo-section { background: var(--off); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 80px 24px; }
     .ceo-inner { max-width: 680px; margin: 0 auto; display: flex; gap: 48px; align-items: flex-start; }
-    .ceo-avatar { width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--navy), var(--navy2)); display: flex; align-items: center; justify-content: center; font-size: 32px; border: 3px solid white; box-shadow: 0 4px 20px rgba(15,31,69,.15); }
+    .ceo-avatar { width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0; background: url('assets/WhatsApp Image 2026-03-19 at 11.47.56 AM.jpeg') center/140% no-repeat; border: 3px solid white; box-shadow: 0 4px 20px rgba(15,31,69,.15); }
     .ceo-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
     .ceo-quote { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 400; color: var(--navy); line-height: 1.7; margin-bottom: 20px; }
     .ceo-quote::before { content: '\201C'; }
@@ -1025,20 +1005,7 @@
 
     <!-- Review -->
     <div class="hr-review">
-      <div class="hr-rev-top">
-        <div class="hr-rev-logo">
-          <svg viewBox="0 0 24 24" fill="#00B87C"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          Trustpilot
-        </div>
-        <div class="hr-rev-score">4.9</div>
-      </div>
-      <div class="hr-rev-stars">
-        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </div>
+      <div class="hr-rev-stars">★★★★★</div>
       <p class="hr-rev-text">"I can finally breathe again. They handled everything — I didn't have to talk to the IRS once."</p>
       <div class="hr-rev-author">
         <div class="hr-rev-avatar">JR</div>
@@ -1046,7 +1013,7 @@
           James R., Florida
           <div class="hr-rev-verified">
             <svg viewBox="0 0 24 24" fill="#00B87C"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Verified Client
+            Verified Client · 3 days
           </div>
         </div>
       </div>
@@ -1060,9 +1027,7 @@
   <!-- CEO MESSAGE -->
   <section class="ceo-section">
     <div class="ceo-inner">
-      <div class="ceo-avatar">
-        <span style="font-size:20px;font-weight:700;color:#E5EDF7;letter-spacing:1px;">AH</span>
-      </div>
+      <div class="ceo-avatar"></div>
       <div class="ceo-content">
         <div class="ceo-label">A Message from Our CEO</div>
         <p class="ceo-quote">Tax problems can feel overwhelming, but getting the right help shouldn't be. Our approach is built around transparency, clear communication, and practical solutions that help people move forward. We're here to guide you through the process and help you resolve your tax situation with confidence.</p>
