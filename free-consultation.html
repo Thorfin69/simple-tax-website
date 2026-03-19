@@ -546,27 +546,20 @@
     /* Testimonials */
     .sb-testimonials {
       position: relative;
-      overflow: hidden;
     }
     .sb-testimonial {
-      position: absolute;
-      top: 0; left: 0; right: 0;
       background: #fff;
       border: 1px solid #e8edf5;
+      border-left: 4px solid #00b67a;
       border-radius: 10px;
       padding: 16px;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.5s ease;
     }
     .sb-test-active {
       opacity: 1;
-      transform: translateY(0);
-      z-index: 2;
     }
     .sb-testimonial:not(.sb-test-active) {
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      z-index: 1;
+      display: none;
     }
     .sb-test-stars { display: flex; gap: 2px; margin-bottom: 8px; color: #00b67a; font-size: 12px; }
     .sb-test-star { color: #00b67a; font-size: 12px; }
@@ -1936,6 +1929,10 @@ document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transfo
   };
 
   show(0);
+  // Auto-rotate every 4 seconds
+  setInterval(function() {
+    window.sbRv(1);
+  }, 4000);
 })();
 </script>
 </body>
