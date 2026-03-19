@@ -202,35 +202,29 @@
     .case-savings-badge svg { width: 11px; height: 11px; color: #10B981; }
 
     /* Review card */
+    .sb-rating-block { margin-bottom: 14px; }
+    .sb-rating-label { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .sb-star-row { display: flex; gap: 3px; margin-bottom: 4px; }
+    .sb-star {
+      width: 24px; height: 24px;
+      background: #00b67a;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+    }
+    .sb-star.half { background: linear-gradient(90deg, #00b67a 55%, #dde2ea 55%); }
+    .sb-star svg { width: 12px; height: 12px; fill: #fff; }
+    .sb-rating-count { font-size: 11px; color: #9ca3af; }
+
     .hr-review {
       background: #fff;
-      border: 1px solid #E8EDF5;
-      border-left: 4px solid #00B87C;
-      border-radius: 14px;
-      padding: 20px 20px 20px 18px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border: 1px solid #e8edf5;
+      border-radius: 10px;
+      padding: 16px;
     }
-    .hr-rev-stars { font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; color: #F59E0B; }
-    .hr-rev-text { font-size: 13px; color: #374151; line-height: 1.65; font-style: italic; margin-bottom: 14px; }
-    .hr-rev-author { display: flex; align-items: center; gap: 10px; }
-    .hr-rev-avatar {
-      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg, #0F1F45, #1A4080);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 800; color: #C8D8F0;
-    }
-    .hr-rev-meta { font-size: 13px; font-weight: 700; color: #0A1629; }
-    .hr-rev-verified {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 11px; font-weight: 600; color: #00B87C;
-      margin-top: 2px;
-    }
-    .hr-rev-verified svg { width: 11px; height: 11px; }
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700; color: var(--navy);
-    }
-    .hr-rev-meta { font-size: 13px; font-weight: 700; color: var(--navy); }
-    .hr-rev-meta span { font-size: 11px; font-weight: 400; color: var(--muted); display: block; margin-top: 1px; }
+    .hr-rev-stars { display: flex; gap: 2px; margin-bottom: 8px; color: #00b67a; font-size: 12px; }
+    .hr-rev-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 5px; }
+    .hr-rev-text { font-size: 12px; color: #6b7280; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
+    .hr-rev-author { font-size: 11px; color: #b0b7c3; }
 
     /* hide old stat grid — not used anymore */
     .hr-stats { display: none; }
@@ -553,36 +547,45 @@
     .sb-testimonials {
       position: relative;
       overflow: hidden;
-      height: 220px;
     }
     .sb-testimonial {
-      background: var(--off); border: 1px solid var(--line);
-      border-radius: 12px; padding: 14px;
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      border: 1px solid #e8edf5;
+      border-radius: 10px;
+      padding: 16px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .sb-test-active {
       opacity: 1;
       transform: translateY(0);
+      z-index: 2;
     }
     .sb-testimonial:not(.sb-test-active) {
-      position: absolute;
-      top: 0; left: 0; right: 0;
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(10px);
       pointer-events: none;
+      z-index: 1;
     }
-    .sb-test-stars { display:flex; gap:3px; margin-bottom:8px; color: #F59E0B !important; }
-    .sb-test-star { color: #F59E0B !important; font-size: 12px; }
-    .sb-test-text { font-size: 12px; color: var(--body); line-height: 1.6; font-style: italic; margin-bottom: 12px; }
-    .sb-test-author { display: flex; align-items: center; gap: 8px; }
-    .sb-test-av {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), #0084B0);
+    .sb-test-stars { display: flex; gap: 2px; margin-bottom: 8px; color: #00b67a; font-size: 12px; }
+    .sb-test-star { color: #00b67a; font-size: 12px; }
+    .sb-test-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 5px; }
+    .sb-test-text { font-size: 12px; color: #6b7280; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
+    .sb-test-author { font-size: 11px; color: #b0b7c3; }
+    .sb-test-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+    .sb-test-prev, .sb-test-next {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 1px solid #e0e4ec;
+      background: #fff;
+      cursor: pointer;
+      font-size: 11px; color: #6b7280;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 800; color: white; flex-shrink: 0;
+      transition: border-color 0.15s, color 0.15s;
     }
-    .sb-test-name { font-size: 12px; font-weight: 700; color: var(--navy); }
-    .sb-test-saved { font-size: 11px; color: var(--teal); font-weight: 600; margin-top: 1px; }
+    .sb-test-prev:hover, .sb-test-next:hover { border-color: #0d1f3c; color: #0d1f3c; }
+    .sb-test-meta { font-size: 10.5px; color: #c0c7d4; }
 
     /* Accreditations */
     .sb-creds { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -781,7 +784,7 @@
     /* ─── CEO SECTION ─── */
     .ceo-section { background: var(--off); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 80px 24px; }
     .ceo-inner { max-width: 680px; margin: 0 auto; display: flex; gap: 48px; align-items: flex-start; }
-    .ceo-avatar { width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0; background: url('assets/WhatsApp Image 2026-03-19 at 11.47.56 AM.jpeg') center/140% no-repeat; border: 3px solid white; box-shadow: 0 4px 20px rgba(15,31,69,.15); }
+    .ceo-avatar { width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0; background: url('assets/WhatsApp Image 2026-03-19 at 11.47.56 AM.jpeg') center/140% no-repeat; border: 3px solid white; box-shadow: 0 4px 20px rgba(15,31,69,.15); }
     .ceo-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
     .ceo-quote { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 400; color: var(--navy); line-height: 1.7; margin-bottom: 20px; }
     .ceo-quote::before { content: '\201C'; }
@@ -1003,20 +1006,25 @@
       </div>
     </div>
 
+    <!-- Trustpilot rating -->
+    <div class="sb-rating-block">
+      <div class="sb-rating-label">Excellent</div>
+      <div class="sb-star-row">
+        <div class="sb-star"><svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5H12l-2.8 2.2 1 3.5L7 8.5l-3.2 1.7 1-3.5L2 4.5h3.5z"/></svg></div>
+        <div class="sb-star"><svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5H12l-2.8 2.2 1 3.5L7 8.5l-3.2 1.7 1-3.5L2 4.5h3.5z"/></svg></div>
+        <div class="sb-star"><svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5H12l-2.8 2.2 1 3.5L7 8.5l-3.2 1.7 1-3.5L2 4.5h3.5z"/></svg></div>
+        <div class="sb-star"><svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5H12l-2.8 2.2 1 3.5L7 8.5l-3.2 1.7 1-3.5L2 4.5h3.5z"/></svg></div>
+        <div class="sb-star half"><svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5H12l-2.8 2.2 1 3.5L7 8.5l-3.2 1.7 1-3.5L2 4.5h3.5z"/></svg></div>
+      </div>
+      <div class="sb-rating-count">Based on verified client reviews &nbsp;·&nbsp; Trustpilot</div>
+    </div>
+
     <!-- Review -->
     <div class="hr-review">
       <div class="hr-rev-stars">★★★★★</div>
-      <p class="hr-rev-text">"I can finally breathe again. They handled everything — I didn't have to talk to the IRS once."</p>
-      <div class="hr-rev-author">
-        <div class="hr-rev-avatar">JR</div>
-        <div class="hr-rev-meta">
-          James R., Florida
-          <div class="hr-rev-verified">
-            <svg viewBox="0 0 24 24" fill="#00B87C"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Verified Client · 3 days
-          </div>
-        </div>
-      </div>
+      <div class="hr-rev-title">Took a weight off my shoulders</div>
+      <div class="hr-rev-text">I didn't know where to turn. Sympletax walked me through every option and got my balance down to something I could actually handle.</div>
+      <div class="hr-rev-author">Verified Client · 3 days ago</div>
     </div>
   </div>
 </div>
@@ -1167,271 +1175,31 @@
     <!-- Testimonials (auto-rotating) -->
     <div class="sb-testimonials" id="sb-testimonials">
       <div class="sb-testimonial sb-test-active">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"They reduced my $38,000 debt to just $2,100. The team was professional, fast, and kept me informed every step of the way."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">MR</div>
-          <div>
-            <div class="sb-test-name">Michael R., Texas</div>
-            <div class="sb-test-saved">Saved $35,900 · Verified</div>
-          </div>
-        </div>
+        <div class="sb-test-stars">★★★★★</div>
+        <div class="sb-test-title" id="st-title-1">Took a weight off my shoulders</div>
+        <div class="sb-test-text" id="st-body-1">I didn't know where to turn. Sympletax walked me through every option and got my balance down to something I could actually handle.</div>
+        <div class="sb-test-author" id="st-author-1">Verified Client · 3 days ago</div>
       </div>
       <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"I was drowning in $60,000 of IRS debt. SympleTax got me an Offer in Compromise for $4,800. I literally cried when I got the letter."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">JT</div>
-          <div>
-            <div class="sb-test-name">Jennifer T., California</div>
-            <div class="sb-test-saved">Saved $55,200 · Verified</div>
-          </div>
-        </div>
+        <div class="sb-test-stars">★★★★★</div>
+        <div class="sb-test-title" id="st-title-2">Settled for a fraction of what I owed</div>
+        <div class="sb-test-text" id="st-body-2">I had over $30,000 in back taxes. The team negotiated a settlement I never thought was possible. Incredibly grateful.</div>
+        <div class="sb-test-author" id="st-author-2">Verified Client · 2 weeks ago</div>
       </div>
       <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Wage garnishment stopped in 3 days. They negotiated a payment plan I could actually afford. Best decision I made all year."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">DW</div>
-          <div>
-            <div class="sb-test-name">David W., Florida</div>
-            <div class="sb-test-saved">Saved $28,000 · Verified</div>
-          </div>
-        </div>
+        <div class="sb-test-stars">★★★★★</div>
+        <div class="sb-test-title" id="st-title-3">Professional from start to finish</div>
+        <div class="sb-test-text" id="st-body-3">Every call was on time, every question answered. I always knew what was happening with my case. Highly recommend.</div>
+        <div class="sb-test-author" id="st-author-3">Verified Client · 1 month ago</div>
       </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"They handled everything. I didn't have to speak to the IRS once. Clean, professional, and they actually delivered what they promised."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">LP</div>
-          <div>
-            <div class="sb-test-name">Linda P., Ohio</div>
-            <div class="sb-test-saved">Saved $19,400 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Professional from start to finish. They reduced my tax debt by 78% and set up an affordable monthly payment plan I can live with."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">RK</div>
-          <div>
-            <div class="sb-test-name">Robert K., Arizona</div>
-            <div class="sb-test-saved">Saved $42,100 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"I had a $75,000 tax lien against my home. SympleTax got it released in 60 days. My family can finally sleep at night."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">SM</div>
-          <div>
-            <div class="sb-test-name">Sandra M., Georgia</div>
-            <div class="sb-test-saved">Saved $73,000 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"The IRS was about to levy my bank account. One call to SympleTax and they stopped it immediately. Incredible response time."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">TC</div>
-          <div>
-            <div class="sb-test-name">Thomas C., New York</div>
-            <div class="sb-test-saved">Saved $31,500 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Filed taxes for 6 years missing. SympleTax got me compliant and settled my debt for $2,200 instead of $18,000."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">KP</div>
-          <div>
-            <div class="sb-test-name">Karen P., Michigan</div>
-            <div class="sb-test-saved">Saved $15,800 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"My husband and I were facing wage garnishment. SympleTax negotiated a compromise that saved our home and our marriage."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">BL</div>
-          <div>
-            <div class="sb-test-name">Brenda L., Texas</div>
-            <div class="sb-test-saved">Saved $67,000 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Offer in Compromise accepted after 8 months of waiting. SympleTax handled all the paperwork and IRS communication."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">JR</div>
-          <div>
-            <div class="sb-test-name">James R., Colorado</div>
-            <div class="sb-test-saved">Saved $44,200 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Back taxes from my small business were destroying me. SympleTax set up an installment agreement I could manage."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">MW</div>
-          <div>
-            <div class="sb-test-name">Marcus W., Illinois</div>
-            <div class="sb-test-saved">Saved $22,900 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"The audit notification came and I was terrified. SympleTax represented me and the audit closed with no changes. Pure professionals."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">AH</div>
-          <div>
-            <div class="sb-test-name">Amanda H., California</div>
-            <div class="sb-test-saved">Audit Resolved · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"I was self-employed and owed $52,000. They got my penalty abatement approved and reduced my debt dramatically."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">DG</div>
-          <div>
-            <div class="sb-test-name">Derek G., Washington</div>
-            <div class="sb-test-saved">Saved $38,700 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Had a $90,000 IRS debt from unfiled years. SympleTax got me in the Current Year Resolution program and resolved everything."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">NP</div>
-          <div>
-            <div class="sb-test-name">Nancy P., Florida</div>
-            <div class="sb-test-saved">Saved $82,400 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"They removed the federal tax lien from my credit report after settling my debt. My credit score jumped 120 points."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">LS</div>
-          <div>
-            <div class="sb-test-name">Lisa S., Nevada</div>
-            <div class="sb-test-saved">Lien Released · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Called three other firms before SympleTax. None would take my case because it was too complex. They solved it in 90 days."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">RB</div>
-          <div>
-            <div class="sb-test-name">Roger B., Pennsylvania</div>
-            <div class="sb-test-saved">Saved $56,300 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Innocent spouse relief granted after 11 months. SympleTax guided me through every step of that difficult process."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">EW</div>
-          <div>
-            <div class="sb-test-name">Eleanor W., Virginia</div>
-            <div class="sb-test-saved">Spouse Relief Granted · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"My rental property taxes were a mess. They filed amended returns, got me refunds, and applied them to my debt. Smart firm."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">CV</div>
-          <div>
-            <div class="sb-test-name">Carlos V., Oregon</div>
-            <div class="sb-test-saved">Saved $17,600 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Payroll tax problems for my small business. SympleTax negotiated a trust fund penalty reduction of 60%. Can't recommend enough."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">JA</div>
-          <div>
-            <div class="sb-test-name">Juan A., Arizona</div>
-            <div class="sb-test-saved">Saved $29,400 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"After my divorce, I was stuck with $48,000 in tax debt from my ex's business. SympleTax got me relief and a fresh start."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">MT</div>
-          <div>
-            <div class="sb-test-name">Maria T., North Carolina</div>
-            <div class="sb-test-saved">Saved $41,200 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Crypto tax debt from 2017. The IRS wanted $83,000. SympleTax settled it for $9,500 through their penalty abatement program."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">PK</div>
-          <div>
-            <div class="sb-test-name">Patrick K., Utah</div>
-            <div class="sb-test-saved">Saved $73,500 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Restaurant owner here. SympleTax handled my back taxes and also saved me over $200 a month on my new payment plan. Great team."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">VG</div>
-          <div>
-            <div class="sb-test-name">Victor G., New Jersey</div>
-            <div class="sb-test-saved">Saved $33,800 · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"They represented me during a tax audit and got the IRS to dismiss all penalties. The fee was worth every penny — saved me thousands."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">DL</div>
-          <div>
-            <div class="sb-test-name">Diana L., Massachusetts</div>
-            <div class="sb-test-saved">Penalties Dismissed · Verified</div>
-          </div>
-        </div>
-      </div>
-      <div class="sb-testimonial">
-        <div class="sb-test-stars" style="color:#F59E0B;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="sb-test-text">"Freelancer with 5 years of unfiled returns. SympleTax got me compliant, negotiated my debt down, and I'm finally debt-free."</p>
-        <div class="sb-test-author">
-          <div class="sb-test-av">RH</div>
-          <div>
-            <div class="sb-test-name">Rachel H., Texas</div>
-            <div class="sb-test-saved">Saved $27,300 · Verified</div>
-          </div>
+      <div class="sb-test-controls">
+        <div class="sb-test-meta">Showing 4 &amp; 5&#9733; reviews</div>
+        <div style="display:flex;gap:5px">
+          <button class="sb-test-prev" onclick="sbRv(-1)">&#8592;</button>
+          <button class="sb-test-next" onclick="sbRv(1)">&#8594;</button>
         </div>
       </div>
     </div>
-
     <!-- Creds -->
     <div>
       <div class="sb-trust-label" style="margin-bottom:12px;">Accredited &amp; Certified</div>
@@ -2152,28 +1920,22 @@ document.head.insertAdjacentHTML('beforeend', '<style>@keyframes spin{to{transfo
   const testimonials = container.querySelectorAll('.sb-testimonial');
   if (testimonials.length <= 1) return;
   let current = 0;
-  testimonials[0].classList.add('sb-test-active');
-  testimonials[0].style.opacity = '1';
-  for (let i = 1; i < testimonials.length; i++) {
-    testimonials[i].style.opacity = '0';
-    testimonials[i].style.display = 'none';
+
+  function show(idx) {
+    testimonials.forEach((t, i) => {
+      t.classList.toggle('sb-test-active', i === idx);
+      t.style.opacity = i === idx ? '1' : '0';
+      t.style.display = i === idx ? 'block' : 'none';
+    });
   }
-  setInterval(function() {
-    const outEl = testimonials[current];
-    outEl.classList.remove('sb-test-active');
-    outEl.style.transition = 'opacity .5s ease';
-    outEl.style.opacity = '0';
-    current = (current + 1) % testimonials.length;
-    const inEl = testimonials[current];
-    inEl.classList.add('sb-test-active');
-    setTimeout(function() {
-      outEl.style.display = 'none';
-      inEl.style.display = 'block';
-      inEl.style.opacity = '0';
-      inEl.style.transition = 'opacity .5s ease';
-      setTimeout(function() { inEl.style.opacity = '1'; }, 20);
-    }, 500);
-  }, 4000);
+
+  // Expose sbRv globally for prev/next buttons
+  window.sbRv = function(d) {
+    current = (current + d + testimonials.length) % testimonials.length;
+    show(current);
+  };
+
+  show(0);
 })();
 </script>
 </body>
