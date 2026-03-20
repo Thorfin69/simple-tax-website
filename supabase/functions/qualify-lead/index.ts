@@ -64,6 +64,64 @@ Deno.serve(async (req) => {
       )
     }
 
+    // ── Push to Zoho CRM ──
+    const zohoClientId     = Deno.env.get('ZOHO_CLIENT_ID')
+    const zohoClientSecret = Deno.env.get('ZOHO_CLIENT_SECRET')
+    const zohoRefreshToken = Deno.env.get('ZOHO_REFRESH_TOKEN')
+
+    if (zohoClientId && zohoClientSecret && zohoRefreshToken) {
+      try {
+        // Get fresh access token
+        const tokenRes = await fetch('https://accounts.zoho.in/oauth/v2/token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            grant_type:    'refresh_token',
+            client_id:     zohoClientId,
+            client_secret: zohoClientSecret,
+            refresh_token: zohoRefreshToken,
+          })
+        })
+        const tokenData = await tokenRes.json()
+        const accessToken = tokenData.access_token
+
+        if (accessToken) {
+          const zohoRes = await fetch('https://www.zohoapis.in/crm/v2/Leads', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Zoho-oauthtoken ${accessToken}`,
+              'Content-Type':  'application/json',
+            },
+            body: JSON.stringify({
+              data: [{
+                First_Name:  dbRow.first_name,
+                Last_Name:   dbRow.last_name || '(no last name)',
+                Email:       dbRow.email,
+                Phone:       dbRow.phone,
+                Lead_Source: 'Website',
+                Description: [
+                  `Case: ${caseNumber}`,
+                  `Debt: ${dbRow.debt_amount || '—'}`,
+                  `Tax Type: ${dbRow.tax_type || '—'}`,
+                  `Issue: ${dbRow.issue_type || '—'}`,
+                  `Unfiled Years: ${dbRow.unfiled_years || '—'}`,
+                  `Bankruptcy: ${dbRow.bankruptcy || '—'}`,
+                ].join(' | '),
+              }]
+            })
+          })
+          const zohoData = await zohoRes.json()
+          console.log('Zoho CRM response:', JSON.stringify(zohoData))
+        } else {
+          console.warn('Zoho token refresh failed:', JSON.stringify(tokenData))
+        }
+      } catch (e) {
+        console.error('Zoho CRM push failed:', e)
+      }
+    } else {
+      console.warn('Zoho credentials not set — skipping CRM push')
+    }
+
     // ── Only send emails if Resend is configured ──
     if (resendApiKey) {
       const resend = new Resend(resendApiKey)
